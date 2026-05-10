@@ -1,0 +1,223 @@
+{
+  "category": "finance",
+  "description": "Comprehensive financial operations — payments, invoicing, accounting, advanced analytics, forecasting, and risk modeling.",
+  "tools": [
+    {
+      "name": "get_payment_status",
+      "description": "Check the status of a specific payment or transaction",
+      "category": "finance",
+      "required_role": "Employee",
+      "parameters": { "type": "object", "properties": { "payment_id": { "type": "string" } }, "required": ["payment_id"] }
+    },
+    {
+      "name": "initiate_payment",
+      "description": "Create and initiate a new payment transaction",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "amount": { "type": "number" }, "currency": { "type": "string", "default": "EGP" }, "recipient": { "type": "string" }, "description": { "type": "string" }, "metadata": { "type": "object" } }, "required": ["amount", "currency", "recipient"] }
+    },
+    {
+      "name": "refund_payment",
+      "description": "Process a full or partial refund for a completed payment",
+      "category": "finance",
+      "required_role": "Admin",
+      "parameters": { "type": "object", "properties": { "payment_id": { "type": "string" }, "amount": { "type": "number" }, "reason": { "type": "string" } }, "required": ["payment_id"] }
+    },
+    {
+      "name": "list_transactions",
+      "description": "Retrieve a list of transactions with optional filters",
+      "category": "finance",
+      "required_role": "Employee",
+      "parameters": { "type": "object", "properties": { "status": { "type": "string", "enum": ["pending", "completed", "failed", "refunded"] }, "date_from": { "type": "string" }, "date_to": { "type": "string" }, "limit": { "type": "integer", "default": 25 }, "category": { "type": "string" } }, "required": [] }
+    },
+    {
+      "name": "create_invoice",
+      "description": "Generate a new invoice for a client or customer",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "client_name": { "type": "string" }, "client_email": { "type": "string" }, "line_items": { "type": "array", "items": { "type": "object", "properties": { "description": { "type": "string" }, "quantity": { "type": "integer" }, "unit_price": { "type": "number" } } } }, "currency": { "type": "string", "default": "EGP" }, "due_date": { "type": "string" }, "tax_rate": { "type": "number" }, "discount_percent": { "type": "number" }, "notes": { "type": "string" } }, "required": ["client_name", "line_items"] }
+    },
+    {
+      "name": "get_balance",
+      "description": "Retrieve current account balance and summary",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "currency": { "type": "string" }, "account_id": { "type": "string" } }, "required": [] }
+    },
+    {
+      "name": "create_expense",
+      "description": "Record a business expense with category, receipt, and approval workflow",
+      "category": "finance",
+      "required_role": "Employee",
+      "parameters": { "type": "object", "properties": { "amount": { "type": "number" }, "currency": { "type": "string", "default": "EGP" }, "category": { "type": "string", "enum": ["travel", "meals", "supplies", "software", "marketing", "utilities", "rent", "payroll", "insurance", "legal", "other"] }, "vendor": { "type": "string" }, "description": { "type": "string" }, "receipt_url": { "type": "string" }, "date": { "type": "string" }, "project_id": { "type": "string" }, "billable": { "type": "boolean", "default": false } }, "required": ["amount", "category", "description"] }
+    },
+    {
+      "name": "approve_expense",
+      "description": "Approve or reject a pending expense report",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "expense_id": { "type": "string" }, "decision": { "type": "string", "enum": ["approved", "rejected"] }, "comment": { "type": "string" } }, "required": ["expense_id", "decision"] }
+    },
+    {
+      "name": "generate_pl_statement",
+      "description": "Generate a Profit & Loss (Income) statement for a given period",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "period_start": { "type": "string" }, "period_end": { "type": "string" }, "comparison_period": { "type": "string", "enum": ["previous_period", "previous_year", "none"], "default": "none" }, "department": { "type": "string" } }, "required": ["period_start", "period_end"] }
+    },
+    {
+      "name": "generate_cash_flow_statement",
+      "description": "Generate a cash flow statement showing operating, investing, and financing activities",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "period_start": { "type": "string" }, "period_end": { "type": "string" }, "method": { "type": "string", "enum": ["direct", "indirect"], "default": "indirect" } }, "required": ["period_start", "period_end"] }
+    },
+    {
+      "name": "generate_balance_sheet",
+      "description": "Generate a balance sheet showing assets, liabilities, and equity at a point in time",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "as_of_date": { "type": "string" }, "comparative_date": { "type": "string" } }, "required": ["as_of_date"] }
+    },
+    {
+      "name": "financial_ratio_analysis",
+      "description": "Calculate key financial ratios — liquidity (current ratio, quick ratio), profitability (ROE, ROA, gross margin, net margin), efficiency (asset turnover, inventory turnover), and leverage (debt-to-equity, interest coverage)",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "period": { "type": "string" }, "ratios": { "type": "array", "items": { "type": "string", "enum": ["current_ratio", "quick_ratio", "roe", "roa", "gross_margin", "net_margin", "operating_margin", "asset_turnover", "inventory_turnover", "receivable_turnover", "debt_to_equity", "interest_coverage", "all"] }, "default": ["all"] }, "benchmark_industry": { "type": "string" } }, "required": ["period"] }
+    },
+    {
+      "name": "monte_carlo_simulation",
+      "description": "Run a Monte Carlo simulation to model financial outcomes under uncertainty. Simulates thousands of scenarios for revenue, costs, or investment returns using probability distributions to estimate risk and expected values.",
+      "category": "finance",
+      "required_role": "Admin",
+      "parameters": { "type": "object", "properties": { "simulation_type": { "type": "string", "enum": ["revenue_forecast", "project_cost", "investment_return", "cash_flow", "portfolio_risk", "custom"] }, "num_simulations": { "type": "integer", "default": 10000 }, "time_horizon_months": { "type": "integer", "default": 12 }, "variables": { "type": "array", "items": { "type": "object", "properties": { "name": { "type": "string" }, "distribution": { "type": "string", "enum": ["normal", "uniform", "triangular", "lognormal", "beta"] }, "params": { "type": "object", "description": "Distribution parameters: {mean, std} for normal, {min, max} for uniform, {min, mode, max} for triangular" } } } }, "correlations": { "type": "array", "items": { "type": "object", "properties": { "var1": { "type": "string" }, "var2": { "type": "string" }, "coefficient": { "type": "number" } } } }, "confidence_levels": { "type": "array", "items": { "type": "number" }, "default": [0.05, 0.25, 0.5, 0.75, 0.95] } }, "required": ["simulation_type", "variables"] }
+    },
+    {
+      "name": "dcf_valuation",
+      "description": "Perform a Discounted Cash Flow (DCF) valuation to estimate the intrinsic value of a project, business unit, or investment based on projected future cash flows",
+      "category": "finance",
+      "required_role": "Admin",
+      "parameters": { "type": "object", "properties": { "projected_cash_flows": { "type": "array", "items": { "type": "number" }, "description": "Array of projected annual free cash flows" }, "discount_rate": { "type": "number", "description": "WACC or required rate of return (e.g., 0.10 for 10%)" }, "terminal_growth_rate": { "type": "number", "description": "Long-term growth rate for terminal value (e.g., 0.025 for 2.5%)" }, "initial_investment": { "type": "number" }, "method": { "type": "string", "enum": ["gordon_growth", "exit_multiple"], "default": "gordon_growth" }, "exit_multiple": { "type": "number", "description": "EBITDA multiple for exit multiple method" } }, "required": ["projected_cash_flows", "discount_rate"] }
+    },
+    {
+      "name": "revenue_forecast",
+      "description": "Generate a revenue forecast using historical data and growth assumptions. Supports multiple forecasting models.",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "forecast_months": { "type": "integer", "default": 12 }, "model": { "type": "string", "enum": ["linear_regression", "exponential_smoothing", "moving_average", "seasonal_decomposition", "growth_rate"], "default": "growth_rate" }, "growth_rate": { "type": "number", "description": "Annual growth rate as decimal (e.g., 0.15 for 15%)" }, "historical_months": { "type": "integer", "default": 12, "description": "Months of historical data to use" }, "seasonality": { "type": "boolean", "default": false }, "breakdown_by": { "type": "string", "enum": ["product", "region", "customer_segment", "channel", "none"], "default": "none" } }, "required": ["forecast_months"] }
+    },
+    {
+      "name": "budget_create",
+      "description": "Create or update a departmental or project budget with line items and approval workflow",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "name": { "type": "string" }, "period_start": { "type": "string" }, "period_end": { "type": "string" }, "department": { "type": "string" }, "line_items": { "type": "array", "items": { "type": "object", "properties": { "category": { "type": "string" }, "planned_amount": { "type": "number" }, "description": { "type": "string" } } } }, "total_amount": { "type": "number" }, "currency": { "type": "string", "default": "EGP" } }, "required": ["name", "period_start", "period_end", "line_items"] }
+    },
+    {
+      "name": "budget_variance_analysis",
+      "description": "Compare actual spending against budget to identify variances, overspends, and underspends across all line items",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "budget_id": { "type": "string" }, "period": { "type": "string" }, "threshold_percent": { "type": "number", "default": 10, "description": "Flag variances exceeding this percentage" }, "include_forecast": { "type": "boolean", "default": true } }, "required": ["budget_id"] }
+    },
+    {
+      "name": "break_even_analysis",
+      "description": "Calculate the break-even point for a product, project, or business unit given fixed costs, variable costs per unit, and price per unit",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "fixed_costs": { "type": "number" }, "variable_cost_per_unit": { "type": "number" }, "price_per_unit": { "type": "number" }, "target_profit": { "type": "number", "default": 0 }, "currency": { "type": "string", "default": "EGP" } }, "required": ["fixed_costs", "variable_cost_per_unit", "price_per_unit"] }
+    },
+    {
+      "name": "roi_calculator",
+      "description": "Calculate Return on Investment (ROI), payback period, and Net Present Value (NPV) for a project or investment",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "initial_investment": { "type": "number" }, "cash_inflows": { "type": "array", "items": { "type": "number" }, "description": "Expected periodic cash inflows" }, "cash_outflows": { "type": "array", "items": { "type": "number" }, "description": "Expected periodic cash outflows" }, "period_type": { "type": "string", "enum": ["monthly", "quarterly", "annually"], "default": "annually" }, "discount_rate": { "type": "number" }, "include_irr": { "type": "boolean", "default": true } }, "required": ["initial_investment", "cash_inflows"] }
+    },
+    {
+      "name": "depreciation_schedule",
+      "description": "Generate a depreciation schedule for an asset using straight-line, declining balance, or sum-of-years-digits methods",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "asset_name": { "type": "string" }, "purchase_price": { "type": "number" }, "salvage_value": { "type": "number", "default": 0 }, "useful_life_years": { "type": "integer" }, "method": { "type": "string", "enum": ["straight_line", "declining_balance", "double_declining", "sum_of_years", "units_of_production"], "default": "straight_line" }, "purchase_date": { "type": "string" }, "units_total": { "type": "integer", "description": "Total expected units for units-of-production method" } }, "required": ["asset_name", "purchase_price", "useful_life_years"] }
+    },
+    {
+      "name": "loan_amortization",
+      "description": "Generate a loan amortization schedule showing principal, interest, and balance for each payment period",
+      "category": "finance",
+      "required_role": "Employee",
+      "parameters": { "type": "object", "properties": { "principal": { "type": "number" }, "annual_interest_rate": { "type": "number", "description": "As decimal (e.g., 0.08 for 8%)" }, "term_months": { "type": "integer" }, "payment_frequency": { "type": "string", "enum": ["monthly", "biweekly", "quarterly"], "default": "monthly" }, "start_date": { "type": "string" }, "extra_payment": { "type": "number", "default": 0 } }, "required": ["principal", "annual_interest_rate", "term_months"] }
+    },
+    {
+      "name": "currency_convert",
+      "description": "Convert amounts between currencies using real-time or historical exchange rates",
+      "category": "finance",
+      "required_role": "Employee",
+      "parameters": { "type": "object", "properties": { "amount": { "type": "number" }, "from_currency": { "type": "string" }, "to_currency": { "type": "string" }, "date": { "type": "string", "description": "Historical rate date (ISO 8601). Omit for live rate." } }, "required": ["amount", "from_currency", "to_currency"] }
+    },
+    {
+      "name": "tax_estimate",
+      "description": "Estimate tax liability based on income, deductions, and jurisdiction-specific rules",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "gross_income": { "type": "number" }, "deductions": { "type": "array", "items": { "type": "object", "properties": { "type": { "type": "string" }, "amount": { "type": "number" } } } }, "jurisdiction": { "type": "string", "description": "Country or region code (e.g., 'EG', 'US-CA', 'UK')" }, "entity_type": { "type": "string", "enum": ["individual", "corporation", "partnership", "sole_proprietorship"], "default": "corporation" }, "tax_year": { "type": "string" } }, "required": ["gross_income", "jurisdiction"] }
+    },
+    {
+      "name": "accounts_receivable_aging",
+      "description": "Generate an accounts receivable aging report showing outstanding invoices grouped by age (current, 30/60/90/120+ days)",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "as_of_date": { "type": "string" }, "customer_filter": { "type": "string" }, "include_projections": { "type": "boolean", "default": false } }, "required": [] }
+    },
+    {
+      "name": "accounts_payable_aging",
+      "description": "Generate an accounts payable aging report showing outstanding bills grouped by due date",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "as_of_date": { "type": "string" }, "vendor_filter": { "type": "string" } }, "required": [] }
+    },
+    {
+      "name": "working_capital_analysis",
+      "description": "Analyze working capital efficiency — current assets vs current liabilities, cash conversion cycle, and recommendations",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "period": { "type": "string" }, "include_benchmarks": { "type": "boolean", "default": true } }, "required": ["period"] }
+    },
+    {
+      "name": "scenario_analysis",
+      "description": "Run best-case / base-case / worst-case financial scenario analysis for a project or business decision",
+      "category": "finance",
+      "required_role": "Admin",
+      "parameters": { "type": "object", "properties": { "base_case": { "type": "object", "properties": { "revenue": { "type": "number" }, "costs": { "type": "number" }, "growth_rate": { "type": "number" } } }, "optimistic_adjustments": { "type": "object", "description": "Percentage adjustments for best case (e.g., {revenue: 0.2, costs: -0.1})" }, "pessimistic_adjustments": { "type": "object", "description": "Percentage adjustments for worst case" }, "time_horizon_months": { "type": "integer", "default": 12 }, "probability_weights": { "type": "object", "properties": { "best": { "type": "number" }, "base": { "type": "number" }, "worst": { "type": "number" } }, "default": { "best": 0.25, "base": 0.5, "worst": 0.25 } } }, "required": ["base_case"] }
+    },
+    {
+      "name": "sensitivity_analysis",
+      "description": "Perform sensitivity analysis to understand how changes in key variables affect financial outcomes. Generates tornado charts and data tables.",
+      "category": "finance",
+      "required_role": "Admin",
+      "parameters": { "type": "object", "properties": { "target_metric": { "type": "string", "enum": ["npv", "irr", "profit", "revenue", "cash_flow", "roi"] }, "variables": { "type": "array", "items": { "type": "object", "properties": { "name": { "type": "string" }, "base_value": { "type": "number" }, "range_low": { "type": "number" }, "range_high": { "type": "number" }, "step": { "type": "number" } } } }, "model_parameters": { "type": "object", "description": "Base model parameters for the calculation" } }, "required": ["target_metric", "variables"] }
+    },
+    {
+      "name": "recurring_billing",
+      "description": "Manage subscription lifecycles, recurring invoices, and automated payment retries",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "action": { "type": "string", "enum": ["create_subscription", "cancel_subscription", "update_plan", "list_active", "forecast_mrr"] }, "customer_id": { "type": "string" }, "plan_id": { "type": "string" }, "billing_cycle": { "type": "string", "enum": ["monthly", "quarterly", "annually"] }, "amount": { "type": "number" } }, "required": ["action"] }
+    },
+    {
+      "name": "multi_currency_revaluation",
+      "description": "Calculate realized and unrealized foreign exchange gains/losses across multi-currency accounts",
+      "category": "finance",
+      "required_role": "Manager",
+      "parameters": { "type": "object", "properties": { "period_end": { "type": "string" }, "base_currency": { "type": "string", "default": "USD" }, "target_currencies": { "type": "array", "items": { "type": "string" } } }, "required": ["period_end", "base_currency"] }
+    },
+    {
+      "name": "runway_burn_monitor",
+      "description": "Predictive cash burn analysis and runway calculation specifically for early-stage startups",
+      "category": "finance",
+      "required_role": "Admin",
+      "parameters": { "type": "object", "properties": { "avg_monthly_burn": { "type": "number" }, "current_cash": { "type": "number" }, "include_projections": { "type": "boolean", "default": true } }, "required": ["current_cash"] }
+    }
+  ]
+}

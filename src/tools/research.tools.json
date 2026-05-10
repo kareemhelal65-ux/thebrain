@@ -1,0 +1,93 @@
+{
+  "category": "research",
+  "description": "Autonomous research and intelligence gathering from trusted real-world sources including academic journals, official documentation, and reputable news outlets.",
+  "tools": [
+    {
+      "name": "web_search_trusted",
+      "description": "Search for high-fidelity information from authoritative domains and trusted sources.",
+      "category": "research",
+      "required_role": "Employee",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "The research query or keywords" },
+          "trusted_domains_only": { "type": "boolean", "default": true, "description": "Restrict results to verified high-authority domains" },
+          "recency_filter": { "type": "string", "enum": ["day", "week", "month", "year", "any"], "default": "any" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "extract_source_content",
+      "description": "Extract cleaned text, metadata, and citations from a specific source URL.",
+      "category": "research",
+      "required_role": "Employee",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string", "description": "The URL to extract content from" },
+          "bypass_clutter": { "type": "boolean", "default": true, "description": "Remove ads, navigation, and irrelevant sidebars" }
+        },
+        "required": ["url"]
+      }
+    },
+    {
+      "name": "synthesize_report",
+      "description": "Aggregate gathered research data into a structured report with markdown formatting and source citations.",
+      "category": "research",
+      "required_role": "Employee",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "topic": { "type": "string", "description": "The main subject of the report" },
+          "collected_data": { "type": "array", "items": { "type": "string" }, "description": "Raw data chunks or snippets extracted from sources" },
+          "sources": { "type": "array", "items": { "type": "string" }, "description": "List of source URLs to be cited" },
+          "format_style": { "type": "string", "enum": ["executive_summary", "detailed_analysis", "white_paper", "brief"], "default": "detailed_analysis" }
+        },
+        "required": ["topic", "collected_data"]
+      }
+    },
+    {
+      "name": "intelligence_scan",
+      "description": "Perform a multi-source deep dive on a specific entity, company, or market trend.",
+      "category": "research",
+      "required_role": "Manager",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "entity_name": { "type": "string", "description": "The name of the entity or trend to scan" },
+          "depth": { "type": "string", "enum": ["standard", "deep"], "default": "standard" },
+          "include_competitors": { "type": "boolean", "default": true }
+        },
+        "required": ["entity_name"]
+      }
+    },
+    {
+      "name": "early_adopter_discovery",
+      "description": "Identify potential beta testers and early adopters on LinkedIn, Twitter, and Reddit based on user profiles and discussions",
+      "category": "research",
+      "required_role": "Employee",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "niche": { "type": "string" },
+          "platforms": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["niche"]
+      }
+    },
+    {
+      "name": "product_hunt_tracker",
+      "description": "Monitor launch performance, upvotes, and mentions on Product Hunt for our product and competitors",
+      "category": "research",
+      "required_role": "Employee",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "product_slug": { "type": "string" }
+        },
+        "required": ["product_slug"]
+      }
+    }
+  ]
+}
