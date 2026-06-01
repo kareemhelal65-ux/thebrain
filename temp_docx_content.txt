@@ -1,0 +1,514 @@
+THE BRAIN AIOS
+Complete Technical Build Plan
+Version 2.0  |  Monk Summer Execution Phase  |  2026
+UPDATED POST-ANTHROPIC LAUNCH
+Deepened memory architecture  ·  Proactive intelligence layer  ·  Memory health system
+Competitive moat features  ·  Expanded integrations  ·  Knowledge graph engine
+What Changed and Why — v2.0 Changelog
+Anthropic's Claude for Small Business launch (May 2026) validated the SMB AI market and crystallised exactly where The Brain must go deeper to build an unassailable moat. This version 2.0 plan responds with seven structural upgrades. Every change is designed to widen the switching-cost gap, accelerate the data moat, and make The Brain architecturally impossible to replicate with a generic chat tool.
+Strategic context
+Claude for Small Business is a stateless chat assistant with predefined workflows. It has no persistent cross-session memory, no company-scoped knowledge graph, no custom agent builder, and it is explicitly not captured in audit logs (per Anthropic's own documentation). This leaves the entire OS layer open. Version 2.0 claims that layer.
+Capability
+Claude for Small Business
+The Brain AIOS v2.0
+Memory model
+Static files, session-scoped
+Autonomous live ingestion + proactive surfacing
+Meeting memory
+Not present
+Core wedge + pre-meeting briefing engine
+Agent builder
+15 pre-built only
+No-code custom builder + agent chaining
+Cross-tool context
+Siloed per app
+Unified semantic graph across all tools
+Audit / compliance
+Not in audit logs
+Immutable, HMAC-signed append-only log
+Memory decay
+Forgets on session end
+Memory health score, active curation
+Proactive intelligence
+User-initiated only
+Autonomous briefings, anomaly alerts
+0. Demo MVP Scope — 8-Week Solo Build (Zero Budget)
+This section defines the strict scope of the 8-week solo demo build. Everything in Sections 1–10 is the post-raise product vision. This section is what gets built before the raise closes — by one person, with zero spend, in 8 weeks. The goal is a single working loop that proves the memory OS thesis to investors and early engineers: a user connects Google, asks The Brain a question about their meetings, and gets a real answer with source citations. That is the demo. Nothing else ships until the raise closes.
+0.1 The Zero-Spend Stack
+Every component below has a free tier that covers demo-scale usage (2–3 test accounts, no real concurrent users). Total spend: $0.
+AI coding tools:
+ Cursor (free tier) as primary IDE, Claude.ai (free tier) for architecture decisions and hard problems, GitHub Copilot (free tier) for completions, ChatGPT (free tier) for quick debugging.
+Database + memory:
+ Supabase free tier (PostgreSQL + pgvector + Auth + Storage, 500MB). Replaces Clerk (paid) with Supabase Auth (free). No Pinecone cold memory in demo — pgvector alone is sufficient at demo scale. Upstash Redis free tier (10K requests/day) replaces full Redis + Celery setup.
+Backend + hosting:
+ Railway ($5 free credits/month) for FastAPI backend. Vercel (free forever) for Next.js frontend. GitHub (free) for version control + GitHub Actions (2,000 free minutes/month) for CI/CD.
+LLM + embeddings:
+ Groq API (completely free, Llama 3.3 70B) as the primary LLM — replaces Claude Sonnet/GPT-4o for the demo. OpenAI text-embedding-3-small ($5 free starter credits) for embeddings only. HuggingFace Inference API (free) as embedding fallback if credits run out.
+Integrations:
+ Google Cloud Console (free) — Google Meet API, Google Drive API, Google Calendar API, Gmail API. Slack API (free). All OAuth flows are free. Microsoft 365, Zoom, Notion, Linear, HubSpot — all cut from demo, added post-raise.
+0.2 What Is Cut From the Full Plan (Demo Only)
+The following components from the full v2.0 plan are explicitly out of scope for the demo build. They are architecturally planned for and will be built post-raise by the engineering team. None of them are needed to prove the core thesis to an investor.
+Knowledge Graph (Apache AGE, spaCy NER, entity extraction, graph upsert)
+ — 4–6 weeks of engineering alone. Architecturally planned. Ships in Phase 2 post-raise.
+Celery + full Redis worker infrastructure
+ — replaced with FastAPI BackgroundTasks (built-in, zero ops overhead) for the demo. Celery ships post-raise when concurrent users require it.
+Pinecone cold memory layer
+ — pgvector on Supabase handles all retrieval at demo scale. Pinecone added post-raise as L3 cold memory when data volume requires it.
+Microsoft 365, Teams, Zoom, Outlook, Notion, Linear, HubSpot, Loom, GitHub, QuickBooks
+ — all cut from demo. Microsoft Graph OAuth alone takes 3 weeks. Demo integrations: Google Workspace + Slack only.
+Sentinel pipeline, HMAC audit log, multi-tenant RBAC, data residency, SOC 2
+ — all Phase 2–3 post-raise. Demo has basic tenant_id scoping only.
+No-code agent builder, agent chaining, 20 templates, model cost router
+ — all post-raise. Demo has one hardcoded agent: meeting summary + action item extraction.
+AWS ECS, Terraform, CloudWatch, Turborepo monorepo, Stripe billing
+ — all post-raise. Demo runs on Railway + Vercel. No Stripe needed — demo users are free internal testers.
+Memory Health System, Anomaly Detection Engine, browser extension, real-time meeting companion
+ — all Phase 2–3. Not needed for demo.
+0.3 The One Loop That Must Work
+The demo succeeds if and only if this full loop works end-to-end without breaking:
+User connects Google account → meetings sync → documents sync → Slack syncs → user asks The Brain a question → answer returned in under 3 seconds with source citation → action items listed → Slack notification sent → pre-meeting briefing delivered 15 minutes before next calendar event.
+Nothing else matters for the demo. If this loop works, the raise is possible. If it does not work, nothing else in this document matters yet.
+0.4 Week-by-Week Build Plan (Solo, Zero Spend)
+Week 1 — Foundation:
+ GitHub repo, Next.js 14 app deployed to Vercel, Supabase project (PostgreSQL + pgvector + Auth), FastAPI skeleton on Railway, Google OAuth working end-to-end — user signs in and sees their name on the dashboard. Cursor prompt: “Create a Next.js 14 app with Supabase Auth. Users sign in with Google OAuth. After login show a dashboard with user name, email, and avatar. Use Tailwind CSS and shadcn/ui.”
+Week 2 — Google Meet transcript fetch:
+ Add Meet + Drive + Calendar + Gmail OAuth scopes. FastAPI endpoint POST /meetings/sync: fetch last 10 meetings and transcripts via Google Meet API and Drive API. Store in Supabase meetings table (id, tenant_id, title, date, participants jsonb, transcript text). Dashboard shows meeting list with date, title, participants. Cursor prompt: “Build a FastAPI POST /meetings/sync endpoint that takes a Google OAuth token, fetches recent Google Meet recordings and transcripts, and stores them in a Supabase table called meetings.”
+Week 3 — The Brain core (chunk + embed into pgvector):
+ Enable pgvector on Supabase. Create document_chunks table (id uuid, tenant_id uuid, content text, embedding vector(1536), metadata jsonb). Chunk transcripts with tiktoken at 512 tokens / 64 overlap. Embed with OpenAI text-embedding-3-small. Store with tenant_id scoping. Cursor prompt: “Write a Python function that chunks a transcript into 512-token pieces with 64-token overlap using tiktoken, embeds each chunk with OpenAI text-embedding-3-small, and stores in a Supabase pgvector table with tenant_id and meeting_id in metadata.”
+Week 4 — Ask The Brain anything (RAG query layer):
+ FastAPI POST /brain/query: embed question, cosine similarity search in pgvector filtered by tenant_id, retrieve top-5 chunks, build context string, call Groq Llama 3.3 70B (free), stream response with source citation (meeting name + date). Chat UI in Next.js: type a question, get a streamed answer. Cursor prompt: “Build a FastAPI POST /brain/query endpoint. Embed the question with OpenAI, query Supabase pgvector for top-5 similar chunks by tenant_id, call Groq API with llama-3.3-70b-versatile with system prompt ‘Answer only from company context. Always cite which meeting your answer comes from.’ Stream the response.” This is the demo moment. If week 4 works, the raise is possible.
+Week 5 — Auto summaries + action items + Slack notification:
+ After transcript ingested, call Groq twice: (1) generate 3-paragraph summary, (2) extract action items as JSON array [{owner, task, deadline}]. Save both to meetings table. POST summary to Slack Incoming Webhook (free). Show summary + action items on meeting detail page. Cursor prompt: “After a transcript is saved, call Groq llama-3.3-70b-versatile twice: once for a 3-paragraph summary, once to extract action items as JSON with fields owner, task, deadline. Save to meetings table. POST summary to Slack Incoming Webhook URL from environment variable SLACK_WEBHOOK_URL.”
+Week 6 — Google Drive + Slack ingestion:
+ Google Drive API: fetch 20 most recently modified Google Docs, extract text, chunk, embed, store with source_type=’google_doc’. Slack Web API: fetch last 7 days of messages from all channels, chunk by channel/day, embed, store with source_type=’slack’. Brain query now searches across meetings + docs + Slack simultaneously. Sources page shows all ingested content with count and last sync time. Cursor prompt: “Add two ingestion functions: (1) Google Drive — fetch 20 most recent Google Docs via Drive API v3, extract text, chunk + embed + store with source_type=google_doc. (2) Slack — fetch last 7 days of messages via Slack Web API, chunk by channel/day, embed + store with source_type=slack. Both scoped to tenant_id.”
+Week 7 — Pre-meeting briefing + UI polish + team invites:
+ Google Calendar webhook: detect calendar events 15 minutes before start. Trigger briefing generation: participant context (role, recent decisions, open action items), top-5 semantically relevant documents, open threads from previous meetings with same people, suggested agenda items. Deliver briefing card to app and optionally Slack. Sidebar navigation (Brain/Chat, Meetings, Documents, Slack, Team, Settings). Workspace invite via Supabase Auth inviteUserByEmail(). All queries verified to filter by tenant_id. Cursor prompt: “Add a Google Calendar webhook that fires 15 minutes before any calendar event. Generate a briefing card: for each attendee pull their recent decisions and action items from The Brain, surface the top-5 semantically similar documents to the meeting title, list unresolved action items from previous meetings with the same attendees. Render the briefing card in the app dashboard and POST it to SLACK_WEBHOOK_URL.”
+Week 8 — Ship + record demo + pitch investors:
+ Deploy: Vercel (frontend) + Railway (backend) + Supabase (DB). All environment variables set. Record a 3-minute Loom demo following the script below. Add demo video link to the investor deck (slide 1 and closing slide). Send deck + demo link to Flat6Labs, FasterCapital, Cairo Angels, Falak AI the same day. Begin outreach to Ahmed Mahdi and Morimura Din with the live demo link as proof of execution.
+0.5 The 3-Minute Demo Script (Memorise This)
+Record this on Loom. No slides. No deck. Just the product running live on screen.
+0:00–0:20 — The problem:
+ “Every startup runs on Google, Slack, and Zoom. Decisions get made in meetings and forgotten. Documents get created and never found. Action items get assigned and disappear. We built The Brain to fix this.”
+0:20–0:40 — Connect Google:
+ Click connect Google. Show the OAuth screen. Show 10 meetings appearing in the dashboard. “The Brain just ingested the last 10 meetings, all our Google Docs, and the last week of Slack messages. It took 40 seconds.”
+0:40–1:20 — Ask The Brain:
+ Type: “What did we decide about pricing last month?” Show the answer arriving in under 3 seconds with the meeting name and date as source citation. Type: “What are my open action items?” Show a list of tasks across every meeting. “Claude for Small Business cannot answer either of those questions. It has no memory. The Brain remembers everything.”
+1:20–2:00 — Meeting intelligence:
+ Click on a meeting. Show the auto-generated summary and action items. Switch to Slack and show the notification that was sent automatically when the meeting ended. Show the pre-meeting briefing card that was delivered 15 minutes before today’s next calendar event. “This briefing was waiting in the app before the meeting started. The Brain pulled context from 3 previous meetings with the same people and surfaced the relevant documents automatically.”
+2:00–3:00 — The close:
+ “This is The Brain. We built it in 8 weeks with zero budget to prove the concept works. We are raising $400K on a SAFE at a $3.5M cap to build the full OS — the Knowledge Graph, the agent builder, Microsoft 365, all of it. If you want to be part of building the AI OS that every SMB founder needs, the link to the full deck is below.”
+0.6 Internal Beta — SAWA, One Thirty, Al-Hayat
+The three founding companies — SAWA, One Thirty, and Al-Hayat — are the first internal beta users and the most important proof point in the entire fundraising narrative. A 19-year-old founder who built The Brain and immediately deployed it across three real companies he is personally involved in is a completely different investor conversation than one who has a demo and a deck.
+SAWA (university social food delivery, testing phase):
+ Ingest: all founder meetings, delivery ops Slack channel, Google Drive pitch decks and financial models. Questions to validate: “What decisions did we make about our delivery radius?”, “What are the open action items from our last investor meeting?”, “Which documents discuss our pricing model?” Success signal: answer in under 3 seconds with correct source citation every time.
+One Thirty (D2C apparel brand):
+ Ingest: supplier communication emails, product development Slack channels, campaign planning documents. Questions to validate: “What did we agree with our manufacturer about the winter collection timeline?”, “Which campaigns performed above target last quarter?”, “What are the open tasks on the next product launch?”
+Al-Hayat (family import-export business, enterprise deal cycles):
+ Ingest: client meeting notes, contract documents, multi-stakeholder email threads. Questions to validate: “What were the agreed terms with the Riyadh client in the March meeting?”, “Which contracts are pending renewal?”, “What commitments did we make to the logistics partner?” Al-Hayat is the closest to a Cortex-tier buyer — multi-stakeholder, high-value deals, enterprise memory requirements. If The Brain works well here, it validates the $99/seat Cortex pricing completely.
+30-day internal validation target:
+ All three companies ingested and querying The Brain daily. At least 5 instances of The Brain surfacing a correct answer that the user could not have found manually in under a minute. At least one pre-meeting briefing delivered and used before a real meeting. At least one action item extracted from a meeting and followed up on. These 5 instances become the testimonials in the investor deck and the seed of the case studies used in the Seed round pitch.
+1. System Architecture — v2.0
+The v2.0 architecture adds three new subsystems on top of the v1.0 foundation: the Proactive Intelligence Layer, the Knowledge Graph Engine, and the Memory Health System. These sit between The Brain and the Orchestrator and are the primary source of defensibility.
+Architecture diagram (text representation)
+┌─────────────────────────────────────────────────────────────┐
+│                      CLIENT LAYER                            │
+│  Web App (Next.js)  ·  Desktop (Tauri, Phase 3)             │
+└──────────────────────────┬──────────────────────────────────┘
+                           │ REST + WebSocket + SSE
+┌──────────────────────────▼──────────────────────────────────┐
+│                     API GATEWAY                              │
+│  FastAPI  ·  Clerk Auth  ·  Rate Limiting  ·  Tenant Ctx    │
+└──────┬───────────┬────────────────────┬─────────────────────┘
+       │           │                    │
+┌──────▼──────┐ ┌─▼────────────┐  ┌───▼──────────────────┐
+│  THE BRAIN  │ │ ORCHESTRATOR  │  │  INGESTION WORKERS   │
+│ Hot Memory  │ │ LLM Planner  │  │  Celery + Redis      │
+│ pgvector    │ │ Tool Selector│  │                      │
+│ Cold Memory │ └──────┬───────┘  └──────────┬───────────┘
+│ Pinecone    │        │                     │
+│ [NEW]       │   ┌────▼────────┐     ┌─────▼──────────┐
+│ Knowledge   │   │ SOFT AGENTS │     │ INTEGRATION HUB│
+│ Graph       │   │ Exec Layer  │     │ Google · M365  │
+└──────▲──────┘   └─────────────┘     │ Slack · Zoom   │
+       │                               │ Gmail·Outlook  │
+  [NEW]│[NEW]                          │ [NEW] Teams    │
+┌──────┴────────────────────┐          │ [NEW] Notion   │
+│ PROACTIVE INTELLIGENCE    │          │ [NEW] Linear   │
+│ Briefing Engine           │          └────────────────┘
+│ Anomaly Detector          │
+│ Memory Health System      │
+└───────────────────────────┘
+v2.0 Core Design Principles
+Context-first, not query-first — every response grounded in company data, not generic LLM knowledge
+Write-safe by default — no agent writes to any external system without human approval through Sentinel
+Tenant isolation is non-negotiable — every embedding, document, and execution scoped to tenant_id
+[NEW] Memory compounds over time — the longer a company uses The Brain, the more irreplaceable it becomes
+[NEW] Proactive, not reactive — The Brain surfaces insights before users ask, not only when queried
+[NEW] Graph-aware retrieval — relationships between people, projects, and decisions are first-class objects
+2. The Brain — Core Context Layer (v2.0 Deepened)
+The Brain's memory architecture is upgraded from a two-layer model to a four-layer model. Each layer serves a distinct retrieval purpose and together they create a memory system that becomes exponentially more useful the longer a company uses it.
+2.1 Four-Layer Memory Model
+Layer
+Store
+Purpose
+L1 — Working
+Redis (TTL: 4 hours)
+Active session context. Current conversation, in-flight agent state, recent retrievals.
+L2 — Hot
+PostgreSQL + pgvector (90 days / 1 yr)
+Recent semantic retrieval. Hybrid search (cosine + BM25). Full metadata, RBAC-filtered.
+L3 — Cold
+Pinecone (unlimited history)
+Long-term semantic search. Historical decisions, archived documents. Namespace-isolated per tenant.
+L4 — Graph [NEW]
+Neo4j / PostgreSQL graph ext.
+Entity relationships: people, projects, decisions, documents. Powers knowledge graph traversal and proactive suggestions.
+2.2 Knowledge Graph Engine [NEW]
+Why this matters
+Claude for Small Business stores context as flat files. The Brain v2.0 stores it as a living graph of entities and relationships. This is the architectural feature that cannot be replicated by any chat tool — it requires months of accumulated company data to become valuable.
+Every entity extracted from ingested content is stored as a graph node with typed relationships:
+Person nodes: name, role, email, department, tenure — linked to every meeting they attended, document they authored, and decision they were part of
+Project nodes: linked to all related meetings, documents, action items, team members, and timeline events
+Decision nodes: the most valuable entity type — stores what was decided, when, by whom, what alternatives were rejected, and what the outcome was
+Document nodes: linked to the people who created and edited them, the projects they relate to, and the meetings where they were discussed
+Graph traversal queries unlock retrieval patterns impossible with flat vector search:
+"What has Kareem decided about pricing in the last 90 days?" — traverse Person -> Decision edges filtered by date and topic
+"Who knows the most about the investor onboarding process?" — find the Person node with the most edges to Meeting and Document nodes tagged investor-onboarding
+"What open action items are blocking Project X?" — traverse Project -> ActionItem edges filtered by status=open
+Graph schema (core entities)
+Nodes:  Person | Project | Decision | Document | Meeting | ActionItem | Topic
+Edges:  ATTENDED(Person->Meeting) | AUTHORED(Person->Document)
+        MADE(Person->Decision) | ASSIGNED(Person->ActionItem)
+        RELATES_TO(Document->Project) | RAISED_IN(Decision->Meeting)
+        BLOCKED_BY(ActionItem->ActionItem) | TAGGED(Any->Topic)
+2.3 Memory Health System [NEW]
+The moat mechanism
+Every week The Brain runs in a company's environment, it becomes harder to leave. The Memory Health System makes this quantifiable — it shows admins a memory score, coverage percentage, and gap analysis. This is the retention mechanic that turns a product into infrastructure.
+The Memory Health System runs a nightly background job that evaluates the quality and coverage of each tenant's knowledge base. It produces a Memory Health Score (0–100) computed from:
+Coverage: what percentage of connected tools have been actively ingested in the last 7 days
+Freshness: how recently each integration's data was updated vs. its expected update frequency
+Density: number of entity nodes and relationships per active team member (measures graph richness)
+Gap detection: identifies topics or people with low knowledge density — surfaces as recommendations
+The Health Dashboard (admin-only UI surface) shows:
+Overall memory score with trend line (week-over-week)
+Per-integration coverage indicators — which tools are feeding The Brain well vs. which are stale
+Top knowledge gaps: "We have very little context on the Legal team's work — connect Notion or upload their documents"
+Memory age distribution: what percentage of the knowledge base is less than 30 / 90 / 180+ days old
+3. Proactive Intelligence Layer [NEW]
+The category-defining feature
+Every competitor — including Claude for Small Business — is reactive. Users ask a question and get an answer. The Brain v2.0 is the first SMB AI OS that proactively surfaces insights the user didn't know to ask for. This is the feature that makes The Brain feel like an operating system rather than a search tool.
+The Proactive Intelligence Layer runs as a background service that continuously analyses The Brain's accumulated context and surfaces three types of proactive outputs:
+3.1 Daily Briefing Engine
+Every morning at a user-configured time (default: 8am local), The Brain generates a personalised briefing for each user based on their role and the company's accumulated context. The briefing is delivered as a digest card in the app and optionally as a Slack message.
+Briefing content is role-personalised:
+Role
+Briefing content
+Admin / CEO
+Overdue action items across all teams, decisions made yesterday, meetings happening today with pre-pulled context, open questions from last 7 days
+Member
+Your open action items, meetings you're attending today with relevant past context, documents shared with you this week
+3.2 Anomaly & Pattern Detection Engine
+Runs nightly as a Celery beat job. Scans the Knowledge Graph for patterns that merit surfacing proactively. Outputs are held in a recommendations table and surfaced as notification cards in the app.
+Detected patterns (v2.0 MVP set):
+Stale action items: action items assigned in a meeting with no follow-up evidence in subsequent meetings or Slack threads — flagged after 7 days
+Decision drift: a decision recorded in The Brain is later contradicted by a document or Slack thread — surfaces a conflict alert for the admin
+Meeting without follow-up: a meeting ended 48 hours ago with no follow-up email, no tasks created, no Slack summary — triggers the Meeting Follow-Up Agent automatically
+Relationship gaps: two people who work on the same project have never appeared in the same meeting or Slack thread — flagged as a potential coordination risk
+Knowledge concentration risk: a critical project's knowledge is concentrated in one person's documents and meetings — flagged for knowledge distribution
+3.3 Pre-Meeting Intelligence Briefing
+When a calendar event is detected (Google Calendar or Outlook Calendar), The Brain automatically generates a briefing card 15 minutes before the meeting starts. The briefing is pushed to the app and optionally to Slack.
+Participant context: for each attendee, surface their role, recent decisions they've been part of, and open action items assigned to them
+Relevant documents: surface the 3-5 documents most semantically similar to the meeting title and participants
+Open threads: surface unresolved decisions or action items from previous meetings with the same participants
+Suggested agenda items: based on open action items and recent relevant decisions, The Brain suggests what should be covered
+4. Semantic Ingestion Pipeline (v2.0 Improvements)
+The v1.0 ingestion pipeline was content-first: fetch, clean, chunk, embed, store. The v2.0 pipeline adds entity extraction and graph population as a mandatory step, converting raw content into structured knowledge simultaneously with vector storage.
+Updated pipeline (step 8 and 9 are new)
+Integration Webhook / Polling
+         │
+         ▼
+   Event Queue (Redis)
+         │
+         ▼
+   Celery Workers
+   ┌─────────────────────────────────────────────────┐
+   │  1. Raw Fetch (download content)                │
+   │  2. Clean & Normalize                           │
+   │  3. PII Scrub (Sentinel)                        │
+   │  4. Chunk (512 tokens, 64 overlap)              │
+   │  5. Embed (text-embedding-3-large)              │
+   │  6. Store  pgvector + Pinecone                  │
+   │  7. Index metadata  PostgreSQL                  │
+   │  8. [NEW] Entity extraction  NER + LLM          │
+   │  9. [NEW] Graph upsert  nodes + edges           │
+   └─────────────────────────────────────────────────┘
+Step 8: Entity extraction detail
+Every ingested document runs through a two-pass entity extractor:
+Pass 1 — NER (spaCy en_core_web_trf): extracts Person, Organisation, Date, and Location entities. Fast, runs inline.
+Pass 2 — LLM extraction (Claude Haiku, low cost): extracts structured Decision, ActionItem, and Topic entities from the cleaned content. Uses a constrained JSON output schema. Runs as a separate low-priority Celery task to avoid blocking ingestion.
+4.1 Expanded Integration Surface [NEW]
+v2.0 expands the integration roadmap to close specific gaps that Claude for Small Business has already addressed (QuickBooks, HubSpot). These additions arrive in Phase 2 and 3, not MVP — but they must be architected from Phase 1 so the Universal Adapter pattern supports them without refactoring.
+Integration
+Phase
+Why / differentiation
+Google Workspace + Gmail
+Phase 1 (MVP)
+Core — Drive, Docs, Sheets, Meet, Calendar, Gmail
+Microsoft 365 + Outlook
+Phase 1 (MVP)
+Core — SharePoint, OneDrive, Teams, Outlook
+Slack
+Phase 1 (MVP)
+Core — channel history, threads, file shares
+Zoom
+Phase 1 (MVP)
+Core — meeting transcripts, recordings
+Notion [NEW]
+Phase 2
+Closes gap with Claude for SMB; Notion is the #1 SMB knowledge base
+Linear / Jira [NEW]
+Phase 2
+Project and task tracking; links action items to engineering work
+HubSpot [NEW]
+Phase 2
+CRM context — links deals, contacts, and communication to The Brain
+QuickBooks [NEW]
+Phase 3
+Financial context layer — invoice and payment status for ops leads
+Loom [NEW]
+Phase 2
+Video message transcription — async communication is part of company memory
+GitHub [NEW]
+Phase 3
+Code change context for technical founders — links PRs to decisions
+5. The Orchestrator (v2.0 Improvements)
+The Orchestrator is upgraded with two new capabilities: graph-aware context retrieval (so the planner receives entity relationships alongside vector chunks) and a cost routing layer that automatically selects the cheapest model capable of the task.
+5.1 Graph-Aware Context Retrieval [NEW]
+When a user sends a prompt, the Orchestrator now runs a three-stage context build:
+Stage 1 — Vector retrieval: hybrid semantic + BM25 search, top-8 chunks as before
+Stage 2 — Graph expansion: for each retrieved chunk, query the Knowledge Graph for related entities (1-hop neighbours). Add decision nodes, person nodes, and project nodes linked to the retrieved content. This adds structured context the vector search cannot surface.
+Stage 3 — Context assembly: merge vector chunks and graph entities into a unified context window, ranked by combined relevance score. The LLM planner receives richer, more structured context than any flat RAG system can provide.
+5.2 Model Cost Router [NEW]
+Cost efficiency at scale
+LLM API costs are the #1 scaling risk for The Brain. A naive implementation sends every query to GPT-4o or Claude Sonnet — expensive at scale. The Cost Router automatically routes each task to the cheapest model that can handle it, reducing LLM spend by an estimated 55-70% at beta volumes.
+Routing logic (in order of evaluation):
+Simple Q&A (confidence > 0.85, context < 1K tokens) — Claude Haiku or GPT-4o mini (~$0.15/MTok). Covers ~50% of queries.
+Complex reasoning (multi-step, context 1K-8K tokens) — Claude Sonnet 4.6 or GPT-4o. Covers ~40% of queries.
+Deep synthesis (cross-document analysis, context > 8K tokens) — Claude Opus 4.6 or GPT-4o. Covers ~10% of queries.
+Entity extraction (Step 8 of ingestion pipeline) — Claude Haiku exclusively. Low complexity, high volume, cost-critical.
+6. Meeting Memory Engine (v2.0 Deepened)
+The Meeting Memory Engine is upgraded from a post-meeting processing tool to a full meeting intelligence system covering before, during (async), and after the meeting.
+6.1 Pre-Meeting Briefing [NEW — moved from Phase 3 to Phase 1]
+Strategic repositioning
+Pre-meeting briefing is moved from Phase 3 to Phase 1. This is the single highest-value feature for the ICP and the most visible demonstration of what persistent memory enables. Claude for Small Business cannot do this. It requires months of accumulated context to do well — which is why it must be built first.
+15 minutes before any calendar event, The Brain generates and pushes a briefing card:
+For each attendee: role, recent decisions they've made, action items assigned to them, last time you met them and what was discussed
+Relevant documents: top 5 documents semantically linked to the meeting title and participants
+Open threads: unresolved action items and decisions from previous meetings with the same people
+Suggested agenda: based on open action items, The Brain suggests what should be on the agenda
+6.2 Real-Time Meeting Companion [NEW — Phase 2]
+Phase 2 introduces a lightweight browser extension that joins Zoom and Google Meet sessions and provides live assistance without requiring any recording:
+Live context panel: as topics are mentioned, the extension surfaces relevant documents and past decisions from The Brain in a sidebar
+Action item capture: users can click to capture an action item in real-time, which The Brain immediately records and assigns
+Decision logging: a one-click button lets participants flag a decision as it is made — no post-processing required
+Note: real-time processing uses Whisper streaming (not stored recordings) and is processed in-memory only — no audio is persisted, addressing the privacy concern that prevents many SMBs from enabling meeting recording.
+6.3 Structured Meeting Output Schema (expanded)
+Every meeting now produces two additional structured objects beyond the v1.0 schema:
+[NEW] Sentiment analysis: overall meeting tone (constructive / tense / unclear) and per-participant engagement score. Used by the Anomaly Engine to flag team dynamic changes.
+[NEW] Follow-up probability: ML-scored likelihood that each action item will be completed based on historical follow-through rates for the assigned person. Surfaces high-risk items proactively.
+7. Sentinel Pipeline (v2.0 Improvements)
+The Sentinel Pipeline adds two new components in v2.0 to address the compliance gap that Claude for Small Business explicitly does not cover (Anthropic's own documentation states Cowork activity is not captured in audit logs or the Compliance API).
+7.1 HMAC-Signed Audit Log [NEW]
+The v1.0 audit log is an append-only table. The v2.0 audit log adds cryptographic signing:
+Every audit log entry is signed with HMAC-SHA256 using a per-tenant signing key stored in AWS Secrets Manager
+A daily chain hash is computed — each day's log entries include the hash of the previous day's final entry, creating a tamper-evident chain
+Cortex tier: admins can export the full signed log as a JSON file for external compliance tools. The signature allows third-party verification without access to The Brain's infrastructure.
+This directly enables SOC 2 Type I readiness at Phase 3, which is a hard requirement for any customer over 50 employees
+7.2 Data Residency Controls [NEW — Phase 2]
+Tenant-level configuration for AWS region: eu-west-1 (Ireland) for EU customers, ap-southeast-1 for MENA/Gulf customers, us-east-1 default
+Pinecone namespace sharding aligned to region selection — vectors never leave the configured region
+Redis cache isolated per region — no cross-region session data
+8. Agent Builder (v2.0 Improvements)
+The Agent Builder adds two capabilities that directly address the gap Claude for Small Business exposes: agent chaining (so users can build workflows that span multiple steps and multiple tools) and a template library (so users don't start from scratch).
+8.1 Agent Template Library [NEW]
+The distribution moat
+Pre-built templates drive activation. A new user who connects their tools and immediately sees 10 ready-to-deploy agents for their role is far more likely to convert than one staring at a blank canvas. Templates also encode best practices that compound into user skill over time.
+Phase 1 ships 20 pre-built templates across 5 categories (compared to Claude for Small Business's 15 fixed workflows — ours are customisable starting points, not hard-coded automations):
+Meeting intelligence (4): Follow-up email drafter, Action item tracker, Weekly digest builder, Pre-meeting briefing sender
+Knowledge capture (4): New document summariser, Slack thread archiver, Decision logger, Onboarding knowledge packager
+Operations (4): Invoice follow-up chain, Contract review checker, Payroll prep reminder, Monthly reporting assistant
+Sales & growth (4): Lead research builder, Follow-up sequence generator, CRM update automator, Pipeline health reporter
+HR & team (4): New hire onboarding flow, Performance review preparer, Exit interview summariser, Team OKR tracker
+8.2 Agent Chaining [NEW — Phase 2]
+Users can now chain agents so the output of one becomes the trigger or input of the next. This enables compound workflows that no single agent can handle:
+Example: Meeting ends → Meeting Summary Agent runs → output is passed to Follow-Up Email Agent → draft email references specific decisions and action items from the summary → sent for approval
+Example: New lead added to HubSpot → Lead Research Agent runs → enriched profile is passed to Outreach Draft Agent → personalised first email generated using The Brain's knowledge of the lead's industry
+Chains are built visually in the Agent Builder — drag the output port of one agent to the trigger port of the next. No code required.
+9. Updated Tech Stack Summary
+Layer
+Technology
+Notes
+Frontend
+Next.js 14, TypeScript, Tailwind, shadcn/ui
+Unchanged
+Backend API
+FastAPI (Python)
+Unchanged
+Task Queue
+Celery + Redis
+Unchanged
+Hot memory
+PostgreSQL 16 + pgvector
+Unchanged
+Cold memory
+Pinecone
+Unchanged
+Working memory
+Redis (TTL-keyed) [NEW]
+Added L1 working memory layer
+Knowledge Graph
+PostgreSQL graph ext. (Apache AGE) [NEW]
+Chosen over Neo4j: same DB, no extra infra ops
+NER extraction
+spaCy en_core_web_trf [NEW]
+Entity extraction step 8 in ingestion pipeline
+LLM — complex
+Claude Sonnet 4.6 + GPT-4o
+Primary planner; fallback to each other
+LLM — light
+Claude Haiku + GPT-4o mini [NEW]
+Model cost router: ~50% of queries go here
+Embeddings
+OpenAI text-embedding-3-large
+Unchanged
+PII Detection
+Microsoft Presidio
+Unchanged
+Auth
+Clerk
+Unchanged
+Payments
+Stripe
+Unchanged
+Infrastructure
+AWS (ECS, RDS, ElastiCache, S3)
+Unchanged
+Browser ext.
+Plasmo framework (Chrome/Firefox) [NEW]
+Phase 2: real-time meeting companion
+Audit signing
+AWS KMS + HMAC-SHA256 [NEW]
+Tamper-evident audit log
+Monitoring
+CloudWatch + Sentry + PostHog
+Unchanged
+10. Updated Phased Build Roadmap
+What changed in the roadmap
+Pre-meeting briefing is pulled from Phase 3 into Phase 1 (the highest-value feature must ship first). Knowledge Graph is introduced in Phase 2 not Phase 3 (it is the moat, not a nice-to-have). Notion 
+and Loom integrations are added to Phase 2. Browser extension (meeting companion) is added to Phase 2.
+Phase 1 — Kernel Core (Q2 2026, ~8 weeks)
+Goal: stable internal product used by the 3 founding companies, with the features that prove the memory OS thesis immediately.
+Week 1–2: Foundation
+Monorepo setup (Turborepo), PostgreSQL + pgvector + Apache AGE + Redis + S3 — Docker Compose local, Terraform for AWS
+FastAPI with Clerk auth, tenant middleware, Row-Level Security policy on all tables
+Next.js app with Clerk, routing, Tailwind + shadcn/ui
+[NEW] Apache AGE graph extension installed and schema-initialised in Phase 1 — graph is empty but ready
+Week 3–4: The Brain Core
+Pinecone setup, namespace-per-tenant, L1 Redis working memory initialised
+Ingestion pipeline steps 1-7 (vector path) complete
+[NEW] Ingestion steps 8-9: spaCy NER + Claude Haiku entity extraction + graph upsert (Person and Document nodes only in Phase 1)
+Basic semantic query endpoint with hybrid search and Cohere reranker
+Manual document upload (PDF + DOCX)
+Week 5–6: OAuth Connectors (Google + Slack)
+Google Workspace OAuth: Drive, Docs, Gmail, Google Calendar
+Slack OAuth + Events API ingestion (channel history, threads, file shares)
+[NEW] Google Calendar webhook: detect upcoming meetings, trigger pre-meeting briefing job
+Week 7–8: Chat UI + Meeting Memory + Pre-Meeting Briefing
+Chat interface with streaming SSE responses and inline source citations
+Zoom webhook + transcript ingestion + LLM extraction (decisions, action items, topics)
+[NEW] Pre-Meeting Briefing Engine: 15-minute-before calendar trigger, briefing card rendered in app
+Meeting Memory view in UI
+[NEW] Memory Health Dashboard stub (shows integration coverage, updates weekly)
+Milestone: 3 internal companies (SAWA, One Thirty, Al-Hayat) running on The Brain daily. Core ingestion stable. Pre-meeting briefings live. Graph has Person and Document nodes. Query quality validated on real company data.
+Phase 2 — Neural Link (Q3 2026, ~8 weeks)
+Goal: 10 paying beta customers. Full Knowledge Graph. M365 and Notion integrated. Agentic layer live.
+Week 1–2: M365 + Notion + Loom
+Microsoft Graph OAuth: OneDrive, SharePoint, Outlook, Teams, Outlook Calendar
+[NEW] Notion OAuth + database/page ingestion (closes the #1 SMB knowledge-base gap vs Claude for SMB)
+[NEW] Loom webhook + transcript ingestion (async video communication is company memory)
+Google Meet transcript support via Workspace Admin API
+Week 3–4: Knowledge Graph Full Build-Out
+[NEW] Graph schema completed: Decision, ActionItem, Project, Topic nodes added
+[NEW] Cross-source entity linking: Person nodes linked across Slack, email, meetings, documents
+[NEW] Graph-aware context retrieval in Orchestrator: Stage 2 graph expansion live
+[NEW] Anomaly Detection Engine: stale action items and meeting-without-follow-up detectors live
+Week 5–6: Orchestrator + Agent Layer
+Tool registry populated (40 tools across 6 MVP integrations)
+[NEW] Model Cost Router live: Haiku routes for ~50% of queries, estimated 55% LLM cost reduction
+Meeting Follow-Up Agent end-to-end: meeting ends → extract → draft email + tasks → approval queue
+Approval queue UI + rollback engine + HMAC-signed audit log
+Week 7–8: Agent Templates + Billing + Beta GTM
+[NEW] 20 agent templates deployed across 5 categories — users can deploy workflows in one click
+Stripe per-seat subscription (Kernel free, Neural $29/seat, Cortex $49/seat)
+Onboarding flow: connect first integration → ingest first 10 docs → receive first briefing → run first query
+10 beta customer outreach and onboarding
+Milestone: 10 paying customers on Neural ($29/seat). MRR > $2,000. Knowledge Graph live with entity relationships. Pre-meeting briefings running daily for beta customers.
+Phase 3 — Orchestration (Q4 2026, ~8 weeks)
+Goal: 50 paying customers. Full agent builder with chaining. Browser extension. Enterprise features.
+Week 1–2: No-Code Agent Builder UI + Agent Chaining
+Visual step builder with trigger configurator and test mode (dry-run)
+[NEW] Agent chaining: output port → trigger port visual connection, compound workflow execution
+Event-based triggers between agents, concurrency controls
+Week 3–4: Real-Time Meeting Companion [NEW]
+[NEW] Chrome extension built with Plasmo framework
+[NEW] Zoom + Google Meet sidebar: live context panel pulling relevant docs and decisions from The Brain
+[NEW] One-click action item capture and decision logging during meetings
+[NEW] Audio processed in-memory via Whisper streaming — no recordings stored, privacy-safe
+Week 5–6: HubSpot + Linear + Document Generation
+[NEW] HubSpot OAuth + CRM context ingestion: deals, contacts, notes linked to The Brain knowledge graph
+[NEW] Linear OAuth + issue ingestion: engineering work items linked to project and decision nodes
+PDF + PPTX generation from meeting summaries and agent outputs
+Scheduled digest reports (CEO weekly briefing auto-generated and delivered)
+Week 7–8: Cortex Tier + SOC 2 Readiness
+SSO (SAML via Clerk), customer-managed encryption keys, data residency config
+[NEW] SOC 2 Type I readiness checklist completion using HMAC-signed audit log as evidence
+[NEW] Data residency controls: EU and MENA region configurations available
+Dedicated CSM workflow tools
+Milestone: 50 paying customers, mix of Neural and Cortex. MRR > $15,000. Browser extension live. HubSpot and Linear integrated.
+Phase 4 — Public Launch (Q1–Q2 2027)
+Public API launch: third-party developers build on The Brain's context layer
+[NEW] Memory API: external apps can read from and write to a company's Brain (with explicit permission)
+Self-healing agents: auto-retry failed steps, fallback tool selection
+[NEW] Cross-company intelligence bridges: The Brain for group companies under one holding entity (direct use case for Al-Hayat / SAWA / One Thirty)
+[NEW] QuickBooks + GitHub integrations live
+Series A fundraising: target $3–4M at $15M post-money cap
+11. Competitive Moat Summary
+This section is new in v2.0. It exists to give every team member and investor a clear, memorable articulation of why The Brain becomes harder to replace over time — regardless of what Anthropic, Microsoft, or any other well-funded competitor ships.
+Moat type
+The mechanism
+How it compounds
+Data moat
+Accumulated semantic memory
+Every meeting, document, and decision makes The Brain more accurate. A competitor cannot replicate 6 months of a company's history on day one.
+Graph moat
+Knowledge graph of entities
+Relationships between people, projects, and decisions are irreplaceable institutional context. The graph gets richer and more accurate every week.
+Switching cost
+Agent workflow embedding
+A company with 10 custom agents running daily operations cannot switch tools without rebuilding those workflows from scratch. That takes months.
+Network moat
+Company-wide knowledge
+The Brain improves as more of a company's team uses it. It is architecturally multi-user; Claude for SMB is a single-user desktop tool.
+Trust moat
+HMAC-signed audit log
+Enterprises that depend on The Brain for compliance evidence cannot risk losing the audit trail. The compliance record becomes its own switching barrier.
+12. Appendix — New Technical Decisions
+Why Apache AGE over Neo4j for the Knowledge Graph?
+Neo4j is the standard graph database but it requires running a separate service alongside PostgreSQL. Apache AGE is a PostgreSQL extension that adds full Cypher query language support directly inside the existing RDS instance. For a 3-person engineering team, eliminating one managed service removes one ops burden, one failure mode, one cost line, and one security surface. The performance difference is negligible at the data volumes The Brain will handle in Phases 1 and 2 (< 1M nodes). At Phase 4 scale, migrate to dedicated Neo4j Aura if graph query latency becomes an issue.
+Why Plasmo for the browser extension?
+Plasmo is a modern browser extension framework (React + TypeScript) that handles the boilerplate of Chrome/Firefox extension manifest v3, background workers, and content scripts. It builds to both Chrome and Firefox from the same codebase. The alternative (raw manifest v3 + Webpack) adds 2-3 weeks of setup work with no product value. Plasmo is MIT-licensed and actively maintained.
+Why move pre-meeting briefing to Phase 1?
+The original roadmap put pre-meeting briefing in Phase 3 because it felt like a polish feature. After the Anthropic launch analysis, it is now clear that this is the single most viscerally compelling demonstration of what persistent memory enables — and it is the hardest feature for any competitor to replicate without an accumulated knowledge base. It must ship in Phase 1 so that the 3 internal beta users experience it immediately and can speak to it authentically in investor and customer conversations.
+Why spaCy for NER instead of a pure LLM approach?
+Running every ingested document through a large LLM for entity extraction is 10-20x more expensive per document than running spaCy's transformer-based NER model. spaCy handles Person, Organisation, Date, and Location extraction reliably at high speed and very low cost. Claude Haiku handles the harder extractions (Decision, ActionItem) that require reasoning, not just pattern matching. The two-pass approach gives the accuracy of LLM extraction at a fraction of the cost.
+The Brain AIOS — Technical Build Plan v2.0  |  Confidential  |  2026

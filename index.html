@@ -3,37 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Brain AIOS — Intelligence Built on Structure</title>
-    <meta name="description" content="The world's first autonomous intelligence operating system built for high-growth SMBs. Scale your operations with structured, secure, and audited agentic infrastructure.">
+    <title>The Brain AIOS — Your Company's AI Operating System</title>
+    <meta name="description" content="The Brain remembers every meeting, document, and decision. Ask anything. Get instant answers. Delegate to AI agents that act on your behalf. Free beta open.">
     
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thebrain-aios.vercel.app/">
-    <meta property="og:title" content="The Brain AIOS — The Operating System for Autonomous Intelligence">
-    <meta property="og:description" content="Scale your SMB with structured agentic infrastructure. 200+ tools, zero-trust security, and immutable audit trails.">
+    <meta property="og:title" content="The Brain AIOS — Your Company's AI Operating System">
+    <meta property="og:description" content="The Brain remembers every meeting, document, and decision. Ask anything. Get instant answers. Delegate to AI agents that act on your behalf.">
     <meta property="og:image" content="https://thebrain-aios.vercel.app/assets/og-image.png">
 
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-<div id="loader" style="position: fixed; inset: 0; background: var(--void); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1s ease, visibility 1s;">
-    <div class="logo-container" style="margin-bottom: 2rem; transform: scale(1.5);">
-        <svg viewBox="0 0 72 72" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0"  y="0"  width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="3"/>
-            <rect x="26" y="0"  width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="3"/>
-            <rect x="52" y="0"  width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="3"/>
-            <rect x="0"  y="26" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="3"/>
-            <rect x="26" y="26" width="20" height="20" fill="#FF5A1F"/>
-            <rect x="52" y="26" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="3"/>
-            <rect x="0"  y="52" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="3"/>
-            <rect x="26" y="52" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="3"/>
-            <rect x="52" y="52" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="3"/>
+<!-- Loader Overlay -->
+<div id="loader" style="position: fixed; inset: 0; background: var(--void); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease, visibility 0.5s;">
+    <div class="logo-icon" style="transform: scale(1.5); margin-bottom: 2rem;">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
+            <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+            <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+            <path d="M12 5v14"/>
+            <path d="M12 9h4"/>
+            <path d="M12 14h-4"/>
         </svg>
     </div>
-    <div class="mono text-signal" id="loader-text">INITIALIZING CORE...</div>
-    <div style="width: 200px; height: 1px; background: var(--concrete); margin-top: 1rem; position: relative; overflow: hidden;">
-        <div id="loader-bar" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--signal); transition: width 0.1s ease;"></div>
+    <div class="mono text-signal" id="loader-text" style="font-weight: 600;">INITIALIZING KERNEL...</div>
+    <div style="width: 200px; height: 2px; background: var(--concrete); margin-top: 1rem; position: relative; overflow: hidden; border-radius: 4px;">
+        <div id="loader-bar" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: linear-gradient(90deg, var(--signal), var(--accent-cyan)); transition: width 0.1s ease;"></div>
     </div>
 </div>
 <div class="scanline"></div>
@@ -41,357 +38,507 @@
 <header>
     <div class="container">
         <nav>
-            <div class="logo-container">
-                <svg viewBox="0 0 440 72" width="220" height="36" xmlns="http://www.w3.org/2000/svg">
-                    <!-- 3×3 grid mark -->
-                    <rect x="0"  y="0"  width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="2"/>
-                    <rect x="26" y="0"  width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="2"/>
-                    <rect x="52" y="0"  width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="2"/>
-                    <rect x="0"  y="26" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="2"/>
-                    <rect x="26" y="26" width="20" height="20" fill="#FF5A1F"/>
-                    <rect x="52" y="26" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="2"/>
-                    <rect x="0"  y="52" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="2"/>
-                    <rect x="26" y="52" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="2"/>
-                    <rect x="52" y="52" width="20" height="20" fill="none" stroke="#F2F2F0" stroke-width="2"/>
-                    <!-- Divider rule -->
-                    <rect x="90" y="0" width="2" height="72" fill="#F2F2F0"/>
-                    <!-- Wordmark -->
-                    <text x="106" y="38" font-family="'Space Grotesk', sans-serif" font-size="42" font-weight="800" fill="#F2F2F0" letter-spacing="-0.02em" dominant-baseline="middle">THE BRAIN</text>
-                    <text x="106" y="62" font-family="'Space Mono', monospace" font-size="13" font-weight="400" fill="#FF5A1F" letter-spacing="0.12em">AIOS — INTELLIGENCE OS</text>
-                </svg>
-            </div>
+            <a href="#" class="logo-container">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
+                        <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+                        <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+                        <path d="M12 5v14"/>
+                        <path d="M12 9h4"/>
+                        <path d="M12 14h-4"/>
+                    </svg>
+                </div>
+                <span class="logo-text">The Brain</span>
+            </a>
             <div class="nav-links">
-                <a href="#vision">Vision</a>
-                <a href="#protocol">Mechanism</a>
-                <a href="#agents">Agents</a>
-                <a href="#registry">Registry</a>
-                <a href="#roadmap">Roadmap</a>
+                <a href="#problem">The Problem</a>
+                <a href="#mechanism">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="#comparison">Why The Brain</a>
+                <a href="#faq">FAQ</a>
             </div>
-            <button class="cta-button">Sign Up for Early Access</button>
+            <a href="#waitlist" class="cta-button glow-btn">Join the Waitlist</a>
         </nav>
     </div>
 </header>
 
 <main>
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-grid"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-meta animate-up" style="animation-delay: 0.1s;">
                     <div class="status-dot"></div>
-                    <span class="mono">Protocol v2.0.4 Online</span>
+                    <span class="mono text-cyan" style="font-size: 0.7rem; font-weight: 600;">System Kernel Online · Beta Access Open</span>
                 </div>
-                <h1 class="animate-up" style="animation-delay: 0.2s;">Structure <span class="text-signal">Creates</span> Intelligence</h1>
+                <h1 class="animate-up" style="animation-delay: 0.2s;">
+                    Your Company's<br>
+                    <span class="gradient-text">AI Operating System</span>
+                </h1>
                 <p class="hero-description animate-up" style="animation-delay: 0.3s;">
-                    The Brain AIOS is the foundational layer for autonomous enterprise intelligence. A unified operating system designed to orchestrate agents, automate data pipelines, and provide secure, audited cognitive infrastructure.
+                    The Brain remembers every meeting, every document, every decision. Ask anything. Get instant cited answers. Delegate to autonomous AI agents that handle deliverables and execute workflows staged for your approval.
                 </p>
                 <div class="hero-actions animate-up" style="animation-delay: 0.4s;">
-                    <button class="cta-button">Deploy Sentinel</button>
-                    <a href="#" class="secondary-action">Read Documentation [PDF]</a>
+                    <a href="#waitlist" class="cta-button glow-btn" style="padding: 1rem 2rem; font-size: 0.95rem;">Join the Beta — Free <i data-lucide="arrow-right"></i></a>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="secondary-action">Watch 60-Second Demo <i data-lucide="play" style="display:inline-block; vertical-align:middle; width: 14px; height: 14px; margin-left: 4px;"></i></a>
                 </div>
             </div>
-            <div class="hero-image-container animate-up" style="animation-delay: 0.5s;">
-                <img src="assets/hero.png" alt="Neural Infrastructure" class="hero-image">
+            <div class="hero-visual animate-up" style="animation-delay: 0.5s;">
+                <div class="hero-glow-sphere"></div>
+                <!-- Interactive Mockup Visual -->
+                <div class="glass-card" style="width: 100%; max-width: 440px; padding: 2rem; border-color: rgba(99, 102, 241, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+                    <div style="display: flex; gap: 8px; margin-bottom: 1.5rem; opacity: 0.5;">
+                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444;"></span>
+                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;"></span>
+                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981;"></span>
+                    </div>
+                    <div class="mono" style="color: var(--accent-cyan); margin-bottom: 0.75rem;">// BRAIN INTERPRETER</div>
+                    <p style="font-size: 0.95rem; font-family: var(--font-mono); line-height: 1.5; margin-bottom: 1.5rem; color: var(--paper);">
+                        &gt; What did we decide about pricing in yesterday's sync?<br>
+                        <span style="color: var(--text-muted);">&gt; Scanning transcripts...</span>
+                    </p>
+                    <div class="glass-card" style="padding: 1.25rem; background: rgba(99, 102, 241, 0.05); border-color: rgba(99, 102, 241, 0.15);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                            <span class="mono" style="color: var(--accent-emerald); font-size: 0.7rem;">Decision Logged</span>
+                            <span class="mono" style="color: var(--text-muted); font-size: 0.65rem;">Yesterday, 14:02</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--paper); line-height: 1.4; margin-bottom: 0.75rem;">
+                            Approved a tiered pricing structure: Solo ($0/beta), Startup ($49/mo), and Enterprise ($249/mo).
+                        </p>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <span style="font-size: 0.75rem; color: var(--accent-cyan); font-family: var(--font-mono); background: rgba(34, 211, 238, 0.08); padding: 2px 6px; border-radius: 4px;">[1] Meeting: Pricing Sync</span>
+                            <span style="font-size: 0.75rem; color: var(--accent-cyan); font-family: var(--font-mono); background: rgba(34, 211, 238, 0.08); padding: 2px 6px; border-radius: 4px;">[2] Proposal_v2.pdf</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="features" id="infrastructure">
+    <!-- PROBLEM SECTION -->
+    <section class="problem-solution" id="problem">
         <div class="container">
-            <div class="section-label">
-                <span class="mono text-signal">01 // Infrastructure</span>
-                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; margin-top: 1rem;">Architectural Integrity</h2>
+            <div class="section-heading">
+                <div class="section-label mono text-signal">// 01 THE PROBLEM</div>
+                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em;">Your Company's Knowledge Is Scattered</h2>
+            </div>
+            <div class="cards-grid-3">
+                <div class="glass-card problem-card">
+                    <div style="color: var(--accent-rose); margin-bottom: 1.5rem;"><i data-lucide="help-circle" size="28"></i></div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Decisions Get Lost</h3>
+                    <p style="color: var(--cement); font-size: 0.95rem;">Every meeting generates critical decisions that nobody writes down. Decisions vanish into Slack threads or thin air within 48 hours.</p>
+                </div>
+                <div class="glass-card problem-card">
+                    <div style="color: var(--accent-rose); margin-bottom: 1.5rem;"><i data-lucide="alert-triangle" size="28"></i></div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Tasks Slip Through</h3>
+                    <p style="color: var(--cement); font-size: 0.95rem;">Action items are verbalized during syncs or calls but never captured in a central tracker. Teams waste hours daily recovering context.</p>
+                </div>
+                <div class="glass-card problem-card">
+                    <div style="color: var(--accent-rose); margin-bottom: 1.5rem;"><i data-lucide="user-x" size="28"></i></div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Single Point of Failure</h3>
+                    <p style="color: var(--cement); font-size: 0.95rem;">Institutional knowledge is locked in individual brains. When a teammate goes on leave or departs, weeks of operational context disappear with them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION SECTION -->
+    <section class="problem-solution" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-heading">
+                <div class="section-label mono text-cyan">// 02 THE SOLUTION</div>
+                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em;">Fireflies Transcribes. The Brain Acts.</h2>
+            </div>
+            <div class="cards-grid-3">
+                <div class="glass-card solution-card">
+                    <div style="color: var(--accent-emerald); margin-bottom: 1.5rem;"><i data-lucide="database" size="28"></i></div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Persistent Memory</h3>
+                    <p style="color: var(--cement); font-size: 0.95rem;">The Brain unifies transcripts, documents, email, and files in a secure semantic memory. Ask anything in natural language and get instant answers with source citations.</p>
+                </div>
+                <div class="glass-card solution-card">
+                    <div style="color: var(--accent-emerald); margin-bottom: 1.5rem;"><i data-lucide="cpu" size="28"></i></div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Agent Delegation</h3>
+                    <p style="color: var(--cement); font-size: 0.95rem;">The Brain delegates tasks to specialized AI agents—Finance, HR, Sales, Marketing, PM. The Brain creates strategies, tracks objectives, and does real work.</p>
+                </div>
+                <div class="glass-card solution-card">
+                    <div style="color: var(--accent-emerald); margin-bottom: 1.5rem;"><i data-lucide="git-pull-request" size="28"></i></div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Human-in-the-Loop</h3>
+                    <p style="color: var(--cement); font-size: 0.95rem;">No emails, roadmap updates, or transactions are executed autonomously without review. The AI drafts and packages deliverables; you approve or request revisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="problem-solution" id="mechanism">
+        <div class="container">
+            <div class="section-heading">
+                <div class="section-label mono text-signal">// 03 THE MECHANISM</div>
+                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em;">Chaos to Clarity in Four Steps</h2>
+            </div>
+            <div class="protocol-grid">
+                <div class="glass-card protocol-step">
+                    <div class="step-number text-signal">01</div>
+                    <h3>Connect</h3>
+                    <p>Integrate Google Workspace, Slack, or upload PDFs/CSVs. The Brain ingests and syncs files automatically with zero-trust isolation.</p>
+                </div>
+                <div class="glass-card protocol-step">
+                    <div class="step-number text-cyan">02</div>
+                    <h3>Ask</h3>
+                    <p>Query your company memory in free text. Retrieve instant timelines, summarize meetings, or audit past agreements in seconds.</p>
+                </div>
+                <div class="glass-card protocol-step">
+                    <div class="step-number text-signal">03</div>
+                    <h3>Delegate</h3>
+                    <p>Instruct the Brain to execute a project. It triggers specialized department agents who work within isolated sandboxes.</p>
+                </div>
+                <div class="glass-card protocol-step">
+                    <div class="step-number text-cyan">04</div>
+                    <h3>Approve</h3>
+                    <p>Review draft plans, code artifacts, or strategies. Provide comments, reject with feedback, or click approve to commit to production.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading">
+                <div class="section-label mono text-signal">// 04 CORE CAPABILITIES</div>
+                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em;">Built for Founders Who Refuse to Forget</h2>
             </div>
             <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="shield"></i></div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i data-lucide="search"></i></div>
+                    <h3>Total Recall</h3>
+                    <p>Every transcript, CSV export, and PDF upload is indexed in semantic namespaces. Instantly search and locate source files across your entire company history.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i data-lucide="users"></i></div>
+                    <h3>AI Department Swarms</h3>
+                    <p>Finance, Sales, Marketing, HR, Product, and Custom agents coordinate tasks, answer discovery questions, and generate tailored roadmaps.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i data-lucide="eye"></i></div>
+                    <h3>Governance Queue</h3>
+                    <p>A unified interface for deliverable review. View rendered HTML pages, interactive SVGs, and markdown plans. Comment directly on sections.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i data-lucide="shield-check"></i></div>
                     <h3>Sentinel Pipeline</h3>
-                    <p>Every prompt is scrubbed for PII before leaving the kernel. Our Sentinel pipeline ensures your data never compromises your security posture.</p>
+                    <p>Proprietary kernel pipeline that scrubs personally identifiable info (PII) before any text hits external LLMs. Maintain extreme regulatory posture.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="git-branch"></i></div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i data-lucide="history"></i></div>
                     <h3>Rollback Engine</h3>
-                    <p>Every "write" action performed by an agent is reversible. Our unique rollback engine caches system states for instant recovery from hallucinations.</p>
+                    <p>All writes have a 30-minute undo window. Revert changes, retract emails, and undo agent database writes in one click.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="blocks"></i></div>
-                        <h3>Ecosystem Sync</h3>
-                        <p>Native integration with Google Workspace, Microsoft 365, Teams, Google Meet, Zoom, Gmail, Outlook, and Slack. The Brain speaks the language of your stack through 200+ audited API wrappers.</p>
-                    </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon"><i data-lucide="server"></i></div>
+                    <h3>Tenant Isolation</h3>
+                    <p>Secure row-level security (RLS) and isolated vector memory namespaces. Your data is isolated at the database level—never used for model training.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="protocol" style="padding: 10rem 0; background-color: var(--void); border-bottom: 1px solid var(--concrete);">
+    <!-- AGENTS WORKFORCE -->
+    <section class="agents-section">
         <div class="container">
-            <div class="section-label">
-                <span class="mono text-signal">02 // The Protocol</span>
-                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; margin-top: 1rem;">How It Works</h2>
+            <div class="section-heading">
+                <div class="section-label mono text-cyan">// 05 DELEGATED AGENTS</div>
+                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em;">The Neural Workforce</h2>
             </div>
             
-            <div class="protocol-grid">
-                <div class="protocol-step">
-                    <span class="mono text-cement">Step 01</span>
-                    <h3>Semantic Ingestion</h3>
-                    <p>The Brain ingests PDFs, CSVs, and meeting transcripts, embedding them into a persistent Pinecone vector memory buffer with strict RBAC classifications.</p>
-                </div>
-                <div class="protocol-connector"></div>
-                <div class="protocol-step">
-                    <span class="mono text-cement">Step 02</span>
-                    <h3>Cloud Orchestration</h3>
-                    <p>Operating on AWS secure infrastructure, our Orchestrator loop analyzes user prompts, selects tools, and plans a safe execution path across 200+ APIs.</p>
-                </div>
-                <div class="protocol-connector"></div>
-                <div class="protocol-step">
-                    <span class="mono text-cement">Step 03</span>
-                    <h3>Autonomous Execution</h3>
-                    <p>Soft Agents execute the plan via Universal Adapters. Actions are staged for human-in-the-loop approval before final write-back to production APIs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="registry" style="padding: 10rem 0; background-color: var(--void); border-bottom: 1px solid var(--concrete);">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start;">
-                <div>
-                    <span class="mono text-signal">Registry v1.1</span>
-                    <h2 style="font-family: var(--font-display); font-size: 3rem; text-transform: uppercase; margin-top: 1rem; line-height: 1;">200+ Production Ready Tools</h2>
-                    <p style="margin-top: 2rem; color: var(--cement);">Our Registry is a curated library of secure API connections designed for instant agent creation. Each department is equipped with specialized tools to handle complex autonomous workflows.</p>
-                    
-                    <div style="margin-top: 4rem; padding: 2rem; border: 1px solid var(--signal); background: rgba(255, 90, 31, 0.05);">
-                        <span class="mono">Total Capabilities</span>
-                        <div style="font-size: 3rem; font-weight: 800; font-family: var(--font-display);">200+</div>
+            <div class="agents-layout">
+                <div class="glass-card agent-showcase-box">
+                    <div class="logo-icon" style="width: 44px; height: 44px; margin-bottom: 2rem;">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
+                            <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+                            <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+                            <path d="M12 5v14"/>
+                            <path d="M12 9h4"/>
+                            <path d="M12 14h-4"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-family: var(--font-display); font-size: 1.75rem; text-transform: uppercase; margin-bottom: 1rem;">General Kernel</h3>
+                    <p style="color: var(--cement); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem;">
+                        The central assistant orchestrates multi-agent tasks, processes meeting audio in real-time, extracts action items to proper departments, and logs decisions with correct attribution.
+                    </p>
+                    <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-cyan); background: rgba(34, 211, 238, 0.05); padding: 8px 12px; border: 1px solid rgba(34, 211, 238, 0.15); border-radius: 6px;">
+                        Status: Kernel initialized
                     </div>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                    <div style="padding: 2rem; border: 1px solid var(--concrete);">
-                        <div class="mono text-signal">Finance & Runway</div>
-                        <div style="font-size: 2rem; font-weight: 700; margin: 0.5rem 0;">42 Tools</div>
-                        <p style="font-size: 0.8rem; color: var(--cement);">Predictive Burn Monitoring, Runway Analysis, FAST Agreements, Tax Estimation.</p>
+                <div class="agent-grid">
+                    <div class="glass-card agent-card">
+                        <span class="mono" style="color: var(--accent-cyan); font-size: 0.65rem; margin-bottom: 0.75rem;">// MARKETING</span>
+                        <h4>Marketing Agent</h4>
+                        <p>Drafts waitlist pipelines, outlines SEO strategies, and builds 7-week growth models.</p>
                     </div>
-                    <div style="padding: 2rem; border: 1px solid var(--concrete);">
-                        <div class="mono text-signal">Investor & Sales</div>
-                        <div style="font-size: 2rem; font-weight: 700; margin: 0.5rem 0;">32 Tools</div>
-                        <p style="font-size: 0.8rem; color: var(--cement);">VC Pipeline Mgmt, Founder-led Outreach, Lead Scoring, Early Adopter Discovery.</p>
+                    <div class="glass-card agent-card">
+                        <span class="mono" style="color: var(--accent-cyan); font-size: 0.65rem; margin-bottom: 0.75rem;">// FINANCE</span>
+                        <h4>Finance Agent</h4>
+                        <p>Calculates runway burn, monitors expense models, and evaluates corporate valuation.</p>
                     </div>
-                    <div style="padding: 2rem; border: 1px solid var(--concrete);">
-                        <div class="mono text-signal">HR & Equity</div>
-                        <div style="font-size: 2rem; font-weight: 700; margin: 0.5rem 0;">24 Tools</div>
-                        <p style="font-size: 0.8rem; color: var(--cement);">Equity Dilution Modeling, Performance Reviews, Onboarding, Payroll Audits.</p>
+                    <div class="glass-card agent-card">
+                        <span class="mono" style="color: var(--accent-cyan); font-size: 0.65rem; margin-bottom: 0.75rem;">// CRM</span>
+                        <h4>CRM Agent</h4>
+                        <p>Automates lead score profiling, updates contacts from syncs, and builds outreach logs.</p>
                     </div>
-                    <div style="padding: 2rem; border: 1px solid var(--concrete);">
-                        <div class="mono text-signal">Growth & SEO</div>
-                        <div style="font-size: 2rem; font-weight: 700; margin: 0.5rem 0;">38 Tools</div>
-                        <p style="font-size: 0.8rem; color: var(--cement);">Waitlist Automation, Product Hunt Trackers, SEO Audits, Ad-ops.</p>
+                    <div class="glass-card agent-card">
+                        <span class="mono" style="color: var(--accent-cyan); font-size: 0.65rem; margin-bottom: 0.75rem;">// HR / PEOPLE</span>
+                        <h4>HR Agent</h4>
+                        <p>Performs member evaluations, dilution models, and CV candidate scoring.</p>
                     </div>
-                    <div style="padding: 2rem; border: 1px solid var(--concrete);">
-                        <div class="mono text-signal">Product & Roadmap</div>
-                        <div style="font-size: 2rem; font-weight: 700; margin: 0.5rem 0;">26 Tools</div>
-                        <p style="font-size: 0.8rem; color: var(--cement);">Public Roadmap Gen, Sprint Mgmt, Gantt Charts, Intelligence Scans.</p>
+                    <div class="glass-card agent-card">
+                        <span class="mono" style="color: var(--accent-cyan); font-size: 0.65rem; margin-bottom: 0.75rem;">// OPERATIONS</span>
+                        <h4>Operations Agent</h4>
+                        <p>Assigns tasks by department, creates agendas, and enforces RLS security audits.</p>
                     </div>
-                    <div style="padding: 2rem; border: 1px solid var(--signal); background: var(--signal); color: var(--void);">
-                        <div class="mono text-signal" style="color: var(--void) !important;">Ecosystem Sync</div>
-                        <div style="font-size: 2rem; font-weight: 700; margin: 0.5rem 0;">40+ Tools</div>
-                        <p style="font-size: 0.8rem; opacity: 0.8;">Omnichannel Comms, Storage Adapters, and 3rd Party Wrappers.</p>
+                    <div class="glass-card agent-card">
+                        <span class="mono" style="color: var(--accent-cyan); font-size: 0.65rem; margin-bottom: 0.75rem;">// DEVELOPER</span>
+                        <h4>Custom Creator</h4>
+                        <p>Build custom agents in Javascript or trigger API integrations using registry tools.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="partners" style="padding: 10rem 0; background-color: var(--paper); color: var(--void);">
+    <!-- ROADMAP SCHEDULE -->
+    <section class="roadmap-section">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
-                <div>
-                    <span class="mono text-signal">03 // Strategic Partners</span>
-                    <h2 style="font-family: var(--font-display); font-size: 3.5rem; text-transform: uppercase; margin-top: 1rem; line-height: 1;">Built for High-Growth SMBs</h2>
-                    <p style="margin-top: 2rem; font-size: 1.1rem; opacity: 0.8;">The Brain has been engineered for everyone. From an aspiring young entrepreneur trying to start his own business to an established organization with over 100+ employees. This is the age of The Brain.</p>
-                </div>
-                <div class="target-grid" style="grid-template-columns: repeat(3, 1fr);">
-                    <div class="target-card">
-                        <span class="mono">Early-Stage Startups</span>
-                        <div class="mono" style="font-size: 0.7rem; color: var(--void); opacity: 0.5; margin-bottom: 0.5rem;">1–5 Employees</div>
-                        <p>Focus on product, not administration. Deploy a virtual executive team of agents to handle your emails, scheduling, and basic research from day one.</p>
-                    </div>
-                    <div class="target-card">
-                        <span class="mono">Agile Startups</span>
-                        <div class="mono" style="font-size: 0.7rem; color: var(--void); opacity: 0.5; margin-bottom: 0.5rem;">10–50 Employees</div>
-                        <p>Move faster than the competition. Automate your first 10 operational roles with autonomous agents linked to Slack and G-Suite.</p>
-                    </div>
-                    <div class="target-card">
-                        <span class="mono">Growth SMBs</span>
-                        <div class="mono" style="font-size: 0.7rem; color: var(--void); opacity: 0.5; margin-bottom: 0.5rem;">50–200 Employees</div>
-                        <p>Eliminate mid-management overhead. Scale your marketing, sales, and operations without linear increases in headcount.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
-        <div class="brutalist-block">
-            <div class="block-left" id="vision">
-                <span class="mono text-cement">Philosophy // The Manifest</span>
-                <p style="font-size: 1.5rem; margin-top: 2rem; font-weight: 500;">"Intelligence without structure is noise. The Brain AIOS is built on the principle that the most powerful agents are those constrained by logic, governed by rules, and audited by humans."</p>
-                <div style="margin-top: 3rem; display: flex; gap: 4rem;">
-                    <div>
-                        <span class="mono text-signal">0.0ms</span>
-                        <p class="mono" style="font-size: 0.6rem;">Data Leakage</p>
-                    </div>
-                    <div>
-                        <span class="mono text-signal">100%</span>
-                        <p class="mono" style="font-size: 0.6rem;">Audit Visibility</p>
-                    </div>
-                </div>
-            </div>
-            <div class="block-right">
-                <span class="mono">Core Vision</span>
-                <h2>Systems That Think</h2>
-                <button class="cta-button" style="background-color: var(--void); color: var(--paper); align-self: flex-start; margin-top: 2rem;">Request Audit</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOFT AGENTS SECTION -->
-    <section id="agents" style="padding: 10rem 0; background-color: #0F0F12; border-top: 1px solid var(--concrete);">
-        <div class="container">
-            <div style="margin-bottom: 6rem; display: flex; justify-content: space-between; align-items: flex-end;">
-                <div>
-                    <span class="mono text-signal">Soft Agents</span>
-                    <h2 style="font-family: var(--font-display); font-size: 3.5rem; text-transform: uppercase; margin-top: 1rem;">The Neural Workforce</h2>
-                </div>
-                <div style="max-width: 400px; text-align: right;">
-                    <p style="color: var(--cement); font-size: 0.9rem;">Beyond simple chat. The Brain AIOS deploys specialized intelligence that understands your context and executes on your behalf.</p>
-                </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 4rem;">
-                <!-- Main Core Agent -->
-                <div style="border: 2px solid var(--signal); padding: 3rem; background: rgba(255, 90, 31, 0.02); display: flex; flex-direction: column; justify-content: space-between;">
-                    <div>
-                        <div style="width: 40px; height: 40px; background: var(--signal); margin-bottom: 2rem;"></div>
-                        <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 1rem;">The Brain</h3>
-                        <span class="mono text-signal">General Intelligence</span>
-                        <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--cement);">The central kernel of your OS. A zero-latency general assistant capable of reasoning across all departments and orchestrating complex multi-step workflows via natural language.</p>
-                    </div>
-                    <div style="margin-top: 4rem; padding: 1.5rem; border: 1px solid rgba(255, 90, 31, 0.2);">
-                        <span class="mono" style="font-size: 0.6rem;">Status: Initialized</span>
-                    </div>
-                </div>
-
-                <!-- Departmental Grid -->
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--concrete); border: 1px solid var(--concrete);">
-                    <div style="background: var(--void); padding: 2rem;">
-                        <span class="mono">Marketing</span>
-                        <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem;">Waitlist management, SEO auditing, and ad-ops automation.</p>
-                    </div>
-                    <div style="background: var(--void); padding: 2rem;">
-                        <span class="mono">Sales</span>
-                        <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem;">Lead scoring, CRM cleanup, and outreach sequences.</p>
-                    </div>
-                    <div style="background: var(--void); padding: 2rem;">
-                        <span class="mono">Operations</span>
-                        <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem;">IT incident response and logistics orchestration.</p>
-                    </div>
-                    <div style="background: var(--void); padding: 2rem;">
-                        <span class="mono">Finance</span>
-                        <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem;">Runway monitoring and automated expense auditing.</p>
-                    </div>
-                    <div style="background: var(--void); padding: 2rem;">
-                        <span class="mono">HR</span>
-                        <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem;">Equity modeling and new hire onboarding checklists.</p>
-                    </div>
-                    <div style="background: var(--void); padding: 2rem;">
-                        <span class="mono">Legal</span>
-                        <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem;">Contract review and advisory agreement generation.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Custom Agent Callout -->
-            <div style="margin-top: 6rem; padding: 4rem; border: 1px solid var(--signal); display: flex; align-items: center; gap: 4rem; background: linear-gradient(90deg, rgba(255, 90, 31, 0.05), transparent);">
-                <div style="flex: 1;">
-                    <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase;">Curate Your Own Workforce</h3>
-                    <p style="margin-top: 1.5rem; color: var(--cement);">The Brain AIOS gives you the power to architect custom agents for any scheduled or conditioned task. Simply select tools from the Universal Registry to build automated observers, executors, or synthesizers tailored to your specific business needs.</p>
-                </div>
-                <div style="width: 300px; padding: 2rem; border: 1px solid var(--concrete); background: var(--void);">
-                    <div class="mono" style="margin-bottom: 1rem; color: var(--signal);">// Custom Agent Schema</div>
-                    <div style="font-size: 0.7rem; color: var(--cement); font-family: var(--font-mono);">
-                        {<br>
-                        &nbsp;&nbsp;"trigger": "scheduled:weekly",<br>
-                        &nbsp;&nbsp;"tools": ["runway_burn", "ar_aging"],<br>
-                        &nbsp;&nbsp;"goal": "Generate investor report"<br>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="roadmap" style="padding: 10rem 0; background-color: var(--void);">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 6rem;">
-                <span class="mono text-signal">Deployment Schedule</span>
-                <h2 style="font-family: var(--font-display); font-size: 3.5rem; text-transform: uppercase; margin-top: 1rem;">Roadmap to Autonomy</h2>
+            <div class="section-heading" style="text-align: center;">
+                <div class="section-label mono text-signal">// 06 THE SCHEDULE</div>
+                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em;">Roadmap to Autonomy</h2>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
+            <div class="roadmap-grid">
                 <div class="roadmap-item active">
-                    <span class="mono text-signal">Phase 01 / Q2 2026</span>
-                    <h4 style="margin-top: 1rem; text-transform: uppercase;">Kernel Core</h4>
-                    <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem; line-height: 1.6;">Stabilization of the Semantic Router and Universal Registry. Initial integration with Google Workspace and Microsoft 365.</p>
+                    <span class="roadmap-phase">Phase 01 / Pre-Seed</span>
+                    <h4>Kernel Core</h4>
+                    <p>Semantic router stabilization, meeting capture with multi-user join codes, and local embeddings pre-loading.</p>
+                </div>
+                <div class="roadmap-item active">
+                    <span class="roadmap-phase">Phase 02 / Seed</span>
+                    <h4>Department Hubs</h4>
+                    <p>Proactive suggestion engines, client CRM contacts extraction, and per-department settings wizards.</p>
                 </div>
                 <div class="roadmap-item">
-                    <span class="mono">Phase 02 / Q3 2026</span>
-                    <h4 style="margin-top: 1rem; text-transform: uppercase;">Neural Link</h4>
-                    <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem; line-height: 1.6;">Bidirectional voice-vision links. Deployment of Soft Agents for specialized Marketing and Sales workflows.</p>
+                    <span class="roadmap-phase">Phase 03 / Series A</span>
+                    <h4>Swarm Mechanics</h4>
+                    <p>Multi-agent collaboration on codebases, Docker-hardened execution sandboxes, and Google Drive auto-indexing.</p>
                 </div>
                 <div class="roadmap-item">
-                    <span class="mono">Phase 03 / Q4 2026</span>
-                    <h4 style="margin-top: 1rem; text-transform: uppercase;">Orchestration</h4>
-                    <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem; line-height: 1.6;">Multi-agent swarm coordination. Autonomous document generation (PDF/PPTX) and automated email lifecycle management.</p>
-                </div>
-                <div class="roadmap-item">
-                    <span class="mono">Phase 04 / Q1-Q2 2027</span>
-                    <h4 style="margin-top: 1rem; text-transform: uppercase;">Public Launch</h4>
-                    <p style="font-size: 0.8rem; color: var(--cement); margin-top: 1rem; line-height: 1.6;">Public API launch. Self-healing agent infrastructure and cross-company intelligence bridges.</p>
+                    <span class="roadmap-phase">Phase 04 / Public Launch</span>
+                    <h4>Global Adaptation</h4>
+                    <p>Public API gateway, live calendar webhooks, custom adapter templates, and Stripe billing integration.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="container" style="padding: 10rem 0; text-align: center;">
-        <span class="mono text-signal" style="display: block; margin-bottom: 2rem;">Ready for Initialization?</span>
-        <h2 style="font-family: var(--font-display); font-size: 4rem; text-transform: uppercase; margin-bottom: 4rem;">The Future is <span class="text-signal">Structured</span>.</h2>
-        <div style="display: flex; gap: 2rem; justify-content: center;">
-            <button class="cta-button" style="padding: 1.5rem 3rem; font-size: 1rem;">Sign Up for Early Access</button>
+    <!-- COMPARISON MATRIX -->
+    <section class="comparison-section" id="comparison">
+        <div class="container">
+            <div class="section-heading">
+                <div class="section-label mono text-signal">// 07 COMPARISON MATRIX</div>
+                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em;">Why Existing Tools Aren't Enough</h2>
+            </div>
+            
+            <div class="table-wrapper glass-card" style="border-radius: 12px; border-color: var(--border-default);">
+                <table>
+                    <thead>
+                        <tr style="background: rgba(255, 255, 255, 0.02);">
+                            <th>Capabilities</th>
+                            <th>Fireflies / Otter</th>
+                            <th>Notion AI</th>
+                            <th>Zapier</th>
+                            <th style="color: var(--accent-cyan);">The Brain AIOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Meeting transcription & diarization</td>
+                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td style="color: var(--paper); font-weight: 600;"><span class="check-icon">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Natural language search with citations</td>
+                            <td>Partial</td>
+                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td style="color: var(--paper); font-weight: 600;"><span class="check-icon">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Human-in-the-loop stage gates</td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td style="color: var(--paper); font-weight: 600;"><span class="check-icon">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>PII Scrubbing (Sentinel Pipeline)</td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td style="color: var(--paper); font-weight: 600;"><span class="check-icon">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Reversible agent writes (Rollback Engine)</td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td style="color: var(--paper); font-weight: 600;"><span class="check-icon">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Tenant database-level isolation</td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td>Workspace only</td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td style="color: var(--paper); font-weight: 600;"><span class="check-icon">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Immutable security audit logs</td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="cross-icon">✗</span></td>
+                            <td style="color: var(--paper); font-weight: 600;"><span class="check-icon">✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-heading" style="text-align: center;">
+                <div class="section-label mono text-cyan">// 08 FAQ</div>
+                <h2 style="font-family: var(--font-display); font-size: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em;">Common Inquiries</h2>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is this just another meeting summarizer?</span>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. Meeting summarizers write notes. The Brain ingests your entire corporate knowledge graph (docs, CSVs, Slack, transcripts), resolves dependencies, and delegates actual tasks to specialized agents (e.g. drafting waitlist campaigns, calculating burns, preparing Fast agreements)—all staged for your final approval.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How is client data protected?</span>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We deploy database-level Row Level Security (RLS) and separate vector namespaces per tenant. Furthermore, the Sentinel pipeline automatically identifies and redacts personally identifiable information (PII) before queries leave our kernel for external model API routing.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What integrations are available during the beta?</span>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>During our beta, we natively support Google Workspace (Docs, Drive, Calendar, Gmail), Slack communication, and manual document ingestion (PDF, CSV, TXT, DOCX). We are rolling out OneDrive, HubSpot, Salesforce, and Zoho integrations over the coming weeks.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How does the Human-in-the-Loop policy function?</span>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>By default, agents operate in planning mode. They output structured strategies or preview-ready deliverables. The human must review, provide revision comments, or approve the outcome. The Brain will never execute write operations to external services without your sign-off.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is the platform really free?</span>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. The Brain is free during the beta phase for solo founders and startup teams. Solo founders will maintain free tiers indefinitely. Early waitlist users will also lock in lifetime discounts for team seats when billing launches.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Where is The Brain built?</span>
+                        <i data-lucide="chevron-down" class="faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Cairo, Egypt. 🇪🇬 We build robust, structured cognitive software outside of Silicon Valley, serving founders worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WAITLIST FORM -->
+    <section class="waitlist-section" id="waitlist">
+        <div class="waitlist-glow"></div>
+        <div class="waitlist-container">
+            <span class="mono text-cyan" style="font-weight: 600;">Secure Your Seat</span>
+            <h2 style="font-family: var(--font-display); font-size: 3rem; text-transform: uppercase; margin-top: 1rem; margin-bottom: 1.5rem; letter-spacing: -0.02em;">Stop Forgetting.<br>Start Asking.</h2>
+            <p style="color: var(--cement); font-size: 1.1rem; line-height: 1.6;">
+                Get immediate access to the beta and build your company's persistent memory. No credit card required. Zero configuration.
+            </p>
+            
+            <form id="waitlist-form" class="waitlist-form">
+                <input type="email" id="waitlist-email" placeholder="Enter your work email" required class="input-field" style="max-width: 420px; flex: 1;">
+                <button type="submit" class="cta-button glow-btn" style="flex-shrink: 0; padding: 0.75rem 2rem;">Join waitlist <i data-lucide="arrow-right"></i></button>
+            </form>
+            <div id="waitlist-msg" class="waitlist-message"></div>
         </div>
     </section>
 </main>
 
-<footer style="padding: 5rem 0; border-top: 1px solid var(--concrete); background-color: var(--void);">
+<footer>
     <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; opacity: 0.6;">
-            <div>
-                <p class="mono">THE BRAIN AIOS © 2026</p>
-                <p class="mono" style="margin-top: 0.5rem; font-size: 0.6rem;">Intelligence built on structure.</p>
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <a href="#" class="logo-container" style="margin-bottom: 0.5rem;">
+                    <div class="logo-icon" style="width: 32px; height: 32px;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
+                            <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+                            <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+                            <path d="M12 5v14"/>
+                            <path d="M12 9h4"/>
+                            <path d="M12 14h-4"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text" style="font-size: 1.1rem;">The Brain</span>
+                </a>
+                <p class="mono text-muted" style="font-size: 0.65rem;">THE BRAIN AIOS © 2026</p>
+                <p class="mono text-muted" style="font-size: 0.6rem; text-transform: none; margin-top: 0.25rem;">Intelligence built on structure.</p>
             </div>
-            <div style="display: flex; gap: 4rem;">
-                <div class="mono" style="display: flex; flex-direction: column; gap: 1rem;">
-                    <a href="#" style="color: inherit; text-decoration: none;">GitHub</a>
-                    <a href="#" style="color: inherit; text-decoration: none;">Discord</a>
-                    <a href="#" style="color: inherit; text-decoration: none;">Twitter</a>
+            
+            <div class="footer-links">
+                <div class="footer-col">
+                    <span class="mono" style="color: var(--paper); font-size: 0.65rem; font-weight: 700; margin-bottom: 0.5rem;">Ecosystem</span>
+                    <a href="https://github.com/kareemhelal65/thebrain" target="_blank">GitHub Repository</a>
+                    <a href="#">Developer Forum</a>
+                    <a href="#">API Documentation</a>
                 </div>
-                <div class="mono" style="display: flex; flex-direction: column; gap: 1rem;">
-                    <a href="#" style="color: inherit; text-decoration: none; color: var(--signal);">Investor Deck</a>
-                    <a href="#" style="color: inherit; text-decoration: none;">Security Audit</a>
-                    <a href="#" style="color: inherit; text-decoration: none;">Whitepaper</a>
+                <div class="footer-col">
+                    <span class="mono" style="color: var(--paper); font-size: 0.65rem; font-weight: 700; margin-bottom: 0.5rem;">Legal</span>
+                    <a href="#">Privacy Protocol</a>
+                    <a href="#">Sentinel Audit Logs</a>
+                    <a href="#">Terms of Use</a>
                 </div>
-                <div class="mono" style="display: flex; flex-direction: column; gap: 1rem;">
-                    <a href="#" style="color: inherit; text-decoration: none;">Privacy</a>
-                    <a href="#" style="color: inherit; text-decoration: none;">Security</a>
-                    <a href="#" style="color: inherit; text-decoration: none;">Audit Logs</a>
+                <div class="footer-col">
+                    <span class="mono" style="color: var(--paper); font-size: 0.65rem; font-weight: 700; margin-bottom: 0.5rem;">Cairo Core</span>
+                    <a href="mailto:kareemhelal65@gmail.com" style="color: var(--accent-cyan) !important;">kareemhelal65@gmail.com</a>
+                    <a href="https://x.com/kareemhelal" target="_blank">Founder Twitter</a>
                 </div>
             </div>
         </div>
@@ -401,29 +548,28 @@
 <script>
     lucide.createIcons();
     
-    // Simple intersection observer for animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-up');
+    // Collapsible FAQ logic
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(i => i.classList.remove('active'));
+            if (!isActive) {
+                item.classList.add('active');
             }
         });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.feature-card').forEach(el => {
-        el.style.opacity = '0';
-        observer.observe(el);
     });
 
     // Loader Logic
     const loader = document.getElementById('loader');
     const loaderBar = document.getElementById('loader-bar');
     const loaderText = document.getElementById('loader-text');
-    const phases = ['INITIALIZING CORE...', 'LOADING NEURAL LINK...', 'SYNCHRONIZING MEMORY...', 'OPTIMIZING NODES...', 'READY.'];
+    const phases = ['INITIALIZING KERNEL...', 'LOADING MEMORY GRAPH...', 'SYNCHRONIZING SENTINEL...', 'CONNECTING UNIVERSAL REGISTRY...', 'READY.'];
     let progress = 0;
     
     const interval = setInterval(() => {
-        progress += Math.random() * 15;
+        progress += Math.random() * 18;
         if (progress > 100) progress = 100;
         
         loaderBar.style.width = progress + '%';
@@ -434,11 +580,55 @@
             setTimeout(() => {
                 loader.style.opacity = '0';
                 loader.style.visibility = 'hidden';
-            }, 500);
+            }, 300);
         }
-    }, 150);
+    }, 100);
+
+    // Waitlist Form Handling
+    const waitlistForm = document.getElementById('waitlist-form');
+    const waitlistEmail = document.getElementById('waitlist-email');
+    const waitlistMsg = document.getElementById('waitlist-msg');
+    
+    waitlistForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = waitlistEmail.value;
+        const source = 'marketing_site';
+        
+        waitlistMsg.innerText = 'Registering email...';
+        waitlistMsg.style.color = 'var(--cement)';
+        
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000'
+            : window.location.origin; // If served from backend or reverse proxy, use current origin
+            
+        try {
+            const response = await fetch(`${API_URL}/api/auth/waitlist`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, source })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                waitlistMsg.innerText = data.message || 'Successfully joined the waitlist!';
+                waitlistMsg.style.color = 'var(--accent-emerald)';
+                waitlistEmail.value = '';
+            } else {
+                waitlistMsg.innerText = data.message || 'Something went wrong. Please try again.';
+                waitlistMsg.style.color = 'var(--accent-rose)';
+            }
+        } catch (error) {
+            console.error('Waitlist submission error:', error);
+            waitlistMsg.innerText = 'Could not connect to the backend server. Please try again later.';
+            waitlistMsg.style.color = 'var(--accent-rose)';
+        }
+    });
 </script>
 
-    <script src="canvas-bg.js"></script>
+<script src="canvas-bg.js"></script>
 </body>
 </html>

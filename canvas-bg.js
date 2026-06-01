@@ -9,10 +9,10 @@ canvas.style.width = '100%';
 canvas.style.height = '100%';
 canvas.style.zIndex = '-1';
 canvas.style.pointerEvents = 'none';
-canvas.style.opacity = '0.4';
+canvas.style.opacity = '0.35';
 
 let particles = [];
-const particleCount = 60;
+const particleCount = 75;
 
 function resize() {
     canvas.width = window.innerWidth;
@@ -30,9 +30,11 @@ class Particle {
     reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 2;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.size = Math.random() * 2 + 0.5;
+        this.color = Math.random() > 0.5 ? '#6366f1' : '#22d3ee';
+        this.rgb = this.color === '#6366f1' ? '99, 102, 241' : '34, 211, 238';
     }
 
     update() {
@@ -44,7 +46,7 @@ class Particle {
     }
 
     draw() {
-        ctx.fillStyle = '#FF5A1F';
+        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -69,7 +71,8 @@ function animate() {
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < 150) {
-                ctx.strokeStyle = `rgba(255, 90, 31, ${1 - dist / 150})`;
+                const alpha = (1 - dist / 150) * 0.15;
+                ctx.strokeStyle = `rgba(${p.rgb}, ${alpha})`;
                 ctx.lineWidth = 0.5;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
