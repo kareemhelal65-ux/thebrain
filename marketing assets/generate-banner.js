@@ -1,3 +1,7 @@
+const fs = require('fs');
+const sharp = require('sharp');
+
+const svg = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
     <rect width="1200" height="630" fill="#ffffff"/>
     
@@ -14,3 +18,12 @@
     <text x="460" y="335" font-family="Arial, sans-serif" font-size="76" font-weight="bold" fill="#000000" letter-spacing="-2">Cortex OS</text>
     <text x="465" y="375" font-family="Courier New, monospace" font-size="20" font-weight="bold" fill="#4b5563" letter-spacing="4">INTELLIGENCE BUILT ON STRUCTURE</text>
 </svg>
+`;
+
+fs.writeFileSync('marketing assets/banner-white.svg', svg.trim());
+
+sharp(Buffer.from(svg))
+  .png()
+  .toFile('marketing assets/banner.png')
+  .then(() => console.log('Successfully generated banner.png'))
+  .catch(console.error);

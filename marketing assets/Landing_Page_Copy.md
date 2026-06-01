@@ -10,7 +10,7 @@
 # Your Company's AI Operating System
 
 **Subheadline:**
-The Brain remembers every meeting, every document, every decision. Ask anything. Get instant answers. Delegate to AI agents that act on your behalf.
+Cortex OS remembers every meeting, every document, every decision. Ask anything. Get instant answers. Delegate to AI agents that act on your behalf.
 
 **CTA Button:** [Join the Beta — Free]
 
@@ -43,10 +43,10 @@ Your team wastes 5+ hours a week just trying to remember what was decided, where
 
 **Section Label:** // 02 THE SOLUTION
 
-**Headline:** Fireflies Transcribes. The Brain Acts.
+**Headline:** Fireflies Transcribes. Cortex OS Acts.
 
 **Body:**
-The Brain ingests your company's entire knowledge base — meetings, documents, Slack, email — into a persistent semantic memory.
+Cortex OS ingests your company's entire knowledge base — meetings, documents, Slack, email — into a persistent semantic memory.
 
 Ask anything in natural language:
 → "What did we decide about pricing last month?"
@@ -55,7 +55,7 @@ Ask anything in natural language:
 
 Get instant answers with source citations. Every claim backed to the original meeting, document, or message.
 
-But here's the difference: The Brain doesn't stop at answers.
+But here's the difference: Cortex OS doesn't stop at answers.
 
 **It delegates.**
 
@@ -71,7 +71,7 @@ Specialized AI agents draft follow-up emails, create tasks, log decisions, and r
 
 **Step 1:**
 **Connect**
-Link your Google Workspace, Slack, or upload documents. The Brain ingests everything automatically.
+Link your Google Workspace, Slack, or upload documents. Cortex OS ingests everything automatically.
 
 **Step 2:**
 **Ask**
@@ -79,11 +79,11 @@ Query your company's knowledge in natural language. Get cited answers in seconds
 
 **Step 3:**
 **Delegate**
-Tell The Brain what you need done. It delegates to specialized agents (Finance, Sales, Marketing, HR, Operations).
+Tell Cortex OS what you need done. It delegates to specialized agents (Finance, Sales, Marketing, HR, Operations).
 
 **Step 4:**
 **Approve**
-Every write action is staged for your review. You always press send. The Brain just drafts it.
+Every write action is staged for your review. You always press send. Cortex OS just drafts it.
 
 ---
 
@@ -123,10 +123,10 @@ Your data is isolated at the database level — not just the app level. Row-leve
 > "I asked 'What did we decide about the pricing model?' and got an answer with the exact meeting citation in 2 games. This is the tool I didn't know I needed."
 > — [Name], Founder at [Company]
 
-> "We were using Fireflies for transcription. The Brain does that AND drafts follow-up emails AND logs decisions. It's on another level."
+> "We were using Fireflies for transcription. Cortex OS does that AND drafts follow-up emails AND logs decisions. It's on another level."
 > — [Name], CTO at [Company]
 
-> "As a solo founder, I can't afford to hire ops. The Brain replaces the VA I never hired."
+> "As a solo founder, I can't afford to hire ops. Cortex OS replaces the VA I never hired."
 > — [Name], Solo Founder
 
 ---
@@ -137,7 +137,7 @@ Your data is isolated at the database level — not just the app level. Row-leve
 
 **Headline:** Why Existing Tools Aren't Enough
 
-| Feature | Fireflies / Otter | Notion AI | Zapier | The Brain |
+| Feature | Fireflies / Otter | Notion AI | Zapier | Cortex OS |
 |---|---|---|---|---|
 | Meeting transcription | ✅ | ❌ | ❌ | ✅ |
 | Natural language search | Partial | ✅ | ❌ | ✅ |
@@ -160,7 +160,7 @@ Your data is isolated at the database level — not just the app level. Row-leve
 **Headline:** Free for Founders. Always.
 
 **Body:**
-The Brain is free during beta. Solo founders get free access, period. Teams get generous free tiers.
+Cortex OS is free during beta. Solo founders get free access, period. Teams get generous free tiers.
 
 When we launch pricing, early beta users get lifetime discounts. Join now, lock in the rate.
 
@@ -173,10 +173,10 @@ When we launch pricing, early beta users get lifetime discounts. Join now, lock 
 **Section Label:** // 08 FAQ
 
 **Q: Is this just another meeting tool?**
-A: No. Meeting tools transcribe. The Brain ingests, understands, and acts. It extracts decisions, drafts follow-ups, logs action items, and delegates to agents — all with your approval.
+A: No. Meeting tools transcribe. Cortex OS ingests, understands, and acts. It extracts decisions, drafts follow-ups, logs action items, and delegates to agents — all with your approval.
 
 **Q: How is this different from Notion AI?**
-A: Notion AI is built for a workspace/wiki. The Brain is an operating system. Multi-tenant, agent orchestration, human-in-the-loop governance, audit logs. Different layer of the stack.
+A: Notion AI is built for a workspace/wiki. Cortex OS is an operating system. Multi-tenant, agent orchestration, human-in-the-loop governance, audit logs. Different layer of the stack.
 
 **Q: What about my data privacy?**
 A: PII scrubbing before any data hits an LLM. RBAC at the DB level. Separate vector namespaces per tenant. Immutable audit logs. Zero cross-tenant data bleed. You own your data.
@@ -188,7 +188,7 @@ A: During beta: Google Workspace (Meet, Drive, Docs, Calendar, Gmail), Slack, PD
 A: Free during beta for solo founders and small teams. We'll never charge you without telling you first. Early users get lifetime discounts when pricing launches.
 
 **Q: I'm a solo founder. Is this overkill for me?**
-A: It's perfect for you. You're the one drowning in the most information with the least help. The Brain replaces the VA, the ops person, and the project manager you can't afford to hire.
+A: It's perfect for you. You're the one drowning in the most information with the least help. Cortex OS replaces the VA, the ops person, and the project manager you can't afford to hire.
 
 **Q: Where is this built?**
 A: Cairo, Egypt. 🇪🇬 Built outside Silicon Valley for founders everywhere.
@@ -223,12 +223,12 @@ Subject: You're in. Here's what happens next.
 Body:
 Hey [first name],
 
-Welcome to The Brain beta.
+Welcome to Cortex OS beta.
 
 Here's what to expect:
 1. You're on the list. We're onboarding in batches.
 2. You'll get access within [timeframe].
-3. When you do, start by connecting Google Workspace. The Brain will pull your recent meetings automatically.
+3. When you do, start by connecting Google Workspace. Cortex OS will pull your recent meetings automatically.
 4. Ask your first question: "What did I decide recently?"
 
 While you're waiting, here's the demo video: [link]
@@ -237,7 +237,7 @@ And if you know another founder who's drowning in meetings and decisions — sen
 
 Talk soon,
 [Your Name]
-Founder, The Brain
+Founder, Cortex OS
 Cairo, Egypt
 
 ---
@@ -250,4 +250,4 @@ For the fastest path to a live page:
 
 2. **Best option (3 hours):** Deploy this as a Next.js page on Vercel. Connect the email form to your Supabase waitlist table. Use your existing Neo-Brutalist CSS from index.html.
 
-3. **SEO basics:** Add meta title "The Brain AIOS — Your Company's AI Operating System", meta description "The Brain remembers every meeting, document, and decision. Ask anything. Get answers. Delegate to AI agents. Free beta open.", og-image (1200x630 product screenshot).
+3. **SEO basics:** Add meta title "Cortex OS — Your Company's AI Operating System", meta description "Cortex OS remembers every meeting, document, and decision. Ask anything. Get answers. Delegate to AI agents. Free beta open.", og-image (1200x630 product screenshot).

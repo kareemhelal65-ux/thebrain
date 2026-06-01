@@ -5,7 +5,7 @@
 ---
 
 ## Product Name
-**The Brain AIOS**
+**Cortex OS**
 
 ---
 
@@ -13,7 +13,7 @@
 **Your company's AI operating system. Ask anything. Get answers.**
 
 Alternative options (pick one):
-- "Fireflies transcribes. The Brain acts on your company's knowledge."
+- "Fireflies transcribes. Cortex OS acts on your company's knowledge."
 - "An AI that remembers everything about your company — and acts on it."
 - "The AI operating system for startups. Ingest, query, delegate, act."
 
@@ -21,11 +21,11 @@ Alternative options (pick one):
 
 ## Description (max 500 characters)
 
-The Brain is an AI operating system that ingests your company's entire knowledge base — meetings, documents, Slack, email — into a persistent semantic memory store.
+Cortex OS is an AI operating system that ingests your company's entire knowledge base — meetings, documents, Slack, email — into a persistent semantic memory store.
 
 Ask anything: "What did we decide about pricing?" "What are my open action items?" Get instant answers with source citations.
 
-But it doesn't stop at search. The Brain delegates tasks to specialized AI agents (Finance, Sales, Marketing, HR, Operations) that draft emails, create follow-ups, and run workflows — all with your approval through the Sentinel governance pipeline.
+But it doesn't stop at search. Cortex OS delegates tasks to specialized AI agents (Finance, Sales, Marketing, HR, Operations) that draft emails, create follow-ups, and run workflows — all with your approval through the Sentinel governance pipeline.
 
 Built in Cairo. Multi-tenant from day one. Enterprise-grade security.
 
@@ -48,13 +48,13 @@ This is the first thing people read. Make it count.
 
 Hey Product Hunt! 👋
 
-I'm [Your Name], founder of The Brain.
+I'm [Your Name], founder of Cortex OS.
 
-I built The Brain because I was drowning in meetings, decisions, and scattered information — and no tool actually solved the problem.
+I built Cortex OS because I was drowning in meetings, decisions, and scattered information — and no tool actually solved the problem.
 
 Fireflies transcribes meetings. Notion organizes docs. Zapier automates workflows. But none of them actually KNOW your company and ACT on it.
 
-The Brain does.
+Cortex OS does.
 
 **Here's what it does:**
 → Ingests meetings, docs, Slack, email into a persistent memory
@@ -130,17 +130,17 @@ Prepare these 5 screenshots before launch day:
 
 ## Upvote Outreach Template (DM to send to 50+ people)
 
-Hey [name]! I'm launching The Brain on Product Hunt next [day]. It's an AI operating system that ingests your company's knowledge and acts on it. Would mean a lot if you could check it out and upvote if you find it interesting. No pressure at all! [PH link]
+Hey [name]! I'm launching Cortex OS on Product Hunt next [day]. It's an AI operating system that ingests your company's knowledge and acts on it. Would mean a lot if you could check it out and upvote if you find it interesting. No pressure at all! [PH link]
 
 ---
 
 ## PH Comment Response Templates
 
 **For "How is this different from Notion AI?":**
-"Great question! Notion AI is a wiki with AI features. The Brain is an operating system built from the ground up for agent orchestration, multi-tenant data isolation, and human-in-the-loop governance. Notion transcribes and organizes. The Brain acts."
+"Great question! Notion AI is a wiki with AI features. Cortex OS is an operating system built from the ground up for agent orchestration, multi-tenant data isolation, and human-in-the-loop governance. Notion transcribes and organizes. Cortex OS acts."
 
 **For "Is this just another Fireflies clone?":**
-"Fireflies is great at transcription. The Brain goes from transcript → understanding → action. We extract decisions, draft follow-ups, log to a decision ledger, and delegate to department-specific agents. Different layer of the stack."
+"Fireflies is great at transcription. Cortex OS goes from transcript → understanding → action. We extract decisions, draft follow-ups, log to a decision ledger, and delegate to department-specific agents. Different layer of the stack."
 
 **For "How do you make money?":**
 "Freemium model. Free tier for solo founders (limited agents, limited storage). Paid tiers for teams with more agents, more storage, and enterprise features like custom RBAC and audit log exports."

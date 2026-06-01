@@ -5,7 +5,7 @@
 **Equipment needed:**
 - OBS Studio (free) for screen recording
 - Any microphone (phone mic works in a pinch)
-- The Brain dashboard open and ready
+- Cortex OS dashboard open and ready
 - Pre-loaded sample meeting data (or real data if you have it)
 
 ---
@@ -14,9 +14,9 @@
 
 Before you hit record:
 
-1. Open The Brain dashboard in full-screen mode
+1. Open Cortex OS dashboard in full-screen mode
 2. Have a sample meeting already ingested (or use a demo account with sample data)
-3. Close all browser tabs except The Brain
+3. Close all browser tabs except Cortex OS
 4. Clear your desktop of clutter
 5. Set display resolution to 1920x1080
 6. Open a blank question in the chat interface — cursor ready to type
@@ -41,7 +41,7 @@ Before you hit record:
 **[SCREEN: Show the integrations/settings page briefly — Google Workspace connected, Slack connected]**
 
 **VOICEOVER:**
-"I connected Google and Slack. The Brain ingested my last 10 meetings — transcripts, decisions, action items, everything."
+"I connected Google and Slack. Cortex OS ingested my last 10 meetings — transcripts, decisions, action items, everything."
 
 **[TRANSITION: Click into the main chat interface]**
 
@@ -81,7 +81,7 @@ Before you hit record:
 **[SCREEN: Return to dashboard home]**
 
 **VOICEOVER:**
-"This is The Brain. An AI operating system that remembers everything about your company and acts on it."
+"This is Cortex OS. An AI operating system that remembers everything about your company and acts on it."
 
 **[BEAT]**
 
@@ -89,7 +89,7 @@ Before you hit record:
 
 **[SCREEN END CARD for 3 seconds:]**
 
-# The Brain
+# Cortex OS
 **Your Company's AI Operating System**
 Beta Open — Free
 [Link]
@@ -114,7 +114,7 @@ Beta Open — Free
    - Slight zoom on the "Approve" button click
    - Slight zoom on the "citation/source card"
 6. **Title card** at the end (3 seconds):
-   - The Brain logo
+   - Cortex OS logo
    - "Beta Open — Free"
    - Link URL visible
 7. **Export settings:**
@@ -160,8 +160,8 @@ Once you have the main 60-second version working, record these variations:
 - Hook: "AI made a mistake. I fixed it in one click."
 
 ### Variation D: "The Contrast" (60 seconds)
-- Side by side: Fireflies output vs. The Brain output for the same meeting
-- Hook: "Fireflies gives you a transcript. The Brain gives you action items, a follow-up email, and a decision log."
+- Side by side: Fireflies output vs. Cortex OS output for the same meeting
+- Hook: "Fireflies gives you a transcript. Cortex OS gives you action items, a follow-up email, and a decision log."
 
 ### Variation E: "Founder Testimonial" (60 seconds)
 - Record yourself (face cam + screen) talking about why you built this

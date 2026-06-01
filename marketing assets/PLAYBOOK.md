@@ -1,4 +1,4 @@
-# The Brain AIOS — Zero-Budget Viral Marketing Playbook
+# Cortex OS — Zero-Budget Viral Marketing Playbook
 
 **Version 1.0 | May 2026**
 **Classification: Internal — Founding Team Only**
@@ -23,7 +23,7 @@
 
 ## 1. Executive Summary
 
-The Brain AIOS is a multi-tenant AI operating system that ingests a company's entire knowledge base — meetings, documents, Slack, email — into a persistent semantic memory store, then lets users query it in natural language with source citations. A central orchestrator delegates tasks to specialized AI agents (Finance, HR, Sales, Marketing, etc.) with human-in-the-loop approval on write actions.
+Cortex OS is a multi-tenant AI operating system that ingests a company's entire knowledge base — meetings, documents, Slack, email — into a persistent semantic memory store, then lets users query it in natural language with source citations. A central orchestrator delegates tasks to specialized AI agents (Finance, HR, Sales, Marketing, etc.) with human-in-the-loop approval on write actions.
 
 This playbook outlines how to go from zero to thousands of signups without spending a dollar on paid marketing. The strategy relies on:
 
@@ -72,7 +72,7 @@ This playbook outlines how to go from zero to thousands of signups without spend
 | **Polsia** | "AI runs your company" marketing | Bold positioning, viral messaging | You have a real product; they have a landing page |
 
 ### Your Positioning Statement
-**"Fireflies transcribes your meetings. The Brain acts on them."**
+**"Fireflies transcribes your meetings. Cortex OS acts on them."**
 
 This is your north star for all competitive messaging. It's short, contrastive, easy to understand, and demonstrably true.
 
@@ -113,31 +113,31 @@ This is your north star for all competitive messaging. It's short, contrastive, 
 
 ### Brand Personality
 - **Technical but not academic.** You explain complex architecture in plain language.
-- **Bold but not hypey.** Polsia says "NEVER HIRE AGAIN." You say "Fireflies transcribes. The Brain acts." Show, don't tell.
+- **Bold but not hypey.** Polsia says "NEVER HIRE AGAIN." You say "Fireflies transcribes. Cortex OS acts." Show, don't tell.
 - **Founder-led.** You ARE the brand. Every post should sound like a builder, not a marketer.
 - **Contrastive.** Always position against the default choice. Not "we're an AI OS" — "We're what Fireflies would be if it could take action."
 
 ### Messaging Hierarchy
 
 **Elevator pitch (5 seconds):**
-"The Brain is an AI operating system that remembers everything about your company and acts on it."
+"Cortex OS is an AI operating system that remembers everything about your company and acts on it."
 
 **One-liner (15 seconds):**
-"The Brain ingests your meetings, documents, email, and Slack into a persistent memory. Ask it anything — 'What did we decide about pricing?' 'What are my open action items?' — and get instant answers with source citations. It doesn't just store information. It delegates tasks to AI agents that draft emails, create follow-ups, and run workflows. All with your approval."
+"Cortex OS ingests your meetings, documents, email, and Slack into a persistent memory. Ask it anything — 'What did we decide about pricing?' 'What are my open action items?' — and get instant answers with source citations. It doesn't just store information. It delegates tasks to AI agents that draft emails, create follow-ups, and run workflows. All with your approval."
 
 **Key messages by audience:**
 
 *For solo founders:*
-"You can't afford a COO. The Brain is your AI operating team — finance, sales, marketing, ops — for the price of a coffee."
+"You can't afford a COO. Cortex OS is your AI operating team — finance, sales, marketing, ops — for the price of a coffee."
 
 *For startup teams:*
-"Your team's knowledge is scattered across 7 tools. The Brain unifies it, makes it searchable, and acts on it."
+"Your team's knowledge is scattered across 7 tools. Cortex OS unifies it, makes it searchable, and acts on it."
 
 *For technical audiences:*
 "Multi-tenant AI OS with pgvector hot memory, Pinecone cold storage, Sentinel PII scrubbing, RBAC at the DB level, and a rollback engine on every write action. Built in Cairo. Open for beta."
 
 ### Phrases That Work
-- "Fireflies transcribes. The Brain acts."
+- "Fireflies transcribes. Cortex OS acts."
 - "Your company's second brain"
 - "Ask your company anything"
 - "AI that actually knows your business"
@@ -164,7 +164,7 @@ Your development journey. Architecture decisions. Screenshots. Milestones.
 Why it works: People follow journeys, not products. It builds trust, attracts technical audience, and is infinitely renewable.
 
 **Pillar 2: Contrast Content (25% of content)**
-How The Brain compares to Fireflies, Notion, Artisan, etc. Not bashy — genuinely helpful comparisons.
+How Cortex OS compares to Fireflies, Notion, Artisan, etc. Not bashy — genuinely helpful comparisons.
 Why it works: Piggybacks on existing search traffic and audience interest. Positions you as the "next level" option.
 
 **Pillar 3: Educational/How-To (20% of content)**
@@ -208,7 +208,7 @@ Each piece of content multiplies across 4-5 channels. One hour of writing = 4-5 
 **Why:** The AI agent/startup community lives here. Build-in-public thrives here. Viral threads drive thousands of signups.
 
 **Profile setup:**
-- Bio: "Building The Brain — an AI OS that remembers everything about your company and acts on it. Fireflies transcribes. TheBrain acts. Beta open."
+- Bio: "Building Cortex OS — an AI OS that remembers everything about your company and acts on it. Fireflies transcribes. CortexOS acts. Beta open."
 - Pinned tweet: Demo video + waitlist link
 - Header image: Product screenshot or architecture diagram
 - Location: Cairo, Egypt (your differentiator)
@@ -227,7 +227,7 @@ Each piece of content multiplies across 4-5 channels. One hour of writing = 4-5 
 
 **Thread templates (see Asset 2 for full threads):**
 1. Architecture deep-dive (how the orchestrator works)
-2. Contrast post (Fireflies vs. The Brain)
+2. Contrast post (Fireflies vs. Cortex OS)
 3. Build-in-public (development journey)
 4. Founder story (building from Cairo)
 5. Technical tutorial (PII scrubbing, RBAC, etc.)
@@ -237,7 +237,7 @@ Each piece of content multiplies across 4-5 channels. One hour of writing = 4-5 
 **Why:** Enterprise decision-makers, VCs, and startup founders are here. The "building from Cairo" story resonates powerfully.
 
 **Profile setup:**
-- Headline: "Founder @ The Brain AIOS | Building an AI Operating System from Cairo"
+- Headline: "Founder @ Cortex OS | Building an AI Operating System from Cairo"
 - About: Your story + the product + the mission
 - Featured: Demo video, waitlist link
 
@@ -278,7 +278,7 @@ Each piece of content multiplies across 4-5 channels. One hour of writing = 4-5 
 
 **When to post:** When you have a working demo anyone can try. Tuesday-Thursday, 8-10am EST.
 
-**Post format:** "Show HN: The Brain — an AI operating system that ingests your company's knowledge and acts on it"
+**Post format:** "Show HN: Cortex OS — an AI operating system that ingests your company's knowledge and acts on it"
 
 **Preparation:**
 - Have your best technical writer help craft the post
@@ -319,9 +319,9 @@ Each piece of content multiplies across 4-5 channels. One hour of writing = 4-5 
 ## 8. Viral Mechanics
 
 ### Mechanic 1: Itself Product Is Viral
-- **"Powered by The Brain"** watermark on every generated document, email draft, meeting summary
+- **"Powered by Cortex OS"** watermark on every generated document, email draft, meeting summary
 - **Shareable meeting summaries** — one-click share a meeting summary link (non-users can view)
-- **Public demo chat** — a version of Ask The Brain pre-loaded with sample company data. Let people experience the magic, then gate the real thing behind signup.
+- **Public demo chat** — a version of Ask Cortex OS pre-loaded with sample company data. Let people experience the magic, then gate the real thing behind signup.
 
 ### Mechanic 2: Referral Loop
 - "Invite a teammate, both get [premium feature] free for a month"
@@ -377,7 +377,7 @@ Controversial (but defensible) positions get shared and debated = free reach.
 
 | Day | Action |
 |---|---|
-| 8 | Twitter contrast thread: "Fireflies transcribes. The Brain acts." |
+| 8 | Twitter contrast thread: "Fireflies transcribes. Cortex OS acts." |
 | 9 | LinkedIn post: "Why enterprise AI needs human-in-the-loop governance" |
 | 10 | Reddit post in r/SaaS |
 | 10 | Begin cold outreach: 10 personalized DMs (see Asset 4) |
@@ -502,7 +502,7 @@ Before Day 1 of the 30-day calendar, these must be done:
 - [ ] Product Hunt account created
 - [ ] BetaList / Indie Hackers submissions drafted
 - [ ] Supabase waitlist table created
-- [ ] "Powered by The Brain" badge added to generated outputs
+- [ ] "Powered by Cortex OS" badge added to generated outputs
 - [ ] Public demo chat working with sample data
 
 ---
