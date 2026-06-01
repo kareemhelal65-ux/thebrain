@@ -1,35 +1,19 @@
-# Dependencies
-node_modules/
-.pnp
-.pnp.js
+# Ignore everything by default
+*
 
-# Testing
-coverage/
+# Whitelist Git/metadata files at root
+!.gitignore
+!README.md
 
-# Production
-build/
-dist/
+# Whitelist marketing website assets/scripts/html
+!index.html
+!style.css
+!canvas-bg.js
 
-# Env
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Antigravity/AI Data
-.gemini/
-.antigravity/
-brain/
-artifacts/
-scratch/
-
-# OS
-.DS_Store
-Thumbs.db
+# Whitelist marketing asset directories
+!marketing assets/
+!marketing assets/**
+!assets/
+!assets/**
+!marketing-site/
+!marketing-site/**
