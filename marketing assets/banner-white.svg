@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+    <rect width="1200" height="630" fill="#ffffff"/>
+    
+    <!-- Logo -->
+    <g transform="translate(250, 267) scale(4)">
+        <path stroke="#000000" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+        <path stroke="#000000" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+        <path stroke="#000000" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14"/>
+        <path stroke="#000000" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 9h4"/>
+        <path stroke="#000000" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 14h-4"/>
+    </g>
+
+    <!-- Text -->
+    <text x="380" y="335" font-family="Arial, sans-serif" font-size="76" font-weight="bold" fill="#000000" letter-spacing="-2">The Brain AIOS</text>
+    <text x="385" y="375" font-family="Courier New, monospace" font-size="20" font-weight="bold" fill="#4b5563" letter-spacing="4">INTELLIGENCE BUILT ON STRUCTURE</text>
+</svg>
