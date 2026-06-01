@@ -28,7 +28,7 @@
             <path d="M12 14h-4"/>
         </svg>
     </div>
-    <div class="mono text-signal" id="loader-text" style="font-weight: 600;">INITIALIZING KERNEL...</div>
+    <div class="mono text-signal" id="loader-text" style="font-weight: 600;">INITIALIZING CORTEX...</div>
     <div style="width: 200px; height: 2px; background: var(--concrete); margin-top: 1rem; position: relative; overflow: hidden; border-radius: 4px;">
         <div id="loader-bar" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: linear-gradient(90deg, var(--signal), var(--accent-cyan)); transition: width 0.1s ease;"></div>
     </div>
@@ -70,7 +70,7 @@
             <div class="hero-content">
                 <div class="hero-meta animate-up" style="animation-delay: 0.1s;">
                     <div class="status-dot"></div>
-                    <span class="mono text-cyan" style="font-size: 0.7rem; font-weight: 600;">System Kernel Online · Beta Access Open</span>
+                    <span class="mono text-cyan" style="font-size: 0.7rem; font-weight: 600;">System Cortex Online · Beta Access Open</span>
                 </div>
                 <h1 class="animate-up" style="animation-delay: 0.2s;">
                     Your Company's<br>
@@ -228,7 +228,7 @@
                 <div class="glass-card feature-card">
                     <div class="feature-icon"><i data-lucide="shield-check"></i></div>
                     <h3>Sentinel Pipeline</h3>
-                    <p>Proprietary kernel pipeline that scrubs personally identifiable info (PII) before any text hits external LLMs. Maintain extreme regulatory posture.</p>
+                    <p>Proprietary cortex pipeline that scrubs personally identifiable info (PII) before any text hits external LLMs. Maintain extreme regulatory posture.</p>
                 </div>
                 <div class="glass-card feature-card">
                     <div class="feature-icon"><i data-lucide="history"></i></div>
@@ -263,12 +263,12 @@
                             <path d="M12 14h-4"/>
                         </svg>
                     </div>
-                    <h3 style="font-family: var(--font-display); font-size: 1.75rem; text-transform: uppercase; margin-bottom: 1rem;">General Kernel</h3>
+                    <h3 style="font-family: var(--font-display); font-size: 1.75rem; text-transform: uppercase; margin-bottom: 1rem;">General Cortex</h3>
                     <p style="color: var(--cement); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem;">
                         The central assistant orchestrates multi-agent tasks, processes meeting audio in real-time, extracts action items to proper departments, and logs decisions with correct attribution.
                     </p>
                     <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-cyan); background: rgba(34, 211, 238, 0.05); padding: 8px 12px; border: 1px solid rgba(34, 211, 238, 0.15); border-radius: 6px;">
-                        Status: Kernel initialized
+                        Status: Cortex initialized
                     </div>
                 </div>
                 
@@ -319,7 +319,7 @@
             <div class="roadmap-grid">
                 <div class="roadmap-item active">
                     <span class="roadmap-phase">Phase 01 / Pre-Seed</span>
-                    <h4>Kernel Core</h4>
+                    <h4>Cortex Core</h4>
                     <p>Semantic router stabilization, meeting capture with multi-user join codes, and local embeddings pre-loading.</p>
                 </div>
                 <div class="roadmap-item active">
@@ -440,7 +440,7 @@
                         <i data-lucide="chevron-down" class="faq-chevron"></i>
                     </button>
                     <div class="faq-answer">
-                        <p>We deploy database-level Row Level Security (RLS) and separate vector namespaces per tenant. Furthermore, the Sentinel pipeline automatically identifies and redacts personally identifiable information (PII) before queries leave our kernel for external model API routing.</p>
+                        <p>We deploy database-level Row Level Security (RLS) and separate vector namespaces per tenant. Furthermore, the Sentinel pipeline automatically identifies and redacts personally identifiable information (PII) before queries leave our cortex for external model API routing.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -565,7 +565,7 @@
     const loader = document.getElementById('loader');
     const loaderBar = document.getElementById('loader-bar');
     const loaderText = document.getElementById('loader-text');
-    const phases = ['INITIALIZING KERNEL...', 'LOADING MEMORY GRAPH...', 'SYNCHRONIZING SENTINEL...', 'CONNECTING UNIVERSAL REGISTRY...', 'READY.'];
+    const phases = ['INITIALIZING CORTEX...', 'LOADING MEMORY GRAPH...', 'SYNCHRONIZING SENTINEL...', 'CONNECTING UNIVERSAL REGISTRY...', 'READY.'];
     let progress = 0;
     
     const interval = setInterval(() => {
