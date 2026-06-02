@@ -20,7 +20,7 @@
 <!-- Loader Overlay -->
 <div id="loader" style="position: fixed; inset: 0; background: var(--void); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease, visibility 0.5s;">
     <div class="logo-icon" style="transform: scale(1.5); margin-bottom: 2rem;">
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="black" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
             <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
             <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
             <path d="M12 5v14"/>
@@ -30,17 +30,17 @@
     </div>
     <div class="mono text-signal" id="loader-text" style="font-weight: 600;">INITIALIZING CORTEX...</div>
     <div style="width: 200px; height: 2px; background: var(--concrete); margin-top: 1rem; position: relative; overflow: hidden; border-radius: 4px;">
-        <div id="loader-bar" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: linear-gradient(90deg, var(--signal), var(--accent-cyan)); transition: width 0.1s ease;"></div>
+        <div id="loader-bar" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--paper); transition: width 0.1s ease;"></div>
     </div>
 </div>
-<div class="scanline"></div>
+
 
 <header>
     <div class="container">
         <nav>
             <a href="#" class="logo-container">
                 <div class="logo-icon">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="black" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
                         <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
                         <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
                         <path d="M12 5v14"/>
@@ -85,13 +85,13 @@
                 </div>
             </div>
             <div class="hero-visual animate-up" style="animation-delay: 0.5s;">
-                <div class="hero-glow-sphere"></div>
+                
                 <!-- Interactive Mockup Visual -->
                 <div class="glass-card" style="width: 100%; max-width: 440px; padding: 2rem; border-color: rgba(99, 102, 241, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
                     <div style="display: flex; gap: 8px; margin-bottom: 1.5rem; opacity: 0.5;">
-                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444;"></span>
-                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;"></span>
-                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981;"></span>
+                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #000000;"></span>
+                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #6b7280;"></span>
+                        <span style="width: 10px; height: 10px; border-radius: 50%; background: #d1d5db;"></span>
                     </div>
                     <div class="mono" style="color: var(--accent-cyan); margin-bottom: 0.75rem;">// BRAIN INTERPRETER</div>
                     <p style="font-size: 0.95rem; font-family: var(--font-mono); line-height: 1.5; margin-bottom: 1.5rem; color: var(--paper);">
@@ -100,7 +100,7 @@
                     </p>
                     <div class="glass-card" style="padding: 1.25rem; background: rgba(99, 102, 241, 0.05); border-color: rgba(99, 102, 241, 0.15);">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-                            <span class="mono" style="color: var(--accent-emerald); font-size: 0.7rem;">Decision Logged</span>
+                            <span class="mono" style="color: var(--paper); font-size: 0.7rem;">Decision Logged</span>
                             <span class="mono" style="color: var(--text-muted); font-size: 0.65rem;">Yesterday, 14:02</span>
                         </div>
                         <p style="font-size: 0.85rem; color: var(--paper); line-height: 1.4; margin-bottom: 0.75rem;">
@@ -125,17 +125,17 @@
             </div>
             <div class="cards-grid-3">
                 <div class="glass-card problem-card">
-                    <div style="color: var(--accent-rose); margin-bottom: 1.5rem;"><i data-lucide="help-circle" size="28"></i></div>
+                    <div style="color: var(--paper); margin-bottom: 1.5rem;"><i data-lucide="help-circle" size="28"></i></div>
                     <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Decisions Get Lost</h3>
                     <p style="color: var(--cement); font-size: 0.95rem;">Every meeting generates critical decisions that nobody writes down. Decisions vanish into Slack threads or thin air within 48 hours.</p>
                 </div>
                 <div class="glass-card problem-card">
-                    <div style="color: var(--accent-rose); margin-bottom: 1.5rem;"><i data-lucide="alert-triangle" size="28"></i></div>
+                    <div style="color: var(--paper); margin-bottom: 1.5rem;"><i data-lucide="alert-triangle" size="28"></i></div>
                     <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Tasks Slip Through</h3>
                     <p style="color: var(--cement); font-size: 0.95rem;">Action items are verbalized during syncs or calls but never captured in a central tracker. Teams waste hours daily recovering context.</p>
                 </div>
                 <div class="glass-card problem-card">
-                    <div style="color: var(--accent-rose); margin-bottom: 1.5rem;"><i data-lucide="user-x" size="28"></i></div>
+                    <div style="color: var(--paper); margin-bottom: 1.5rem;"><i data-lucide="user-x" size="28"></i></div>
                     <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Single Point of Failure</h3>
                     <p style="color: var(--cement); font-size: 0.95rem;">Institutional knowledge is locked in individual brains. When a teammate goes on leave or departs, weeks of operational context disappear with them.</p>
                 </div>
@@ -152,17 +152,17 @@
             </div>
             <div class="cards-grid-3">
                 <div class="glass-card solution-card">
-                    <div style="color: var(--accent-emerald); margin-bottom: 1.5rem;"><i data-lucide="database" size="28"></i></div>
+                    <div style="color: var(--paper); margin-bottom: 1.5rem;"><i data-lucide="database" size="28"></i></div>
                     <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Persistent Memory</h3>
                     <p style="color: var(--cement); font-size: 0.95rem;">Cortex OS unifies transcripts, documents, email, and files in a secure semantic memory. Ask anything in natural language and get instant answers with source citations.</p>
                 </div>
                 <div class="glass-card solution-card">
-                    <div style="color: var(--accent-emerald); margin-bottom: 1.5rem;"><i data-lucide="cpu" size="28"></i></div>
+                    <div style="color: var(--paper); margin-bottom: 1.5rem;"><i data-lucide="cpu" size="28"></i></div>
                     <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Agent Delegation</h3>
                     <p style="color: var(--cement); font-size: 0.95rem;">Cortex OS delegates tasks to specialized AI agents—Finance, HR, Sales, Marketing, PM. Cortex OS creates strategies, tracks objectives, and does real work.</p>
                 </div>
                 <div class="glass-card solution-card">
-                    <div style="color: var(--accent-emerald); margin-bottom: 1.5rem;"><i data-lucide="git-pull-request" size="28"></i></div>
+                    <div style="color: var(--paper); margin-bottom: 1.5rem;"><i data-lucide="git-pull-request" size="28"></i></div>
                     <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Human-in-the-Loop</h3>
                     <p style="color: var(--cement); font-size: 0.95rem;">No emails, roadmap updates, or transactions are executed autonomously without review. The AI drafts and packages deliverables; you approve or request revisions.</p>
                 </div>
@@ -255,7 +255,7 @@
             <div class="agents-layout">
                 <div class="glass-card agent-showcase-box">
                     <div class="logo-icon" style="width: 44px; height: 44px; margin-bottom: 2rem;">
-                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="black" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
                             <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
                             <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
                             <path d="M12 5v14"/>
@@ -485,7 +485,7 @@
 
     <!-- WAITLIST FORM -->
     <section class="waitlist-section" id="waitlist">
-        <div class="waitlist-glow"></div>
+        
         <div class="waitlist-container">
             <span class="mono text-cyan" style="font-weight: 600;">Secure Your Seat</span>
             <h2 style="font-family: var(--font-display); font-size: 3rem; text-transform: uppercase; margin-top: 1rem; margin-bottom: 1.5rem; letter-spacing: -0.02em;">Stop Forgetting.<br>Start Asking.</h2>
@@ -508,7 +508,7 @@
             <div class="footer-logo">
                 <a href="#" class="logo-container" style="margin-bottom: 0.5rem;">
                     <div class="logo-icon" style="width: 32px; height: 32px;">
-                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="black" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
                             <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
                             <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
                             <path d="M12 5v14"/>
