@@ -34,6 +34,8 @@
     </div>
 </div>
 
+<!-- Mobile Menu Backdrop -->
+<div class="menu-backdrop" id="menu-backdrop"></div>
 
 <header>
     <div class="container">
@@ -50,14 +52,21 @@
                 </div>
                 <span class="logo-text">Brain aOS</span>
             </a>
-            <div class="nav-links">
+            <div class="nav-links" id="nav-links">
                 <a href="#problem">The Problem</a>
                 <a href="#mechanism">How It Works</a>
                 <a href="#features">Features</a>
                 <a href="#comparison">Why Brain aOS</a>
                 <a href="#faq">FAQ</a>
             </div>
-            <a href="#waitlist" class="cta-button glow-btn">Join the Waitlist</a>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="#waitlist" class="cta-button glow-btn header-cta">Join the Waitlist</a>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </nav>
     </div>
 </header>
@@ -547,6 +556,35 @@
 
 <script>
     lucide.createIcons();
+    
+    // Mobile navigation logic
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    const menuBackdrop = document.getElementById('menu-backdrop');
+    
+    function toggleMenu() {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        menuBackdrop.classList.toggle('active');
+        
+        if (navLinks.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+    
+    menuToggle.addEventListener('click', toggleMenu);
+    menuBackdrop.addEventListener('click', toggleMenu);
+    
+    const navAnchors = navLinks.querySelectorAll('a');
+    navAnchors.forEach(anchor => {
+        anchor.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    });
     
     // Collapsible FAQ logic
     const faqItems = document.querySelectorAll('.faq-item');
