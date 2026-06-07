@@ -1,8 +1,8 @@
-# Cortex OS — Banner Typography Guide
+# Brain aOS — Banner Typography Guide
 
 The typography used in the official high-resolution `banner.png` (4800x2520) is defined as follows:
 
-## Primary Title ("Cortex OS")
+## Primary Title ("Brain aOS")
 - **Font Family:** Arial, sans-serif
 - **Font Size:** 160px
 - **Font Weight:** Bold

@@ -1,8 +1,8 @@
-# Cortex OS — Marketing Portal
+# Brain aOS — Marketing Portal
 
 **The Operating System for Autonomous Enterprise Intelligence**
 
-This repository contains the high-fidelity Neo-Brutalist marketing portal for Cortex OS. Designed to showcase the foundational layer for autonomous enterprise intelligence.
+This repository contains the high-fidelity Neo-Brutalist marketing portal for Brain aOS. Designed to showcase the foundational layer for autonomous enterprise intelligence.
 
 ## 🚀 Key Features
 

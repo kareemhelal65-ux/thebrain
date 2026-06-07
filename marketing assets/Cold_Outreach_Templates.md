@@ -24,7 +24,7 @@ Send 10-20 DMs per day. Track who replies. Follow up in 3 days if no response.
 ---
 
 **Template 1B — The Information Overload**
-"Hey [name], you mentioned [specific info overload problem] in your last post. I've been building Cortex OS — it unifies your meetings, docs, and Slack into one searchable memory with AI agents that act on it. Would love your take on it since you're building [their company]. No pitch, just feedback. [link]"
+"Hey [name], you mentioned [specific info overload problem] in your last post. I've been building Brain aOS — it unifies your meetings, docs, and Slack into one searchable memory with AI agents that act on it. Would love your take on it since you're building [their company]. No pitch, just feedback. [link]"
 
 ---
 
@@ -162,7 +162,7 @@ Send 10-20 DMs per day. Track who replies. Follow up in 3 days if no response.
 ---
 
 **Template 4A — The "I Built This"**
-"Hey, I saw your comment about [meeting tool frustration] and I literally built something to solve this. It's called Cortex OS — it ingests meetings, extracts decisions and action items, and lets you query everything in natural language. Free beta. Would love your honest feedback: [link]"
+"Hey, I saw your comment about [meeting tool frustration] and I literally built something to solve this. It's called Brain aOS — it ingests meetings, extracts decisions and action items, and lets you query everything in natural language. Free beta. Would love your honest feedback: [link]"
 
 ---
 

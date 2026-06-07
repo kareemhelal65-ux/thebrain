@@ -16,7 +16,7 @@
 
 1/ I've been building something in stealth for the past 3 months.
 
-It's called Cortex OS.
+It's called Brain aOS.
 
 An AI operating system that remembers EVERYTHING about your company — meetings, decisions, action items, documents — and lets you query it like a person.
 
@@ -31,7 +31,7 @@ Your company's knowledge is scattered across:
 
 Nobody remembers what was decided in that meeting 3 weeks ago. Nobody has time to search through 500 Slack messages.
 
-3/ Cortex OS ingests all of it.
+3/ Brain aOS ingests all of it.
 
 PDFs, meeting transcripts, Google Docs, Slack messages, emails — chunked, embedded into a vector database, and made instantly searchable with semantic search.
 
@@ -39,13 +39,13 @@ It's your company's second brain.
 
 4/ But search alone isn't enough.
 
-Cortex OS doesn't just remember — it DELEGATES.
+Brain aOS doesn't just remember — it DELEGATES.
 
 You ask "What are our open action items?" and it doesn't just list them. It can create follow-up emails, assign tasks, draft meeting summaries — through specialized AI agents.
 
 5/ The agent architecture:
 
-🧠 Cortex OS (central orchestrator)
+🧠 Brain aOS (central orchestrator)
 ├── 💰 Finance Agent
 ├── 📈 Investment Agent
 ├── 🤝 CRM Agent
@@ -62,11 +62,11 @@ Each one can take action — with your approval.
 
 They transcribe and organize.
 
-Cortex OS ACTS.
+Brain aOS ACTS.
 
 Every write action goes through "Sentinel" — PII scrubbing, risk classification, human-in-the-loop approval.
 
-You always press send. Cortex OS just drafts it.
+You always press send. Brain aOS just drafts it.
 
 7/ Built in Cairo. Running on Supabase + Next.js + Express.
 
@@ -82,7 +82,7 @@ Beta is open. Would love feedback from founders building in public.
 
 ---
 
-## Thread 2: "Fireflies transcribes. Cortex OS acts."
+## Thread 2: "Fireflies transcribes. Brain aOS acts."
 
 **Purpose**: Contrast positioning. Piggybacks on Fireflies' audience. Makes people click.
 
@@ -106,7 +106,7 @@ The problem is NOBODY DOES ANYTHING WITH THE TRANSCRIPT.
 - Next week, someone asks "what did we decide about X?"
 - Nobody remembers
 
-3/ Here's what Cortex OS does differently:
+3/ Here's what Brain aOS does differently:
 
 Step 1: Ingests the transcript (✅ same as Fireflies)
 Step 2: Extracts decisions, action items, participants, deadlines ✅
@@ -116,7 +116,7 @@ Step 5: Suggests: "You have 3 overdue action items from this meeting" ← Nobody
 
 4/ The difference is agents.
 
-Cortex OS doesn't stop at understanding. It delegates to specialized agents that can:
+Brain aOS doesn't stop at understanding. It delegates to specialized agents that can:
 
 📧 Draft emails (Sales Agent)
 📋 Create tasks (Meeting Agent)
@@ -129,7 +129,7 @@ Every action staged. Every action approved by you.
 
 Fireflies transcribes. That's its job. It's great at it.
 
-Cortex OS is built to go from transcript → understanding → action → outcome.
+Brain aOS is built to go from transcript → understanding → action → outcome.
 
 Different layer of the stack.
 
@@ -141,7 +141,7 @@ That's what I'm building. Beta open. 👇
 
 ---
 
-**Suggested visual**: Side-by-side comparison graphic: Fireflies output (transcript) vs. Cortex OS output (transcript + action items + drafted email + decision log).
+**Suggested visual**: Side-by-side comparison graphic: Fireflies output (transcript) vs. Brain aOS output (transcript + action items + drafted email + decision log).
 
 ---
 
@@ -245,7 +245,7 @@ So you build differently.
 
 3/ You build for everyone. Not just the SF bubble.
 
-Cortex OS isn't built for startups with 10 engineers and an infinite runway. It's built for the solo founder in Lagos who can't afford a COI. For the 10-person team in Dubai who's losing knowledge every time someone goes on leave.
+Brain aOS isn't built for startups with 10 engineers and an infinite runway. It's built for the solo founder in Lagos who can't afford a COI. For the 10-person team in Dubai who's losing knowledge every time someone goes on leave.
 
 4/ You build slower, but better.
 
@@ -266,7 +266,7 @@ I have a running product.
 
 Most of it is vaporware.
 
-Cortex OS is real. It exists. It ingests, it reasons, it delegates, it acts. With your approval. Every time.
+Brain aOS is real. It exists. It ingests, it reasons, it delegates, it acts. With your approval. Every time.
 
 6/ I don't have investor money.
 
@@ -306,7 +306,7 @@ Most AI agent tools: nothing. You're stuck with it.
 
 2/ I built a rollback engine.
 
-Every write action in Cortex OS — every email sent, every task created, every message posted to Slack — stores a "reverse action."
+Every write action in Brain aOS — every email sent, every task created, every message posted to Slack — stores a "reverse action."
 
 If the AI sends an email, we store: "Who did this email go to? What was the message ID?"
 
