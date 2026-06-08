@@ -94,3 +94,28 @@ Our voice is **scientific, structured, and editorial**. We do not use typical Sa
 | **Human-in-the-Loop** | Fully-Auto or Unsupervised | *"AI agents execute tasks only after explicit review and checklist approval."* |
 | **Cairo-Proud** | Silicon Valley Mimics | *" Cairo, Egypt. Intelligence built on structure."* |
 | **Editorial & Precise** | Conversational or Casual | *"Your spot on the private beta waitlist is secured. Cohorts onboard weekly."* |
+
+---
+
+## 6. RecallLabs Parent Brand Guidelines
+
+RecallLabs is the parent brand and research laboratory responsible for Brain aOS. Its identity is focused on scientific infrastructure and structured data.
+
+### The Icon
+- **Vector Shape** (`assets/recalllabs_logo.svg`): An interlocking node loop forming a stylized geometric letter **"R"**. It represents data nodes and neural intersections, conveying research, storage, and retrieval.
+- **Stroke & Gradient**: Designed using a `1.6px` stroke width colored with the rotating Mercury Gradient, establishing brand lineage with the Brain aOS product family.
+- **Variants**:
+  - **Transparent** (`assets/recalllabs_logo_transparent.png`): Primary logo for digital layout integrations.
+  - **Black Background** (`assets/recalllabs_logo_black.png`): Immersive dark mode assets.
+  - **White Background** (`assets/recalllabs_logo_white.png`): Formal corporate print and light-theme templates.
+
+### Wordmark Lockup
+- **Format**: `RecallLabs`
+- **Weight**: Bold (`600`) for the "Recall" stem to represent durability, and light (`300`) for "Labs" to reflect scientific precision.
+- **Font**: Inter (Sans-serif)
+
+### Parent Company Banner
+- **Format** (`assets/recalllabs_banner.png`): A wide corporate asset (1200x630 px) with a dark background and three blurred Mercury Gradient blobs. Features the geometric RecallLabs "R" logo, the parent company wordmark lockup, and the slogan:
+  - **Subtitle**: `Autonomous Cognitive Architecture`
+  - **Top Label**: `Intelligence Infrastructure`
+
