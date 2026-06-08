@@ -102,8 +102,8 @@ Our voice is **scientific, structured, and editorial**. We do not use typical Sa
 HelalLabs is the parent brand and research laboratory responsible for Brain aOS. Its identity is focused on scientific infrastructure and structured data.
 
 ### The Icon
-- **Vector Shape** (`assets/helallabs_logo.svg`): An interlocking node loop forming a stylized geometric letter **"R"**. It represents data nodes and neural intersections, conveying research, storage, and retrieval.
-- **Stroke & Gradient**: Designed using a `1.6px` stroke width colored with the rotating Mercury Gradient, establishing brand lineage with the Brain aOS product family.
+- **Vector Shape** (`assets/helallabs_logo.svg`): A clean, geometric letter **"H"**. It represents strength, balance, and bilateral cognitive pathways.
+- **Stroke & Gradient**: Designed using a `2.0px` stroke width colored with the rotating Mercury Gradient, establishing brand lineage with the Brain aOS product family.
 - **Variants**:
   - **Transparent** (`assets/helallabs_logo_transparent.png`): Primary logo for digital layout integrations.
   - **Black Background** (`assets/helallabs_logo_black.png`): Immersive dark mode assets.
@@ -111,11 +111,11 @@ HelalLabs is the parent brand and research laboratory responsible for Brain aOS.
 
 ### Wordmark Lockup
 - **Format**: `HelalLabs`
-- **Weight**: Bold (`600`) for the "Recall" stem to represent durability, and light (`300`) for "Labs" to reflect scientific precision.
+- **Weight**: Bold (`600`) for the "Helal" stem to represent durability, and light (`300`) for "Labs" to reflect scientific precision.
 - **Font**: Inter (Sans-serif)
 
 ### Parent Company Banner
-- **Format** (`assets/helallabs_banner.png`): A wide corporate asset (1200x630 px) with a dark background and three blurred Mercury Gradient blobs. Features the geometric HelalLabs "R" logo, the parent company wordmark lockup, and the slogan:
+- **Format** (`assets/helallabs_banner.png`): A wide corporate asset (1200x630 px) with a dark background and three blurred Mercury Gradient blobs. Features the geometric HelalLabs "H" logo, the parent company wordmark lockup, and the slogan:
   - **Subtitle**: `Autonomous Cognitive Architecture`
   - **Top Label**: `Intelligence Infrastructure`
 
