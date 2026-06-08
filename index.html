@@ -1233,6 +1233,17 @@
                 color: var(--color-paper-white) !important;
             }
 
+            /* Pill button fix in mobile drawer — keep black text on white bg */
+            .nav-links a.pill-btn {
+                color: var(--color-ink-black) !important;
+                background-color: var(--color-paper-white);
+                border-bottom: none;
+                padding: var(--spacing-8) var(--spacing-28);
+                justify-content: center;
+                font-size: 12px;
+                margin-top: var(--spacing-8);
+            }
+
             .menu-toggle {
                 display: flex;
             }
