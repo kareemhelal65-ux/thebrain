@@ -2352,7 +2352,7 @@
             e.preventDefault();
 
             const email = waitlistEmail.value.trim();
-            const source = 'marketing_site_monopo';
+            const source = 'marketing_site';
             const btn = waitlistForm.querySelector('.waitlist-full-btn');
             const btnLabel = btn.querySelector('.btn-label');
 
@@ -2364,6 +2364,11 @@
                 ? 'http://localhost:5000'
                 : window.location.origin;
 
+            let success = false;
+            let message = '';
+            let isDuplicate = false;
+
+            // 1. Try Express Backend first
             try {
                 const response = await fetch(`${API_URL}/api/auth/waitlist`, {
                     method: 'POST',
@@ -2372,55 +2377,89 @@
                 });
 
                 const data = await response.json();
-
                 if (response.ok) {
-                    // — Success state —
-                    setFormState('is-success');
-
-                    // Ripple effect
-                    const ripple = document.createElement('span');
-                    ripple.className = 'waitlist-ripple';
-                    waitlistForm.style.position = 'relative';
-                    waitlistForm.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 900);
-
-                    // Update button label to success
-                    btnLabel.innerHTML = '&#10003;&nbsp; You\'re in!';
-                    btn.style.background = '#a0e0ab';
-                    btn.style.color = '#0a1a0c';
-                    btn.style.padding = 'var(--spacing-12) var(--spacing-28)';
-                    btn.style.borderRadius = 'var(--radius-pill)';
-                    btn.style.width = 'auto';
-
-                    waitlistEmail.value = '';
-                    waitlistEmail.placeholder = 'Spot secured.';
-                    waitlistEmail.disabled = true;
-
-                    waitlistMsg.innerText = data.message || 'Successfully joined the waitlist!';
-                    waitlistMsg.style.color = '#a0e0ab';
-                } else {
-                    // — Error state —
-                    setFormState('is-error');
-                    setTimeout(() => setFormState(null), 600);
-
-                    // Reset button label
-                    btnLabel.innerHTML = 'Try Again &nbsp;<i data-lucide="arrow-right" style="width:16px;height:16px;vertical-align:middle;"></i>';
-                    lucide.createIcons();
-
-                    waitlistMsg.innerText = data.message || 'Something went wrong. Please try again.';
-                    waitlistMsg.style.color = '#a52d25';
+                    success = true;
+                    message = data.message || 'Successfully joined the waitlist!';
+                    if (message.includes('already')) {
+                        isDuplicate = true;
+                    }
                 }
-            } catch (error) {
-                console.error('Waitlist submission error:', error);
+            } catch (backendError) {
+                console.warn('Backend waitlist submission failed, trying direct Supabase fallback...', backendError);
+            }
 
+            // 2. Direct Supabase Fallback if backend failed/was unreachable
+            if (!success) {
+                try {
+                    const sbUrl = 'https://cefluyeljkohdcylgsms.supabase.co/rest/v1/waitlist';
+                    const sbAnonKey = 'sb_publishable_59YTJY50m9LsjhJZ2ZRLIw_4Yehkl8A';
+                    
+                    const response = await fetch(sbUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'apikey': sbAnonKey,
+                            'Authorization': `Bearer ${sbAnonKey}`
+                        },
+                        body: JSON.stringify({ email, source })
+                    });
+
+                    if (response.status === 201) {
+                        success = true;
+                        message = 'Successfully joined the waitlist!';
+                    } else if (response.status === 409) {
+                        success = true;
+                        isDuplicate = true;
+                        message = 'You are already on the waitlist!';
+                    } else {
+                        const errData = await response.json().catch(() => ({}));
+                        if (errData.message && errData.message.includes('duplicate key')) {
+                            success = true;
+                            isDuplicate = true;
+                            message = 'You are already on the waitlist!';
+                        }
+                    }
+                } catch (sbError) {
+                    console.error('Direct Supabase submission error:', sbError);
+                }
+            }
+
+            // 3. UI State Rendering
+            if (success) {
+                // — Success state —
+                setFormState('is-success');
+
+                // Ripple effect
+                const ripple = document.createElement('span');
+                ripple.className = 'waitlist-ripple';
+                waitlistForm.style.position = 'relative';
+                waitlistForm.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 900);
+
+                // Update button label to success
+                btnLabel.innerHTML = isDuplicate ? '&#10003;&nbsp; Welcome back!' : '&#10003;&nbsp; You\'re in!';
+                btn.style.background = '#a0e0ab';
+                btn.style.color = '#0a1a0c';
+                btn.style.padding = 'var(--spacing-12) var(--spacing-28)';
+                btn.style.borderRadius = 'var(--radius-pill)';
+                btn.style.width = 'auto';
+
+                waitlistEmail.value = '';
+                waitlistEmail.placeholder = isDuplicate ? 'Already registered.' : 'Spot secured.';
+                waitlistEmail.disabled = true;
+
+                waitlistMsg.innerText = message;
+                waitlistMsg.style.color = '#a0e0ab';
+            } else {
                 // — Error state —
                 setFormState('is-error');
                 setTimeout(() => setFormState(null), 600);
 
+                // Reset button label
                 btnLabel.innerHTML = 'Try Again &nbsp;<i data-lucide="arrow-right" style="width:16px;height:16px;vertical-align:middle;"></i>';
                 lucide.createIcons();
 
-                waitlistMsg.innerText = 'Could not connect. Please try again later.';
+                waitlistMsg.innerText = 'Something went wrong. Please try again.';
                 waitlistMsg.style.color = '#a52d25';
             }
         });
