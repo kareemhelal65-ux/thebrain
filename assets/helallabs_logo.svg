@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512" fill="none">
+  <defs>
+    <linearGradient id="helal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a0e0ab" />
+      <stop offset="50%" stop-color="#ffac2e" />
+      <stop offset="100%" stop-color="#a52d25" />
+      <animateTransform 
+        attributeName="gradientTransform" 
+        type="rotate" 
+        from="0 0.5 0.5" 
+        to="360 0.5 0.5" 
+        dur="6s" 
+        repeatCount="indefinite" />
+    </linearGradient>
+  </defs>
+  <!-- Minimalist, ultra-clean geometric H representing HelalLabs -->
+  <path d="M6 4v16" stroke="url(#helal-grad)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M18 4v16" stroke="url(#helal-grad)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M6 12h12" stroke="url(#helal-grad)" stroke-width="2" stroke-linecap="round"/>
+</svg>
