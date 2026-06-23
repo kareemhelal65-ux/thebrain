@@ -9,6 +9,9 @@
 !index.html
 !style.css
 !canvas-bg.js
+!privacy.html
+!terms.html
+!refund.html
 
 # Whitelist marketing asset directories
 !marketing assets/
