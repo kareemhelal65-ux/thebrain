@@ -6,7 +6,7 @@
 
     <!-- Primary SEO -->
     <title>Brain aOS — Autonomous Corporate Operating System | HelalLabs</title>
-    <meta name="description" content="Brain aOS by HelalLabs is an autonomous AI operating system that captures every meeting, document, and decision. AI agents act on your behalf across departments. Join the private beta.">
+    <meta name="description" content="Brain aOS by HelalLabs is the AI operating system that never forgets. It captures every meeting, document, and decision, then proactively automates your ops. Built for solo founders and early-stage teams. Join the private beta.">
     <meta name="keywords" content="AI operating system, corporate AI, autonomous agents, AI memory, enterprise AI, meeting transcription, knowledge management, HelalLabs, Brain aOS">
     <meta name="author" content="HelalLabs">
     <meta name="robots" content="index, follow">
@@ -16,7 +16,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thebrain-aios.vercel.app/">
     <meta property="og:title" content="Brain aOS — Autonomous Corporate Operating System">
-    <meta property="og:description" content="Brain aOS remembers every meeting, document, and decision. Ask anything. Delegate to AI agents. Join the private beta.">
+    <meta property="og:description" content="The AI operating system that never forgets. Brain aOS captures every meeting, decision, and document — then proactively automates your ops. Join the private beta.">
     <meta property="og:image" content="https://thebrain-aios.vercel.app/assets/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@helallabs">
     <meta name="twitter:title" content="Brain aOS — Autonomous Corporate Operating System">
-    <meta name="twitter:description" content="Brain aOS remembers every meeting, document, and decision. Ask anything. Delegate to AI agents. Join the private beta.">
+    <meta name="twitter:description" content="The AI operating system that never forgets. Brain aOS captures every meeting, decision, and document — then proactively automates your ops. Join the private beta.">
     <meta name="twitter:image" content="https://thebrain-aios.vercel.app/assets/og-image.png">
 
     <!-- App / Browser -->
@@ -1113,9 +1113,129 @@
             background: none;
             border: none;
             cursor: pointer;
-            color: var(--color-ash);
+            color: var(--color-smoke);
             display: flex;
             align-items: center;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background-color: var(--color-ink-black);
+            color: var(--color-paper-white);
+            padding: var(--spacing-152) 0;
+            border-top: 1px solid var(--color-pewter);
+        }
+
+        .pricing-card {
+            background-color: var(--color-carbon);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 480px;
+            margin: var(--spacing-68) auto 0;
+            padding: var(--spacing-48);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            animation: borderColorFlow 4s ease infinite;
+            transform: translateY(-4px);
+        }
+
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-mercury-flow);
+            opacity: 0;
+            z-index: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .pricing-card:hover::after {
+            opacity: 0.1;
+        }
+
+        .pricing-header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: var(--spacing-40);
+        }
+
+        .pricing-header h3 {
+            font-size: 20px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-smoke);
+            margin-bottom: var(--spacing-12);
+        }
+
+        .pricing-price {
+            font-size: 64px;
+            font-weight: 300;
+            color: var(--color-paper-white);
+            line-height: 1;
+            margin: var(--spacing-28) 0;
+        }
+
+        .pricing-price span {
+            font-size: 16px;
+            color: var(--color-smoke);
+            font-family: var(--font-system-ui);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-features {
+            position: relative;
+            z-index: 1;
+            list-style: none;
+            margin-bottom: var(--spacing-48);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-12);
+        }
+
+        .pricing-features li {
+            font-size: 14px;
+            color: var(--color-smoke);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-12);
+        }
+
+        .pricing-features li i {
+            color: #a0e0ab;
+            flex-shrink: 0;
+        }
+
+        .pricing-coming-soon {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: var(--spacing-12) var(--spacing-28);
+            background-color: transparent;
+            border: 1px solid var(--color-smoke);
+            color: var(--color-smoke);
+            border-radius: var(--radius-pill);
+            font-family: var(--font-system-ui);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-coming-soon i {
+            width: 14px;
+            height: 14px;
         }
 
         /* Footer */
@@ -1497,6 +1617,7 @@
         /* Section h2 headings — subtle gradient sweep */
         .work-grid-section h2,
         .editorial-index-section h2,
+        .pricing-section h2,
         .inquiries-section h2 {
             background: linear-gradient(135deg, var(--color-paper-white), #a0e0ab, #ffac2e, #a52d25, var(--color-paper-white));
             background-size: 400% 400%;
@@ -1507,7 +1628,8 @@
         }
 
         /* Dark section h2 (capabilities on black bg) stays visible */
-        .work-grid-section h2 {
+        .work-grid-section h2,
+        .pricing-section h2 {
             background: linear-gradient(135deg, #fff, #a0e0ab, #ffac2e, #a52d25, #fff);
             background-size: 400% 400%;
             -webkit-background-clip: text;
@@ -1528,6 +1650,7 @@
         .editorial-section .mono,
         .swarm-section .mono,
         .editorial-index-section .mono,
+        .pricing-section .mono,
         .inquiries-section .mono {
             animation: monoColorPulse 6s ease infinite;
         }
@@ -1786,6 +1909,7 @@
                 <a href="#manifesto">Manifesto</a>
                 <a href="#work">Work swarms</a>
                 <a href="#capabilities">Capabilities</a>
+                <a href="#pricing">Pricing</a>
                 <a href="#faq">FAQ</a>
                 <a href="#waitlist" class="pill-btn">Join waitlist</a>
             </div>
@@ -1838,7 +1962,7 @@
             <div class="hero-content">
                 <div class="mono" style="color: var(--color-paper-white); letter-spacing: 0.35em;">HelalLabs presents</div>
                 <h1 style="margin-top: var(--spacing-28);">BRAIN aOS</h1>
-                <div class="hero-subtitle">The Autonomous Corporate Operating System</div>
+                <div class="hero-subtitle">The AI operating system that never forgets.</div>
             </div>
 
 
@@ -1848,18 +1972,14 @@
         <section class="editorial-section" id="manifesto">
             <div class="container">
                 <div class="editorial-spread">
-                    <h2 class="editorial-title">The Scattered Mind</h2>
+                    <h2 class="editorial-title">The Archaeology of Scaling</h2>
                     <div class="editorial-body">
-                        <span class="mono">// MANIFESTO</span>
-                        <p style="margin-top: var(--spacing-28);">
-                            Every sync, file upload, or Slack query leaks organizational memory. Decisions get buried inside chat trails. Action items evaporate within hours. Workflows depend entirely on human recall.
-                        </p>
-                        <p>
-                            Brain aOS is an architecture designed for zero loss. We capture, organize, and unify your corporate transcripts, files, and roadmaps into a secure, RLS-isolated semantic core.
-                        </p>
-                        <p>
-                            We do not just transcribe or wiki. Swarms of specialized department nodes collaborate in autonomous boardrooms, executing workloads gated strictly by your sign-off.
-                        </p>
+                        <span class="mono">// THE PAIN POINT</span>
+                        <p style="margin-top: var(--spacing-28);">As builders scale, they run into four critical friction points — each one leaking time, context, and momentum every single day.</p>
+                        <p><strong>Multi-Venture Builders</strong> — Drowning in context-switching between entities. Decisions made for one company bleed into another. Nothing is isolated, nothing is remembered correctly.</p>
+                        <p><strong>Solo Founders</strong> — Carrying 100% of the cognitive load alone. Every meeting, every decision, every follow-up lives entirely in your head — with no co-founder to share the weight.</p>
+                        <p><strong>Scaling Startups</strong> — Rapid team growth creates operational silos. Action items get lost. Decisions go unrecorded. The context void widens as headcount grows.</p>
+                        <p><strong>Agile Units in Large Orgs</strong> — Small, fast-moving teams inside large organizations who need speed but lack the audit trails, governance, and security their enterprise demands.</p>
                     </div>
                 </div>
             </div>
@@ -1941,51 +2061,51 @@
                     <div class="work-item">
                         <div class="work-item-header">
                             <span class="mono">// 01</span>
-                            <i data-lucide="search" style="width:18px; height:18px;"></i>
+                            <i data-lucide="calendar-clock" style="width:18px; height:18px;"></i>
                         </div>
                         <div class="work-item-content">
-                            <h4>Diarized Ingestion</h4>
-                            <p>Integrate calendar events. Ingest calls to parse speaker-attributed transcripts directly into memory.</p>
+                            <h4>Proactive Meeting Digests</h4>
+                            <p>Receive context summaries, action items, and linked documents 15 minutes before every event automatically.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-item-header">
                             <span class="mono">// 02</span>
-                            <i data-lucide="network" style="width:18px; height:18px;"></i>
+                            <i data-lucide="layers" style="width:18px; height:18px;"></i>
                         </div>
                         <div class="work-item-content">
-                            <h4>Agent Boardrooms</h4>
-                            <p>Swarms coordinate in virtual boardrooms. Executive nodes delegate tasks to specific departments.</p>
+                            <h4>Multi-Channel Sync</h4>
+                            <p>Auto-integrate Google Workspace, calendars, Slack, and email into a single, unified company memory.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-item-header">
                             <span class="mono">// 03</span>
-                            <i data-lucide="shield-check" style="width:18px; height:18px;"></i>
+                            <i data-lucide="file-check-2" style="width:18px; height:18px;"></i>
                         </div>
                         <div class="work-item-content">
-                            <h4>Private Local Mode</h4>
-                            <p>Run the platform offline using local models (Ollama/Llama-3) to maintain total containment.</p>
+                            <h4>Decision &amp; Deliverable Logs</h4>
+                            <p>Auto-extract decisions and deadlines from daily communications — nothing slips through the cracks.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-item-header">
                             <span class="mono">// 04</span>
-                            <i data-lucide="message-square" style="width:18px; height:18px;"></i>
+                            <i data-lucide="network" style="width:18px; height:18px;"></i>
                         </div>
                         <div class="work-item-content">
-                            <h4>Telegram Bot</h4>
-                            <p>Query memory, receive proactivity briefs, and approve staged deliverables via Telegram.</p>
+                            <h4>Supervised Task Orchestrator</h4>
+                            <p>Launch and delegate workflows to specialized agents — all validated by you before anything executes.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-item-header">
                             <span class="mono">// 05</span>
-                            <i data-lucide="list-todo" style="width:18px; height:18px;"></i>
+                            <i data-lucide="shield-check" style="width:18px; height:18px;"></i>
                         </div>
                         <div class="work-item-content">
-                            <h4>Interactive War Room</h4>
-                            <p>Checkboxes write directly to database to dynamically decrement overdue KPI trackers.</p>
+                            <h4>Sentinel PII Pipeline</h4>
+                            <p>Proprietary safety layer that identifies and redacts personally identifiable information before any external API routing.</p>
                         </div>
                     </div>
                     <div class="work-item">
@@ -1994,8 +2114,8 @@
                             <i data-lucide="contact" style="width:18px; height:18px;"></i>
                         </div>
                         <div class="work-item-content">
-                            <h4>CRM 360</h4>
-                            <p>Auto-extract contacts, rank by AI importance, and view 360 timeline of linked tasks.</p>
+                            <h4>CRM 360 Directory</h4>
+                            <p>AI-scored contacts with 360-degree timelines of linked meetings, tasks, and shared documents.</p>
                         </div>
                     </div>
                     <div class="work-item">
@@ -2005,17 +2125,17 @@
                         </div>
                         <div class="work-item-content">
                             <h4>Outreach Pipelines</h4>
-                            <p>Scores conversion and likelihood-to-invest, drafting custom outbound campaigns.</p>
+                            <p>Scores likelihood-to-invest and conversion probability, drafting personalized outbound campaigns on your behalf.</p>
                         </div>
                     </div>
                     <div class="work-item">
                         <div class="work-item-header">
                             <span class="mono">// 08</span>
-                            <i data-lucide="bar-chart-3" style="width:18px; height:18px;"></i>
+                            <i data-lucide="message-square" style="width:18px; height:18px;"></i>
                         </div>
                         <div class="work-item-content">
-                            <h4>Hybrid Metrics</h4>
-                            <p>Dashboard cards showing live integrations beside manual overrides and AI sweeps.</p>
+                            <h4>Telegram Control Center</h4>
+                            <p>Query memory, receive proactivity alerts, and approve staged deliverables directly via Telegram.</p>
                         </div>
                     </div>
                     <div class="work-item">
@@ -2024,8 +2144,8 @@
                             <i data-lucide="git-merge" style="width:18px; height:18px;"></i>
                         </div>
                         <div class="work-item-content">
-                            <h4>Goal Deduplication</h4>
-                            <p>Clusters and de-duplicates active objectives automatically using semantic router embeddings.</p>
+                            <h4>Semantic Goal Deduplication</h4>
+                            <p>Automatically clusters and de-duplicates active North Star objectives using semantic router embeddings.</p>
                         </div>
                     </div>
                 </div>
@@ -2109,7 +2229,7 @@
                         <div class="index-status"><span class="status-badge active">Supported</span></div>
                     </div>
                     <div class="index-row">
-                        <span class="index-title">Interactive War Room</span>
+                        <span class="index-title">Interactive Business Suite</span>
                         <p class="index-desc">Clickable action-item checkboxes syncing with databases to dynamically update open and overdue KPI trackers.</p>
                         <div class="index-status"><span class="status-badge active">Supported</span></div>
                     </div>
@@ -2137,6 +2257,51 @@
                         <span class="index-title">Sentinel PII Pipeline</span>
                         <p class="index-desc">Proprietary safety pipeline that identifies and redacts personally identifiable information (PII) before external API routing.</p>
                         <div class="index-status"><span class="status-badge active">Supported</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING SECTION -->
+        <section class="pricing-section" id="pricing">
+            <div class="container">
+                <div class="section-header" style="text-align: center;">
+                    <span class="mono">// 07 PRICING PROTOCOL</span>
+                    <h2 style="margin-top: var(--spacing-12);">Transparent Pricing</h2>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Founder Edition</h3>
+                        <div class="pricing-price">$39<span>/mo</span></div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>
+                            <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                            <span>Isolated Vector Memory &amp; Graph</span>
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                            <span>Diarized Meeting Ingestion (10MB/file)</span>
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                            <span>AI Agent Swarms (Marketing, Finance, CRM)</span>
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                            <span>Secure Telegram Control Center</span>
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                            <span>Sentinel Zero-Trust PII Scrubbing</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="pricing-coming-soon">
+                        <i data-lucide="clock"></i>
+                        Coming Soon
                     </div>
                 </div>
             </div>
@@ -2200,9 +2365,9 @@
             </svg>
 
             <div class="hero-content">
-                <h2>Reserve Your Slot.</h2>
+                <h2>Waitlist is Open.</h2>
                 <p>
-                    Brain aOS is currently in closed private beta. Join the waitlist to secure early access — we onboard new organizations in cohorts as capacity opens.
+                    Private beta starts in 2 weeks. We're onboarding solo founders and early-stage teams of 1–20 in selective weekly cohorts. Secure your slot now.
                 </p>
 
                 <form id="waitlist-form" class="waitlist-full-form">
@@ -2210,7 +2375,7 @@
                         <input type="email" id="waitlist-email" placeholder="your@company.com" required class="waitlist-full-input">
                     </div>
                     <button type="submit" class="waitlist-full-btn" aria-label="Join Waitlist">
-                        <span class="btn-label">Join Waitlist &nbsp;<i data-lucide="arrow-right" style="width: 16px; height: 16px; vertical-align: middle;"></i></span>
+                        <span class="btn-label">Secure Early Access &nbsp;<i data-lucide="arrow-right" style="width: 16px; height: 16px; vertical-align: middle;"></i></span>
                         <span class="btn-spinner"></span>
                     </button>
                 </form>
@@ -2265,7 +2430,11 @@
                         <span class="logo-text">BRAIN aOS</span>
                     </a>
                     <p class="footer-copy">BRAIN aOS by HelalLabs © 2026</p>
-                    <p class="footer-tagline">Intelligence built on structure.</p>
+                    <p class="footer-tagline">The AI operating system that never forgets.</p>
+                    <a href="https://www.linkedin.com/company/cortex-aios/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; color: var(--color-smoke); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#a0e0ab'" onmouseout="this.style.color='var(--color-smoke)'">
+                        <i data-lucide="linkedin" style="width: 14px; height: 14px;"></i>
+                        Follow on LinkedIn
+                    </a>
                 </div>
             </div>
         </div>
