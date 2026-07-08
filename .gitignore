@@ -20,3 +20,6 @@
 !assets/**
 !marketing-site/
 !marketing-site/**
+
+!main.js
+!styles.css
