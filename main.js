@@ -1,5 +1,6 @@
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MOBILE = matchMedia('(max-width: 900px)').matches;
+const FINE = matchMedia('(pointer: fine)').matches;
 
 /* ---------- preloader ---------- */
 function initPreloader() {
@@ -8,13 +9,13 @@ function initPreloader() {
   if (REDUCED || !window.gsap) { pre.remove(); return Promise.resolve(); }
   const count = document.getElementById('preloader-count');
   return new Promise((resolve) => {
-    const t0 = performance.now(), DUR = 1200;
+    const t0 = performance.now(), DUR = 1100;
     (function tick(now) {
       const p = Math.min(1, (now - t0) / DUR);
       count.textContent = Math.round(p * 100);
       if (p < 1) return requestAnimationFrame(tick);
       gsap.to(pre, {
-        yPercent: -100, duration: 0.8, ease: 'power3.inOut', delay: 0.15,
+        yPercent: -100, duration: 0.8, ease: 'power3.inOut', delay: 0.1,
         onComplete: () => { pre.remove(); resolve(); }
       });
     })(t0);
@@ -29,7 +30,6 @@ function initSmoothScroll() {
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
-  // route anchor links through lenis
   document.querySelectorAll('a[href^="#"]').forEach((a) =>
     a.addEventListener('click', (e) => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -43,182 +43,256 @@ function initSmoothScroll() {
 /* ---------- nav hide/show ---------- */
 function initNav() {
   const nav = document.getElementById('site-nav');
+  const hud = document.getElementById('hud');
+  const forgetEl = document.getElementById('ch-forget');
+  const askEl = document.getElementById('ask');
+  // HUD reads as commentary on the graph's story: it appears once "01 · The problem"
+  // starts (not over the hero) and fades out again once the Ask chapter ends.
+  let hudLow, hudHigh;
+  const computeHudBounds = () => {
+    hudLow = forgetEl ? forgetEl.offsetTop - innerHeight * 0.3 : 0;
+    hudHigh = askEl ? askEl.offsetTop + askEl.offsetHeight : Infinity;
+  };
+  computeHudBounds();
+  addEventListener('resize', computeHudBounds);
   let last = 0;
   const onScroll = (y) => {
     nav.classList.toggle('hidden', y > last && y > 120);
+    if (hud) hud.classList.toggle('hidden', y < hudLow || y > hudHigh);
     last = y;
   };
   if (lenis) lenis.on('scroll', ({ scroll }) => onScroll(scroll));
   else addEventListener('scroll', () => onScroll(scrollY), { passive: true });
+  onScroll(scrollY);
 }
 
-/* ---------- generic section reveals ---------- */
+/* ---------- mobile-only: nav "Get in touch" scrolls to the contact section ---------- */
+function initNavGetInTouch() {
+  if (!MOBILE) return;                  // desktop keeps the direct mailto
+  const link = document.getElementById('nav-get-in-touch');
+  const contact = document.getElementById('contact');
+  if (!link || !contact) return;
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (lenis) lenis.scrollTo(contact, { offset: 0 });
+    else contact.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+/* ---------- the 3D brain ---------- */
+let brain = null;
+async function initScene() {
+  try {
+    const { initBrain } = await import('./brain3d.js');
+    brain = await initBrain();
+  } catch { brain = null; }
+  if (!brain) { document.documentElement.classList.add('no3d'); return; }
+
+  document.getElementById('hud-nodes').textContent = brain.counts.nodes;
+  document.getElementById('hud-edges').textContent = brain.counts.edges;
+  const hudState = document.getElementById('hud-state');
+  brain.onState = (name) => { hudState.textContent = name; };
+
+  /* scroll drives the scene through the story */
+  if (window.gsap && window.ScrollTrigger) {
+    ScrollTrigger.create({
+      trigger: '#story',
+      start: 'top 55%',
+      end: 'bottom 85%',
+      scrub: true,
+      onUpdate: (st) => brain.setScroll(st.progress),
+    });
+  }
+
+  /* hover picking only while a graph-live section is on screen */
+  let hoverOn = false;
+  const liveSections = new Set();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => e.isIntersecting ? liveSections.add(e.target) : liveSections.delete(e.target));
+    hoverOn = liveSections.size > 0;
+    if (!hoverOn) brain.clearHover();
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.graph-live').forEach((s) => io.observe(s));
+
+  if (FINE) {
+    addEventListener('pointermove', (e) => {
+      if (hoverOn && !dragging) brain.hover(e.clientX, e.clientY);
+    }, { passive: true });
+  }
+
+  /* drag-to-rotate on hero + ask */
+  let dragging = false;
+  document.querySelectorAll('[data-drag]').forEach((sec) => {
+    sec.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('a, button, input')) return;
+      e.preventDefault();               // stop native drag-to-select over the copy
+      dragging = true;
+      document.documentElement.classList.add('dragging');
+      brain.clearHover();
+      let lx = e.clientX, ly = e.clientY;
+      const move = (ev) => { brain.drag(ev.clientX - lx, ev.clientY - ly); lx = ev.clientX; ly = ev.clientY; };
+      const up = () => {
+        dragging = false;
+        document.documentElement.classList.remove('dragging');
+        removeEventListener('pointermove', move);
+        removeEventListener('pointerup', up);
+      };
+      addEventListener('pointermove', move);
+      addEventListener('pointerup', up);
+    });
+  });
+}
+
+/* ---------- scroll reveals ---------- */
 function initReveals() {
-  if (REDUCED) return;
-  gsap.utils.toArray('.mono-label, .mcp-copy h2, .mcp-copy p, .arch-col, .contact-link, .contact-sub').forEach((el) => {
+  if (REDUCED || !window.gsap) return;
+  gsap.from('.hero-copy > *', { y: 60, autoAlpha: 0, duration: 1.1, ease: 'power3.out', stagger: 0.09, delay: 0.1 });
+  gsap.utils.toArray('.product-head, .tour-block, .mcp-copy, .terminal, #architecture .mono-label, .arch-col, .contact-link, .contact-sub').forEach((el) => {
     gsap.from(el, {
-      y: 40, autoAlpha: 0, duration: 1, ease: 'power3.out',
+      y: 44, autoAlpha: 0, duration: 1, ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 88%' }
     });
   });
-  // hero entrance (after preloader)
-  gsap.from('.hero-copy > *', { y: 60, autoAlpha: 0, duration: 1.1, ease: 'power3.out', stagger: 0.09, delay: 0.1 });
-}
-
-/* ---------- hero constellation ---------- */
-const LOGO_PATHS = [
-  'M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z',
-  'M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z'
-];
-const MERCURY = [[0xa0/255,0xe0/255,0xab/255],[0xff/255,0xac/255,0x2e/255],[0xa5/255,0x2d/255,0x25/255]];
-
-function sampleLogoPoints(n) {
-  // rasterize the logo strokes to an offscreen canvas, sample lit pixels
-  const S = 480, off = document.createElement('canvas');
-  off.width = off.height = S;
-  const ctx = off.getContext('2d');
-  ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.7; ctx.lineCap = ctx.lineJoin = 'round';
-  ctx.setTransform(S / 24, 0, 0, S / 24, 0, 0);
-  LOGO_PATHS.forEach((d) => ctx.stroke(new Path2D(d)));
-  const img = ctx.getImageData(0, 0, S, S).data;
-  const pts = [];
-  while (pts.length / 3 < n) {
-    const x = (Math.random() * S) | 0, y = (Math.random() * S) | 0;
-    if (img[(y * S + x) * 4 + 3] > 128) {
-      pts.push((x / S - 0.5) * 2.0, -(y / S - 0.5) * 2.0, (Math.random() - 0.5) * 0.35);
-    }
-  }
-  return new Float32Array(pts);
-}
-
-function mercuryColor(t) {
-  // t in [0,1] across the gradient; piecewise lerp between the 3 stops
-  const seg = t < 0.5 ? [MERCURY[0], MERCURY[1], t * 2] : [MERCURY[1], MERCURY[2], (t - 0.5) * 2];
-  return seg[0].map((c, i) => c + (seg[1][i] - c) * seg[2]);
-}
-
-async function initConstellation() {
-  const canvas = document.getElementById('constellation');
-  const wrap = document.querySelector('.hero-visual');
-  if (!canvas || REDUCED) return;
-  let THREE;
-  try {
-    THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
-  } catch { wrap.classList.add('glow-fallback'); return; }
-  let renderer;
-  try {
-    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  } catch { wrap.classList.add('glow-fallback'); return; }
-
-  const N = MOBILE ? 2200 : 6500;
-  const scene = new THREE.Scene();
-  const cam = new THREE.PerspectiveCamera(50, 1, 0.1, 20);
-  cam.position.z = 3.1;
-
-  const home = sampleLogoPoints(N);
-  const pos = new Float32Array(home);
-  const col = new Float32Array(N * 3);
-  const phase = new Float32Array(N);
-  for (let i = 0; i < N; i++) {
-    // 135° gradient (top-left green → bottom-right red), steepened to reach both ends
-    const t = ((home[i*3] - home[i*3+1] + 2) / 4 - 0.5) * 1.6 + 0.5;
-    const c = mercuryColor(Math.min(1, Math.max(0, t)));
-    col.set(c, i * 3);
-    phase[i] = Math.random() * Math.PI * 2;
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-  const mat = new THREE.PointsMaterial({ size: 0.022, vertexColors: true, transparent: true, opacity: 0.95, depthWrite: false });
-  scene.add(new THREE.Points(geo, mat));
-
-  // sparse ambient particles behind the brain
-  const AN = MOBILE ? 80 : 220;
-  const apos = new Float32Array(AN * 3), acol = new Float32Array(AN * 3);
-  for (let i = 0; i < AN; i++) {
-    apos.set([(Math.random()-0.5)*7, (Math.random()-0.5)*5, -1 - Math.random()*2], i*3);
-    acol.set(mercuryColor(Math.random()), i*3);
-  }
-  const ageo = new THREE.BufferGeometry();
-  ageo.setAttribute('position', new THREE.BufferAttribute(apos, 3));
-  ageo.setAttribute('color', new THREE.BufferAttribute(acol, 3));
-  scene.add(new THREE.Points(ageo, new THREE.PointsMaterial({ size: 0.02, vertexColors: true, transparent: true, opacity: 0.4, depthWrite: false })));
-
-  const mouse = { x: 99, y: 99 };
-  addEventListener('pointermove', (e) => {
-    const r = canvas.getBoundingClientRect();
-    mouse.x = ((e.clientX - r.left) / r.width - 0.5) * 3.2;
-    mouse.y = -((e.clientY - r.top) / r.height - 0.5) * 3.2;
-  });
-
-  function resize() {
-    const r = wrap.getBoundingClientRect();
-    renderer.setSize(r.width, r.height, false);
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    cam.aspect = r.width / r.height;
-    cam.updateProjectionMatrix();
-  }
-  resize();
-  addEventListener('resize', resize);
-
-  let visible = true;
-  new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(wrap);
-
-  renderer.setAnimationLoop((t) => {
-    if (!visible) return;
-    for (let i = 0; i < N; i++) {
-      const ix = i * 3;
-      let tx = home[ix] + Math.sin(t / 1400 + phase[i]) * 0.018;
-      let ty = home[ix+1] + Math.cos(t / 1700 + phase[i]) * 0.018;
-      const dx = tx - mouse.x, dy = ty - mouse.y;
-      const d2 = dx*dx + dy*dy;
-      if (d2 < 0.25) { const f = (0.25 - d2) * 0.9; tx += dx * f; ty += dy * f; }
-      pos[ix]   += (tx - pos[ix]) * 0.08;
-      pos[ix+1] += (ty - pos[ix+1]) * 0.08;
-    }
-    geo.attributes.position.needsUpdate = true;
-    scene.rotation.y = mouse.x === 99 ? 0 : mouse.x * 0.04;
-    renderer.render(scene, cam);
-  });
-}
-
-/* ---------- scroll scenes ---------- */
-function initScenes() {
-  if (REDUCED || !window.gsap) return;
-
-  // manifesto: each beat scrubs in
-  gsap.utils.toArray('#manifesto .beat').forEach((beat) => {
-    gsap.fromTo(beat, { autoAlpha: 0.12, y: 60 }, {
-      autoAlpha: 1, y: 0, ease: 'none',
-      scrollTrigger: { trigger: beat, start: 'top 90%', end: 'top 45%', scrub: true }
+  /* chapter beats: staggered reveals while the chapter is stuck */
+  document.querySelectorAll('.chapter').forEach((chapter) => {
+    const beats = chapter.querySelectorAll('.mono-label, .beat');
+    beats.forEach((beat, i) => {
+      gsap.fromTo(beat, { autoAlpha: 0, y: 46 }, {
+        autoAlpha: 1, y: 0, ease: 'none',
+        scrollTrigger: {
+          trigger: chapter,
+          start: ['top 70%', 'top 25%', 'top -12%', 'top -32%'][Math.min(i, 3)],
+          end: '+=28%',
+          scrub: true,
+        }
+      });
     });
   });
-
-  // capabilities: pinned scene (desktop only)
-  if (!MOBILE) {
-    document.documentElement.classList.add('pinned');
-    const panels = gsap.utils.toArray('.cap-panel');
-    const items = gsap.utils.toArray('.cap-index li');
-    const setActive = (i) => {
-      panels.forEach((p, j) => p.classList.toggle('active', i === j));
-      items.forEach((el, j) => el.classList.toggle('active', i === j));
-    };
-    setActive(0);
-    ScrollTrigger.create({
-      trigger: '#capabilities',
-      start: 'top top',
-      end: '+=' + panels.length * 90 + '%',
-      pin: '.cap-pin',
-      scrub: true,
-      onUpdate: (st) => setActive(Math.min(panels.length - 1, Math.floor(st.progress * panels.length)))
-    });
-  }
-
-  // cairo: slow scale + settle
   gsap.fromTo('.cairo-line', { scale: 0.9, autoAlpha: 0.25 }, {
     scale: 1, autoAlpha: 1, ease: 'none',
     scrollTrigger: { trigger: '#cairo', start: 'top 85%', end: 'center center', scrub: true }
   });
+}
+
+/* ---------- Ask the Brain ---------- */
+const PRESETS = {
+  recall: {
+    q: 'What did we decide about the battery recall?',
+    path: ['Dr. Aris Thorne', 'Board meeting · 06/22', 'Battery recall', 'ElectroCells switch'],
+    a: 'The board resolved to replace the recalled packs with certified units from ElectroCells. The switch away from CustomPCB was recorded as a formal decision — their inconsistent internal resistance caused the recall. Unit cost rises $1.20; without it, the product fails the final UL Labs audit.',
+    cites: ['exec_board_meeting_2026_06_22.md', 'battery pack supplier switch'],
+  },
+  cyberdyne: {
+    q: 'Why is the Cyberdyne deal stalled?',
+    path: ['Cyberdyne Systems deal', 'Battery recall', 'Arthur Pendelton'],
+    a: 'The $550k contract is waiting on legal sign-off created by the April recall. The corrective-action filing sits with Arthur Pendelton; expediting the CPSC submission unblocks it. The recall entity influences 24 downstream nodes, including the Q2 sales report.',
+    cites: ['sales_pipeline_q1_q2_2026.csv', 'legal review thread'],
+  },
+  wayne: {
+    q: 'What if we lose the Wayne Enterprises deal?',
+    path: ['Wayne Enterprises deal', 'Q3 pipeline', 'Rebecca Chen'],
+    a: 'Q3 pipeline drops 12% — from 6.85M to 6.03M. Finance should re-forecast Q3–Q4 revenue without the $820k, and the Final Launch Sprint needs its resources reallocated. Confidence: high.',
+    cites: ['what-if projection', 'q3 pipeline report'],
+  },
+  thermal: {
+    q: 'Who knows the thermal issue best?',
+    path: ['Thermal insight', 'Dr. Aris Thorne', 'Aether'],
+    a: 'Dr. Aris Thorne — author of the thermal insight memo, present in 8 related meetings, owner of 5 open tasks on the Aether project. Rebecca Chen holds secondary context from the pipeline reviews.',
+    cites: ['person graph', 'meeting attendance'],
+  },
+};
+
+function typewriter(el, text, ms) {
+  if (REDUCED) { el.textContent = text; return Promise.resolve(); }
+  el.textContent = '';
+  return new Promise((resolve) => {
+    let c = 0;
+    (function step() {
+      c = Math.min(text.length, c + 1 + (ms < 10 ? 1 : 0));
+      el.textContent = text.slice(0, c);
+      if (c < text.length) setTimeout(step, ms);
+      else resolve();
+    })();
+  });
+}
+
+function initAsk() {
+  const qEl = document.getElementById('ask-qtext');
+  const aEl = document.getElementById('ask-atext');
+  const cEl = document.getElementById('ask-cites');
+  const chips = [...document.querySelectorAll('.ask-chips .chip')];
+  if (!qEl) return;
+  let busy = false;
+  chips.forEach((chip) => chip.addEventListener('click', async () => {
+    if (busy) return;
+    const preset = PRESETS[chip.dataset.q];
+    if (!preset) return;
+    busy = true;
+    chips.forEach((c) => { c.disabled = true; c.classList.toggle('active', c === chip); });
+    aEl.textContent = '';
+    cEl.innerHTML = '';
+    await typewriter(qEl, preset.q, 24);
+    if (brain) brain.pulsePath(preset.path, 2);
+    await new Promise((r) => setTimeout(r, REDUCED ? 0 : 450));
+    await typewriter(aEl, preset.a, 7);
+    cEl.innerHTML = preset.cites.map((c) => `<span class="cite">${c}</span>`).join('');
+    chips.forEach((c) => { c.disabled = false; });
+    busy = false;
+  }));
+}
+
+/* ---------- chat mode tabs ---------- */
+function initModeTabs() {
+  const tabs = document.querySelectorAll('.mode-tab');
+  const shots = document.querySelectorAll('.mode-shots .shot-frame');
+  tabs.forEach((tab) =>
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => { t.classList.toggle('active', t === tab); t.setAttribute('aria-selected', t === tab); });
+      shots.forEach((s) => s.classList.toggle('active', s.dataset.shot === tab.dataset.shot));
+    })
+  );
+}
+
+/* ---------- screenshot tilt ---------- */
+function initTilt() {
+  if (REDUCED || MOBILE || !FINE || !window.gsap) return;
+  document.querySelectorAll('[data-tilt]').forEach((frame) => {
+    frame.addEventListener('pointermove', (e) => {
+      const r = frame.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      gsap.to(frame, { rotateY: px * 7, rotateX: -py * 5, duration: 0.5, ease: 'power2.out', transformPerspective: 1200 });
+    });
+    frame.addEventListener('pointerleave', () =>
+      gsap.to(frame, { rotateY: 0, rotateX: 0, duration: 0.7, ease: 'power3.out' })
+    );
+  });
+}
+
+/* ---------- lightbox: click a product shot to enlarge ---------- */
+function initLightbox() {
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  if (!lb) return;
+  const open = (img) => {
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt || '';
+    lb.hidden = false;
+    document.documentElement.classList.add('lightbox-open');
+    if (lenis) lenis.stop();
+  };
+  const close = () => {
+    lb.hidden = true;
+    document.documentElement.classList.remove('lightbox-open');
+    if (lenis) lenis.start();
+  };
+  document.querySelectorAll('.shot-frame img').forEach((img) =>
+    img.addEventListener('click', () => open(img))
+  );
+  lb.addEventListener('click', (e) => {
+    if (e.target === lb || e.target.closest('.lightbox-close')) close();
+  });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
 }
 
 /* ---------- terminal ---------- */
@@ -228,34 +302,24 @@ const TERM_SCRIPT = [
   { cmd: 'kg mcp status',
     out: '→ 4 agents connected · scopes: read/write · keys: member-scoped' },
   { cmd: 'kg audit --contradictions',
-    out: '→ 2 conflicts found: Q3 headcount (HR doc vs. finance memo)' }
+    out: '→ 2 conflicts found: Q3 headcount (HR doc vs. finance memo)' },
 ];
 
 function initTerminal() {
   const cmdEl = document.getElementById('term-cmd');
   const outEl = document.getElementById('term-out');
-  if (!cmdEl || REDUCED) return; // static command+answer already in DOM
+  if (!cmdEl || REDUCED) return;
   let i = 0;
-  const type = (text, el, done) => {
-    el.textContent = '';
-    let c = 0;
-    (function step() {
-      el.textContent = text.slice(0, ++c);
-      if (c < text.length) setTimeout(step, 26 + Math.random() * 40);
-      else done();
-    })();
-  };
   const cycle = () => {
     const { cmd, out } = TERM_SCRIPT[i % TERM_SCRIPT.length]; i++;
     outEl.textContent = '';
-    type(cmd, cmdEl, () => {
+    typewriter(cmdEl, cmd, 30).then(() => {
       setTimeout(() => {
         outEl.textContent = out;
         setTimeout(cycle, 3800);
       }, 500);
     });
   };
-  // start only when visible
   new IntersectionObserver(([e], obs) => {
     if (e.isIntersecting) { cycle(); obs.disconnect(); }
   }, { threshold: 0.4 }).observe(cmdEl.closest('.terminal'));
@@ -263,7 +327,7 @@ function initTerminal() {
 
 /* ---------- cursor + magnetic ---------- */
 function initCursor() {
-  if (REDUCED || MOBILE || !matchMedia('(pointer: fine)').matches) return;
+  if (REDUCED || MOBILE || !FINE) return;
   const dot = document.querySelector('.cursor-dot');
   let x = 0, y = 0, tx = 0, ty = 0;
   addEventListener('pointermove', (e) => { tx = e.clientX; ty = e.clientY; dot.classList.add('on'); });
@@ -276,8 +340,8 @@ function initCursor() {
     el.addEventListener('pointerenter', () => dot.classList.add('grow'));
     el.addEventListener('pointerleave', () => dot.classList.remove('grow'));
   });
-  // magnetic pills
-  document.querySelectorAll('.pill').forEach((el) => {
+  if (!window.gsap) return;
+  document.querySelectorAll('.pill, .pill-outline').forEach((el) => {
     el.addEventListener('pointermove', (e) => {
       const r = el.getBoundingClientRect();
       gsap.to(el, { x: (e.clientX - r.left - r.width / 2) * 0.25, y: (e.clientY - r.top - r.height / 2) * 0.35, duration: 0.4 });
@@ -288,18 +352,23 @@ function initCursor() {
 
 /* ---------- boot ---------- */
 async function boot() {
+  initModeTabs();
+  initAsk();
+  initLightbox();
+  initNavGetInTouch();
   if (!window.gsap || !window.ScrollTrigger) {
-    // CDN failed: static page stands on its own, just clear the curtain
     document.getElementById('preloader')?.remove();
+    initScene();       // graph still lives, just not scroll-driven
+    initTerminal();
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
   initSmoothScroll();
   initNav();
-  initConstellation();
+  initScene();
   await initPreloader();
   initReveals();
-  initScenes();
+  initTilt();
   initTerminal();
   initCursor();
 }

@@ -12,6 +12,9 @@
 !privacy.html
 !terms.html
 !refund.html
+!brain3d.js
+!robots.txt
+!sitemap.xml
 
 # Whitelist marketing asset directories
 !marketing assets/
@@ -20,6 +23,8 @@
 !assets/**
 !marketing-site/
 !marketing-site/**
+!shots/
+!shots/**
 
 !main.js
 !styles.css
