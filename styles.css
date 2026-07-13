@@ -238,14 +238,16 @@ html.dragging, html.dragging * { user-select: none !important; -webkit-user-sele
   margin-bottom: 15vh;
   perspective: 1400px;
 }
+.tour-block > * { min-width: 0; }
 .tour-block:nth-of-type(odd) .tour-copy { order: 2; }
-.tour-copy { display: flex; flex-direction: column; gap: 16px; }
+.tour-copy { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .tour-copy h3 { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.15; }
 .tour-copy p { font-size: 16px; font-weight: 200; line-height: 1.55; color: var(--smoke); max-width: 26em; }
 .tour-copy em { font-style: normal; color: var(--amber); }
 
 .marquee {
   margin-top: 24px;
+  min-width: 0;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
@@ -271,6 +273,7 @@ html.dragging, html.dragging * { user-select: none !important; -webkit-user-sele
 .shot-bar { display: flex; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--carbon); }
 .shot-bar span { width: 8px; height: 8px; border-radius: 50%; background: var(--carbon); }
 .shot-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; perspective: 1400px; }
+.shot-duo > * { min-width: 0; }
 
 .mode-tabs { display: flex; gap: 8px; margin-top: 8px; }
 .mode-tab {
@@ -294,6 +297,7 @@ html.dragging, html.dragging * { user-select: none !important; -webkit-user-sele
   align-items: center;
   padding-top: 10vh; padding-bottom: 10vh;
 }
+#agents > * { min-width: 0; }
 .mcp-copy { display: flex; flex-direction: column; gap: 20px; max-width: 540px; }
 .mcp-copy h2 { font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 300; letter-spacing: -0.03em; line-height: 1.05; }
 .mcp-copy p { font-size: 16px; line-height: 1.6; color: var(--smoke); }
