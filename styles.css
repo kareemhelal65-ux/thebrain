@@ -1,4 +1,4 @@
-/* Brain aOS — Inside the Brain */
+/* Brain aOS: Inside the Brain */
 
 :root {
   --ink: #000;
@@ -12,7 +12,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-/* Lenis drives scroll smoothing itself once JS is up — native smooth-scroll fighting
+/* Lenis drives scroll smoothing itself once JS is up: native smooth-scroll fighting
    its own RAF loop every frame is what causes stutter. Auto once Lenis can take over. */
 html.js { scroll-behavior: auto; }
 body {

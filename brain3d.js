@@ -1,4 +1,4 @@
-/* brain3d.js — the persistent 3D knowledge-graph scene behind the whole page.
+/* brain3d.js: the persistent 3D knowledge-graph scene behind the whole page.
    Exposes: initBrain() -> api | null (null = caller applies CSS fallback). */
 
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -23,7 +23,7 @@ const TYPE_COLOR = {
   project:  0xb07a2a,
 };
 
-/* named entities from the demo company — hoverable, used by Ask paths */
+/* named entities from the demo company: hoverable, used by Ask paths */
 const NAMED = [
   { name: 'Dr. Aris Thorne',        type: 'person',   cluster: 0 },
   { name: 'Battery recall',         type: 'decision', cluster: 0 },

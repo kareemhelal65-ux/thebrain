@@ -179,7 +179,7 @@ const PRESETS = {
   recall: {
     q: 'What did we decide about the battery recall?',
     path: ['Dr. Aris Thorne', 'Board meeting · 06/22', 'Battery recall', 'ElectroCells switch'],
-    a: 'The board resolved to replace the recalled packs with certified units from ElectroCells. The switch away from CustomPCB was recorded as a formal decision — their inconsistent internal resistance caused the recall. Unit cost rises $1.20; without it, the product fails the final UL Labs audit.',
+    a: 'The board resolved to replace the recalled packs with certified units from ElectroCells. The switch away from CustomPCB was recorded as a formal decision: their inconsistent internal resistance caused the recall. Unit cost rises $1.20; without it, the product fails the final UL Labs audit.',
     cites: ['exec_board_meeting_2026_06_22.md', 'battery pack supplier switch'],
   },
   cyberdyne: {
@@ -191,13 +191,13 @@ const PRESETS = {
   wayne: {
     q: 'What if we lose the Wayne Enterprises deal?',
     path: ['Wayne Enterprises deal', 'Q3 pipeline', 'Rebecca Chen'],
-    a: 'Q3 pipeline drops 12% — from 6.85M to 6.03M. Finance should re-forecast Q3–Q4 revenue without the $820k, and the Final Launch Sprint needs its resources reallocated. Confidence: high.',
+    a: 'Q3 pipeline drops 12%, from 6.85M to 6.03M. Finance should re-forecast Q3–Q4 revenue without the $820k, and the Final Launch Sprint needs its resources reallocated. Confidence: high.',
     cites: ['what-if projection', 'q3 pipeline report'],
   },
   thermal: {
     q: 'Who knows the thermal issue best?',
     path: ['Thermal insight', 'Dr. Aris Thorne', 'Aether'],
-    a: 'Dr. Aris Thorne — author of the thermal insight memo, present in 8 related meetings, owner of 5 open tasks on the Aether project. Rebecca Chen holds secondary context from the pipeline reviews.',
+    a: 'Dr. Aris Thorne: author of the thermal insight memo, present in 8 related meetings, owner of 5 open tasks on the Aether project. Rebecca Chen holds secondary context from the pipeline reviews.',
     cites: ['person graph', 'meeting attendance'],
   },
 };
