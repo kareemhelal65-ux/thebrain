@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260713i">
+  <link rel="stylesheet" href="styles.css?v=20260717a">
   <script>document.documentElement.classList.add('js')</script>
   <script type="application/ld+json">
   {
@@ -112,6 +112,7 @@
       <a href="#ask">Ask</a>
       <a href="#product">Product</a>
       <a href="#agents">Agents</a>
+      <a href="#pricing">Pricing</a>
     </nav>
     <div class="nav-ctas">
       <a class="pill-outline" href="https://calendly.com/kareemhelal65/30min" target="_blank" rel="noopener noreferrer">Book a call</a>
@@ -361,6 +362,32 @@
       </div>
     </section>
 
+    <section id="pricing">
+      <div class="pricing-head">
+        <span class="mono-label">Pricing</span>
+        <h2>Every seat cheaper than the last.</h2>
+        <p>Simple per-seat pricing, graduated like tax brackets: each band of seats costs less than the one before. Drag to your team size.</p>
+      </div>
+      <div class="price-panel">
+        <div class="price-readout">
+          <div class="price-stat"><span class="price-num" id="price-seats">10</span><span class="price-cap">People</span></div>
+          <div class="price-stat"><span class="price-num" id="price-month">$950</span><span class="price-cap">Per month</span></div>
+          <div class="price-stat"><span class="price-num amber" id="price-seat">$95</span><span class="price-cap">Per seat / month</span></div>
+        </div>
+        <input type="range" id="price-range" min="5" max="100" step="1" value="10" aria-label="Team size">
+        <div class="price-tiers" aria-hidden="true">
+          <span class="price-tier" data-start="1">Seats 1–10 · $95</span>
+          <span class="price-tier" data-start="11">11–30 · $65</span>
+          <span class="price-tier" data-start="31">31–50 · $50</span>
+          <span class="price-tier" data-start="51">51+ · $35</span>
+        </div>
+        <div class="price-foot">
+          <p class="price-note">Every plan is the full product: the graph, all chat modes, boards, agents, MCP. Self-hosted in your own infrastructure. Minimum 5 seats.</p>
+          <a class="pill-outline" href="https://calendly.com/kareemhelal65/30min" target="_blank" rel="noopener noreferrer">Book a call</a>
+        </div>
+      </div>
+    </section>
+
     <section id="architecture">
       <h2 class="mono-label">Architecture</h2>
       <div class="arch-grid">
@@ -412,6 +439,7 @@
       <a href="#ask">Ask</a>
       <a href="#product">Product</a>
       <a href="#agents">Agents</a>
+      <a href="#pricing">Pricing</a>
       <a href="mailto:contact@brainaos.com">Contact</a>
     </nav>
     <span class="mono-label">© 2026 Brain aOS · Cairo, Egypt</span>
@@ -427,6 +455,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script type="module" src="main.js?v=20260713h"></script>
+  <script type="module" src="main.js?v=20260717a"></script>
 </body>
 </html>

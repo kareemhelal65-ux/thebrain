@@ -147,7 +147,7 @@ async function initScene() {
 function initReveals() {
   if (REDUCED || !window.gsap) return;
   gsap.from('.hero-copy > *', { y: 60, autoAlpha: 0, duration: 1.1, ease: 'power3.out', stagger: 0.09, delay: 0.1 });
-  gsap.utils.toArray('.product-head, .tour-block, .mcp-copy, .terminal, #architecture .mono-label, .arch-col, .contact-link, .contact-sub').forEach((el) => {
+  gsap.utils.toArray('.product-head, .tour-block, .mcp-copy, .terminal, .pricing-head, .price-panel, #architecture .mono-label, .arch-col, .contact-link, .contact-sub').forEach((el) => {
     gsap.from(el, {
       y: 44, autoAlpha: 0, duration: 1, ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 88%' }
@@ -325,6 +325,40 @@ function initTerminal() {
   }, { threshold: 0.4 }).observe(cmdEl.closest('.terminal'));
 }
 
+/* ---------- pricing slider ---------- */
+function initPricing() {
+  const range = document.getElementById('price-range');
+  if (!range) return;
+  const seatsEl = document.getElementById('price-seats');
+  const monthEl = document.getElementById('price-month');
+  const seatEl = document.getElementById('price-seat');
+  const tiers = [...document.querySelectorAll('.price-tier')];
+  /* graduated bands, tax-bracket style: [seats in band, $/seat/mo] */
+  const BANDS = [[10, 95], [20, 65], [20, 50], [Infinity, 35]];
+  const priceFor = (n) => {
+    let left = n, total = 0;
+    for (const [size, rate] of BANDS) {
+      const take = Math.min(left, size);
+      total += take * rate;
+      left -= take;
+      if (left <= 0) break;
+    }
+    return total;
+  };
+  const fmt = (n) => '$' + n.toLocaleString('en-US');
+  const update = () => {
+    const n = +range.value;
+    const price = priceFor(n);
+    seatsEl.textContent = n >= +range.max ? range.max + '+' : n;
+    monthEl.textContent = fmt(price);
+    seatEl.textContent = fmt(Math.round(price / n));
+    tiers.forEach((t) => t.classList.toggle('active', +t.dataset.start <= n));
+    range.style.setProperty('--fill', ((n - range.min) / (range.max - range.min)) * 100 + '%');
+  };
+  range.addEventListener('input', update);
+  update();
+}
+
 /* ---------- cursor + magnetic ---------- */
 function initCursor() {
   if (REDUCED || MOBILE || !FINE) return;
@@ -356,6 +390,7 @@ async function boot() {
   initAsk();
   initLightbox();
   initNavGetInTouch();
+  initPricing();
   if (!window.gsap || !window.ScrollTrigger) {
     document.getElementById('preloader')?.remove();
     initScene();       // graph still lives, just not scroll-driven
